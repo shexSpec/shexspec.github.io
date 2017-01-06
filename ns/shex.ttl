@@ -1,16 +1,16 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix shex: <http://shexspec.github.io/ns/> .
+@prefix shex: <http://shex.io/ns/shex#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # CSVM Ontology definition
 shex: a owl:Ontology;
   dc:title "Shape Expression Vocabulary Terms"@en;
   dc:description """This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context."""@en;
-  dc:date "2016-12-22"^^xsd:date;
+  dc:date "2017-01-05"^^xsd:date;
   dc:imports ;
-  owl:versionInfo <https://github.com/shexSpec/spec/commit/4b58296948ec54092b49cdd83aa29fd1d09577bf>;
-  rdfs:seeAlso <http://shexspec.github.io/spec>;
+  owl:versionInfo <https://github.com/shexSpec/spec/commit/841d67550bbc309198555660974c3bc79e2dd0e0>;
+  rdfs:seeAlso <https://shexspec.github.io/spec>;
   .
 
 

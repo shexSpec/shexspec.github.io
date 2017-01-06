@@ -2,7 +2,7 @@
   "@context": {
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "shex": "http://shexspec.github.io/ns/",
+    "shex": "http://shex.io/ns/shex#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "annotations": {
       "@id": "annotation",
@@ -268,7 +268,7 @@
         "@type": "@id"
       }
     },
-    "@id": "http://shexspec.github.io/ns/",
+    "@id": "http://shex.io/ns/shex#",
     "@type": "owl:Ontology",
     "dc:title": {
       "en": "Shape Expression Vocabulary Terms"
@@ -276,10 +276,10 @@
     "dc:description": {
       "en": "This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context."
     },
-    "dc:date": "2016-12-22",
-    "owl:versionInfo": "https://github.com/shexSpec/spec/commit/4b58296948ec54092b49cdd83aa29fd1d09577bf",
+    "dc:date": "2017-01-05",
+    "owl:versionInfo": "https://github.com/shexSpec/spec/commit/841d67550bbc309198555660974c3bc79e2dd0e0",
     "rdfs:seeAlso": [
-      "http://shexspec.github.io/spec"
+      "https://shexspec.github.io/spec"
     ],
     "rdfs_classes": [
       {
