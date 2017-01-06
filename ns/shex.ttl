@@ -332,8 +332,8 @@ shex:totaldigits a rdf:Property;
   rdfs:domain shex:NodeConstraint;
   rdfs:range xsd:nonNegativeInteger;
   rdfs:isDefinedBy shex: .
-shex:value a rdf:Property;
-  rdfs:label "value"@en;
+shex:values a rdf:Property;
+  rdfs:label "values"@en;
   rdfs:comment """A value restriction on a NodeConstraint."""@en;
   rdfs:domain shex:NodeConstraint;
   rdfs:range [ owl:unionOf (rdfs:Resource shex:Stem shex:StemRange)];

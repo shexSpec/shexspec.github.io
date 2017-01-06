@@ -13,11 +13,10 @@
       "@type": "@id"
     },
     "id": "@id",
+    "label": "@id",
     "type": "@type",
-    "values": {
-      "@id": "value",
-      "@type": "@id"
-    },
+    "uri": "@id",
+    "value": "@value",
     "Annotation": "shex:Annotation",
     "EachOf": "shex:EachOf",
     "Inclusion": "shex:Inclusion",
@@ -182,9 +181,10 @@
       "@id": "shex:totaldigits",
       "@type": "xsd:nonNegativeInteger"
     },
-    "value": {
-      "@id": "shex:value",
-      "@type": "@id"
+    "values": {
+      "@id": "shex:values",
+      "@type": "@id",
+      "@container": "@list"
     },
     "valueExpr": {
       "@id": "shex:valueExpr",
@@ -1020,10 +1020,10 @@
         "rdfs:range": "xsd:nonNegativeInteger"
       },
       {
-        "@id": "shex:value",
+        "@id": "shex:values",
         "@type": "rdf:Property",
         "rdfs:label": {
-          "en": "value"
+          "en": "values"
         },
         "rdfs:comment": {
           "en": "A value restriction on a NodeConstraint."
