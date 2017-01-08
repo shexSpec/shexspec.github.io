@@ -170,6 +170,7 @@ class Vocab
     end
 
     instances.each do |id, entry|
+      context[id] = namespaced(id)
       # Instance definition
       rdfs_instances << {
         '@id' => namespaced(id),

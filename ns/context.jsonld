@@ -123,7 +123,7 @@
     },
     "nodeKind": {
       "@id": "shex:nodeKind",
-      "@language": null
+      "@type": "@id"
     },
     "numericFacet": {
       "@id": "shex:numericFacet"
@@ -192,7 +192,11 @@
     },
     "xsFacet": {
       "@id": "shex:xsFacet"
-    }
+    },
+    "literal": "shex:literal",
+    "nonliteral": "shex:nonliteral",
+    "iri": "shex:iri",
+    "bnode": "shex:bnode"
   },
   "@graph": {
     "@context": {
@@ -276,8 +280,8 @@
     "dc:description": {
       "en": "This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context."
     },
-    "dc:date": "2017-01-05",
-    "owl:versionInfo": "https://github.com/shexSpec/spec/commit/841d67550bbc309198555660974c3bc79e2dd0e0",
+    "dc:date": "2017-01-06",
+    "owl:versionInfo": "https://github.com/shexSpec/spec/commit/be6b3a6bb72b0315c72b09da41113204835b91ee",
     "rdfs:seeAlso": [
       "https://shexspec.github.io/spec"
     ],
@@ -819,10 +823,10 @@
           "en": "node kind"
         },
         "rdfs:comment": {
-          "en": "Restiction on the kind of node matched; restricted to the defined instances of NodeKind. One of “iri”, “bnode”, “literal”, or “nonliteral”."
+          "en": "Restiction on the kind of node matched; restricted to the defined instances of NodeKind. One of shex:iri, shex:bnode, shex:literal, or shex:nonliteral."
         },
         "rdfs:domain": "shex:NodeConstraint",
-        "rdfs:range": "xsd:string"
+        "rdfs:range": "shex:NodeKind"
       },
       {
         "@id": "shex:numericFacet",
@@ -1059,6 +1063,48 @@
           "en": "An abstract property of string and numeric facets on a NodeConstraint."
         },
         "rdfs:domain": "shex:NodeConstraint"
+      }
+    ],
+    "rdfs_instances": [
+      {
+        "@id": "shex:literal",
+        "@type": "NodeKind",
+        "rdfs:label": {
+          "en": "literal"
+        },
+        "rdfs:comment": {
+          "en": "Requires node to be an rdf:Literal"
+        }
+      },
+      {
+        "@id": "shex:nonliteral",
+        "@type": "NodeKind",
+        "rdfs:label": {
+          "en": "nonliteral"
+        },
+        "rdfs:comment": {
+          "en": "Requires node to be a Blank Node or IRI"
+        }
+      },
+      {
+        "@id": "shex:iri",
+        "@type": "NodeKind",
+        "rdfs:label": {
+          "en": "iri"
+        },
+        "rdfs:comment": {
+          "en": "Requires node to be an IRI"
+        }
+      },
+      {
+        "@id": "shex:bnode",
+        "@type": "NodeKind",
+        "rdfs:label": {
+          "en": "bnode"
+        },
+        "rdfs:comment": {
+          "en": "Requires node to be a Blank Node"
+        }
       }
     ]
   }

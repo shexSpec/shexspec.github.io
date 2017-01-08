@@ -7,9 +7,9 @@
 shex: a owl:Ontology;
   dc:title "Shape Expression Vocabulary Terms"@en;
   dc:description """This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context."""@en;
-  dc:date "2017-01-05"^^xsd:date;
+  dc:date "2017-01-06"^^xsd:date;
   dc:imports ;
-  owl:versionInfo <https://github.com/shexSpec/spec/commit/841d67550bbc309198555660974c3bc79e2dd0e0>;
+  owl:versionInfo <https://github.com/shexSpec/spec/commit/be6b3a6bb72b0315c72b09da41113204835b91ee>;
   rdfs:seeAlso <https://shexspec.github.io/spec>;
   .
 
@@ -243,9 +243,9 @@ shex:name a rdf:Property;
   rdfs:isDefinedBy shex: .
 shex:nodeKind a rdf:Property;
   rdfs:label "node kind"@en;
-  rdfs:comment """Restiction on the kind of node matched; restricted to the defined instances of NodeKind. One of “iri”, “bnode”, “literal”, or “nonliteral”."""@en;
+  rdfs:comment """Restiction on the kind of node matched; restricted to the defined instances of NodeKind. One of shex:iri, shex:bnode, shex:literal, or shex:nonliteral."""@en;
   rdfs:domain shex:NodeConstraint;
-  rdfs:range xsd:string;
+  rdfs:range shex:NodeKind;
   rdfs:isDefinedBy shex: .
 shex:numericFacet a rdf:Property;
   rdfs:label ""@en;
@@ -353,3 +353,19 @@ shex:xsFacet a rdf:Property;
 # Datatype definitions
 
 # Instance definitions
+shex:literal a shex:NodeKind;
+  rdfs:label "literal"@en;
+  rdfs:comment """Requires node to be an rdf:Literal"""@en;
+  rdfs:isDefinedBy shex: .
+shex:nonliteral a shex:NodeKind;
+  rdfs:label "nonliteral"@en;
+  rdfs:comment """Requires node to be a Blank Node or IRI"""@en;
+  rdfs:isDefinedBy shex: .
+shex:iri a shex:NodeKind;
+  rdfs:label "iri"@en;
+  rdfs:comment """Requires node to be an IRI"""@en;
+  rdfs:isDefinedBy shex: .
+shex:bnode a shex:NodeKind;
+  rdfs:label "bnode"@en;
+  rdfs:comment """Requires node to be a Blank Node"""@en;
+  rdfs:isDefinedBy shex: .
