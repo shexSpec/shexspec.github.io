@@ -29,7 +29,7 @@ minexclusive,rdf:Property,min exclusive,numericFacet,NodeConstraint,"xsd:integer
 mininclusive,rdf:Property,min inclusive,numericFacet,NodeConstraint,"xsd:integer,xsd:decimal,xsd:double",,,,An atomic property that contains a single number that is the minimum valid value (inclusive).,
 minlength,rdf:Property,min length,stringFacet,NodeConstraint,xsd:nonNegativeInteger,,,,An atomic property that contains a single integer that is the minimum length of the value.,
 name,rdf:Property,name,,SemAct,rdfs:Resource,,,,Identifier of SemAct extension.,
-nodeKind,rdf:Property,node kind,,NodeConstraint,NodeKind,,,,"Restiction on the kind of node matched; restricted to the defined instances of NodeKind. One of shex:iri, shex:bnode, shex:literal, or shex:nonliteral.",
+nodeKind,rdf:Property,node kind,,NodeConstraint,NodeKind,@vocab,,,"Restiction on the kind of node matched; restricted to the defined instances of NodeKind. One of shex:iri, shex:bnode, shex:literal, or shex:nonliteral.",
 numericFacet,rdf:Property,,xsFacet,,,,,,Abstract property of numeric facets on a NodeConstraint.,
 object,rdf:Property,object,,Annotation,rdfs:Resource,,,,The object of an Annotation.,
 pattern,rdf:Property,pattern,stringFacet,NodeConstraint,xsd:string,,,,A regular expression used for matching a value.,

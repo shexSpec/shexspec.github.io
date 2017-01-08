@@ -123,7 +123,7 @@
     },
     "nodeKind": {
       "@id": "shex:nodeKind",
-      "@type": "@id"
+      "@type": "@vocab"
     },
     "numericFacet": {
       "@id": "shex:numericFacet"
@@ -280,8 +280,8 @@
     "dc:description": {
       "en": "This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context."
     },
-    "dc:date": "2017-01-06",
-    "owl:versionInfo": "https://github.com/shexSpec/spec/commit/be6b3a6bb72b0315c72b09da41113204835b91ee",
+    "dc:date": "2017-01-08",
+    "owl:versionInfo": "https://github.com/shexSpec/spec/commit/5ab4bbbf1df43f08afee08ab9e163a861c84ce58",
     "rdfs:seeAlso": [
       "https://shexspec.github.io/spec"
     ],
