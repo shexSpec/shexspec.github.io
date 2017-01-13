@@ -14,6 +14,7 @@
     },
     "id": "@id",
     "label": "@id",
+    "language": "@language",
     "type": "@type",
     "uri": "@id",
     "value": "@value",
@@ -281,7 +282,7 @@
       "en": "This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context."
     },
     "dc:date": "2017-01-08",
-    "owl:versionInfo": "https://github.com/shexSpec/spec/commit/5ab4bbbf1df43f08afee08ab9e163a861c84ce58",
+    "owl:versionInfo": "https://github.com/shexSpec/spec/commit/35bcc21d31074638496674a85e230506378e48ef",
     "rdfs:seeAlso": [
       "https://shexspec.github.io/spec"
     ],
