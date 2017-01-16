@@ -7,9 +7,9 @@
 shex: a owl:Ontology;
   dc:title "Shape Expression Vocabulary Terms"@en;
   dc:description """This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context."""@en;
-  dc:date "2017-01-08"^^xsd:date;
+  dc:date "2017-01-13"^^xsd:date;
   dc:imports ;
-  owl:versionInfo <https://github.com/shexSpec/spec/commit/35bcc21d31074638496674a85e230506378e48ef>;
+  owl:versionInfo <https://github.com/shexSpec/spec/commit/07fcbcc01ca59a08da6d7a9f2e422c17cbf96919>;
   rdfs:seeAlso <https://shexspec.github.io/spec>;
   .
 
@@ -161,7 +161,7 @@ shex:fraction digits a rdf:Property;
   rdfs:comment """for "fractiondigits" constraints, v is less than or equals the number of digits to the right of the decimal place in the XML Schema canonical form[xmlschema-2] of the value of n, ignoring trailing zeros."""@en;
   rdfs:subPropertyOf shex:numericFacet;
   rdfs:domain shex:NodeConstraint;
-  rdfs:range xsd:nonNegativeInteger;
+  rdfs:range xsd:integer;
   rdfs:isDefinedBy shex: .
 shex:include a rdf:Property;
   rdfs:label "include"@en;
@@ -180,7 +180,7 @@ shex:length a rdf:Property;
   rdfs:comment """The exact length of the value of the cell."""@en;
   rdfs:subPropertyOf shex:stringFacet;
   rdfs:domain shex:NodeConstraint;
-  rdfs:range xsd:nonNegativeInteger;
+  rdfs:range xsd:integer;
   rdfs:isDefinedBy shex: .
 shex:max a rdf:Property;
   rdfs:label "maximum cardinality"@en;
@@ -206,13 +206,13 @@ shex:maxlength a rdf:Property;
   rdfs:comment """A numeric atomic property that contains a single integer that is the maximum length of the value."""@en;
   rdfs:subPropertyOf shex:stringFacet;
   rdfs:domain shex:NodeConstraint;
-  rdfs:range xsd:nonNegativeInteger;
+  rdfs:range xsd:integer;
   rdfs:isDefinedBy shex: .
 shex:min a rdf:Property;
   rdfs:label "minimum cardinatliy"@en;
   rdfs:comment """Minimum number of times this TripleExpression may match."""@en;
   rdfs:domain [ owl:unionOf (shex:EachOf shex:OneOf shex:TripleConstraint)];
-  rdfs:range xsd:nonNegativeInteger;
+  rdfs:range xsd:integer;
   rdfs:isDefinedBy shex: .
 shex:minexclusive a rdf:Property;
   rdfs:label "min exclusive"@en;
@@ -233,7 +233,7 @@ shex:minlength a rdf:Property;
   rdfs:comment """An atomic property that contains a single integer that is the minimum length of the value."""@en;
   rdfs:subPropertyOf shex:stringFacet;
   rdfs:domain shex:NodeConstraint;
-  rdfs:range xsd:nonNegativeInteger;
+  rdfs:range xsd:integer;
   rdfs:isDefinedBy shex: .
 shex:name a rdf:Property;
   rdfs:label "name"@en;
@@ -330,7 +330,7 @@ shex:totaldigits a rdf:Property;
   rdfs:comment """for "totaldigits" constraints, v equals the number of digits in the XML Schema canonical form[xmlschema-2] of the value of n"""@en;
   rdfs:subPropertyOf shex:numericFacet;
   rdfs:domain shex:NodeConstraint;
-  rdfs:range xsd:nonNegativeInteger;
+  rdfs:range xsd:integer;
   rdfs:isDefinedBy shex: .
 shex:values a rdf:Property;
   rdfs:label "values"@en;
