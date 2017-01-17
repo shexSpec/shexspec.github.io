@@ -167,8 +167,8 @@
       "@id": "shex:start",
       "@type": "@id"
     },
-    "startAct": {
-      "@id": "shex:startAct",
+    "startActs": {
+      "@id": "shex:startActs",
       "@type": "@id",
       "@container": "@list"
     },
@@ -283,7 +283,7 @@
       "en": "This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context."
     },
     "dc:date": "2017-01-16",
-    "owl:versionInfo": "https://github.com/shexSpec/spec/commit/878259f719405fbaefcaf9cd4c2293bc26b360c1",
+    "owl:versionInfo": "https://github.com/shexSpec/spec/commit/993d086c95255ad6b7015a2d65e80476ad4bcfa1",
     "rdfs:seeAlso": [
       "https://shexspec.github.io/spec"
     ],
@@ -968,7 +968,7 @@
         "rdfs:range": "shex:ShapeExpression"
       },
       {
-        "@id": "shex:startAct",
+        "@id": "shex:startActs",
         "@type": "rdf:Property",
         "rdfs:label": {
           "en": "start actions"
