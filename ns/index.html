@@ -22,7 +22,7 @@ var respecConfig = {
     },
     specStatus: "base",
     shortName: "shexns",
-    publishDate:  "2017-01-13",
+    publishDate:  "2017-01-16",
     edDraftURI: "http://shexspec.github.io/ns/",
     // lcEnd: "3000-01-01",
     // crEnd: "3000-01-01",
@@ -98,9 +98,9 @@ var respecConfig = {
         <!--These versions may also be retrieved from <code>FIXME</code> using an appropiate HTTP <em>Accept</em> header.-->
       </p>
       <dl>
-        <dt>Published:</dt><dd><time property="dc:date">2017-01-13</time></dd>
+        <dt>Published:</dt><dd><time property="dc:date">2017-01-16</time></dd>
         <dt>Version Info:</dt>
-        <dd><a href="https://github.com/shexSpec/spec/commit/07fcbcc01ca59a08da6d7a9f2e422c17cbf96919" property="owl:versionInfo">https://github.com/shexSpec/spec/commit/07fcbcc01ca59a08da6d7a9f2e422c17cbf96919</a></dd>
+        <dd><a href="https://github.com/shexSpec/spec/commit/878259f719405fbaefcaf9cd4c2293bc26b360c1" property="owl:versionInfo">https://github.com/shexSpec/spec/commit/878259f719405fbaefcaf9cd4c2293bc26b360c1</a></dd>
         <dt>See Also:</dt>
           <dd><a href="https://shexspec.github.io/spec" property="rdfs:seeAlso">https://shexspec.github.io/spec</a></dd>
       </dl>
@@ -194,8 +194,8 @@ var respecConfig = {
             <span property="rdfs:isDefinedBy" resource="shex:"></span>
           </td>
         </tr>
-        <tr><td class="bold">SemActs</td>
-          <td resource="shex:SemActs" typeof="rdfs:Class">
+        <tr><td class="bold">SemAct</td>
+          <td resource="shex:SemAct" typeof="rdfs:Class">
             <em property="rdfs:label">Semantic Actions</em>
             <p property="rdfs:comment">A list of Semantic Actions that serve as an extension point for Shape Expressions. They appear in lists in Schema's startActs and Shape, OneOf, EachOf and TripleConstraint's semActs.</p>
             <span property="rdfs:isDefinedBy" resource="shex:"></span>
@@ -736,8 +736,8 @@ var respecConfig = {
               </dl>
           </td>
         </tr>
-        <tr><td class="bold">semAct</td>
-          <td resource="shex:semAct" typeof="rdf:Property">
+        <tr><td class="bold">semActs</td>
+          <td resource="shex:semActs" typeof="rdf:Property">
             <em property="rdfs:label">semantic action</em>
             <p property="rdfs:comment">Semantic Actions on this TripleExpression.</p>
             <span property="rdfs:isDefinedBy" resource="shex:"></span>
@@ -987,9 +987,9 @@ var respecConfig = {
         <dd>
             shex:Schema
         </dd>
-        <dt>SemActs</dt>
+        <dt>SemAct</dt>
         <dd>
-            shex:SemActs
+            shex:SemAct
         </dd>
         <dt>Shape</dt>
         <dd>
@@ -1217,10 +1217,11 @@ var respecConfig = {
             shex:reference
             with string values interpreted as @id
         </dd>
-        <dt>semAct</dt>
+        <dt>semActs</dt>
         <dd>
-            shex:semAct
+            shex:semActs
             with string values interpreted as @id
+              with array values interpreted as @list
         </dd>
         <dt>shapeExpr</dt>
         <dd>

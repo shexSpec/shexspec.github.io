@@ -25,7 +25,7 @@
     "NodeKind": "shex:NodeKind",
     "OneOf": "shex:OneOf",
     "Schema": "shex:Schema",
-    "SemActs": "shex:SemActs",
+    "SemAct": "shex:SemAct",
     "Shape": "shex:Shape",
     "ShapeAnd": "shex:ShapeAnd",
     "ShapeExpression": "shex:ShapeExpression",
@@ -145,9 +145,10 @@
       "@id": "shex:reference",
       "@type": "@id"
     },
-    "semAct": {
-      "@id": "shex:semAct",
-      "@type": "@id"
+    "semActs": {
+      "@id": "shex:semActs",
+      "@type": "@id",
+      "@container": "@list"
     },
     "shapes": {
       "@id": "shex:shapes",
@@ -281,8 +282,8 @@
     "dc:description": {
       "en": "This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context."
     },
-    "dc:date": "2017-01-13",
-    "owl:versionInfo": "https://github.com/shexSpec/spec/commit/07fcbcc01ca59a08da6d7a9f2e422c17cbf96919",
+    "dc:date": "2017-01-16",
+    "owl:versionInfo": "https://github.com/shexSpec/spec/commit/878259f719405fbaefcaf9cd4c2293bc26b360c1",
     "rdfs:seeAlso": [
       "https://shexspec.github.io/spec"
     ],
@@ -362,7 +363,7 @@
         }
       },
       {
-        "@id": "shex:SemActs",
+        "@id": "shex:SemAct",
         "@type": "rdfs:Class",
         "rdfs:label": {
           "en": "Semantic Actions"
@@ -895,7 +896,7 @@
         "rdfs:range": "shex:Shape"
       },
       {
-        "@id": "shex:semAct",
+        "@id": "shex:semActs",
         "@type": "rdf:Property",
         "rdfs:label": {
           "en": "semantic action"
