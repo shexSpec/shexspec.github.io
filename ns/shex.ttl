@@ -9,7 +9,7 @@ shex: a owl:Ontology;
   dc:description """This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context."""@en;
   dc:date "2017-01-16"^^xsd:date;
   dc:imports ;
-  owl:versionInfo <https://github.com/shexSpec/spec/commit/993d086c95255ad6b7015a2d65e80476ad4bcfa1>;
+  owl:versionInfo <https://github.com/shexSpec/spec/commit/06d6c63900864a00af91051b6676078d9b025fce>;
   rdfs:seeAlso <https://shexspec.github.io/spec>;
   .
 
@@ -156,7 +156,7 @@ shex:extra a rdf:Property;
   rdfs:domain shex:Shape;
   rdfs:range rdfs:Resource;
   rdfs:isDefinedBy shex: .
-shex:fraction digits a rdf:Property;
+shex:fractiondigits a rdf:Property;
   rdfs:label "fraction digits"@en;
   rdfs:comment """for "fractiondigits" constraints, v is less than or equals the number of digits to the right of the decimal place in the XML Schema canonical form[xmlschema-2] of the value of n, ignoring trailing zeros."""@en;
   rdfs:subPropertyOf shex:numericFacet;

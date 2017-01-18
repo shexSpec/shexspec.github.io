@@ -71,8 +71,8 @@
       "@id": "shex:extra",
       "@type": "@id"
     },
-    "fraction digits": {
-      "@id": "shex:fraction digits",
+    "fractiondigits": {
+      "@id": "shex:fractiondigits",
       "@type": "xsd:integer"
     },
     "include": {
@@ -283,7 +283,7 @@
       "en": "This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context."
     },
     "dc:date": "2017-01-16",
-    "owl:versionInfo": "https://github.com/shexSpec/spec/commit/993d086c95255ad6b7015a2d65e80476ad4bcfa1",
+    "owl:versionInfo": "https://github.com/shexSpec/spec/commit/06d6c63900864a00af91051b6676078d9b025fce",
     "rdfs:seeAlso": [
       "https://shexspec.github.io/spec"
     ],
@@ -620,7 +620,7 @@
         "rdfs:range": "rdfs:Resource"
       },
       {
-        "@id": "shex:fraction digits",
+        "@id": "shex:fractiondigits",
         "@type": "rdf:Property",
         "rdfs:label": {
           "en": "fraction digits"
