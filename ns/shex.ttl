@@ -7,9 +7,9 @@
 shex: a owl:Ontology;
   dc:title "Shape Expression Vocabulary Terms"@en;
   dc:description """This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context."""@en;
-  dc:date "2017-01-16"^^xsd:date;
+  dc:date "2017-01-18"^^xsd:date;
   dc:imports ;
-  owl:versionInfo <https://github.com/shexSpec/spec/commit/06d6c63900864a00af91051b6676078d9b025fce>;
+  owl:versionInfo <https://github.com/shexSpec/shexspec.github.io/commit/af16ff5da669b204026a80287d211f9b4ffaf2ef>;
   rdfs:seeAlso <https://shexspec.github.io/spec>;
   .
 
@@ -22,11 +22,6 @@ shex:Annotation a rdfs:Class;
 shex:EachOf a rdfs:Class;
   rdfs:label "Each Of"@en;
   rdfs:comment """A TripleExpression composed of one or more sub-expressions, all of which must match."""@en;
-  rdfs:subClassOf shex:TripleExpression;
-  rdfs:isDefinedBy shex: .
-shex:Inclusion a rdfs:Class;
-  rdfs:label "Inclusion"@en;
-  rdfs:comment """A TripleExpression included from a referenced ShapeExpression."""@en;
   rdfs:subClassOf shex:TripleExpression;
   rdfs:isDefinedBy shex: .
 shex:NodeConstraint a rdfs:Class;
@@ -78,11 +73,6 @@ shex:ShapeNot a rdfs:Class;
 shex:ShapeOr a rdfs:Class;
   rdfs:label "Shape Or"@en;
   rdfs:comment """A ShapeExpression composed of one or more sub-expressions, one of which must match."""@en;
-  rdfs:subClassOf shex:ShapeExpression;
-  rdfs:isDefinedBy shex: .
-shex:ShapeRef a rdfs:Class;
-  rdfs:label "Shape Ref"@en;
-  rdfs:comment """A reference to a ShapeExpression."""@en;
   rdfs:subClassOf shex:ShapeExpression;
   rdfs:isDefinedBy shex: .
 shex:Stem a rdfs:Class;
@@ -141,7 +131,7 @@ shex:exclusion a rdf:Property;
 shex:expression a rdf:Property;
   rdfs:label "expression"@en;
   rdfs:comment """Expression associated with the TripleExpression."""@en;
-  rdfs:domain [ owl:unionOf (shex:Shape shex:EachOf shex:OneOf)];
+  rdfs:domain shex:Shape;
   rdfs:range shex:TripleExpression;
   rdfs:isDefinedBy shex: .
 shex:expressions a rdf:Property;
@@ -162,12 +152,6 @@ shex:fractiondigits a rdf:Property;
   rdfs:subPropertyOf shex:numericFacet;
   rdfs:domain shex:NodeConstraint;
   rdfs:range xsd:integer;
-  rdfs:isDefinedBy shex: .
-shex:include a rdf:Property;
-  rdfs:label "include"@en;
-  rdfs:comment """Reference to a shape used to find a TripleConstraint."""@en;
-  rdfs:domain shex:Inclusion;
-  rdfs:range shex:Shape;
   rdfs:isDefinedBy shex: .
 shex:inverse a rdf:Property;
   rdfs:label "inverse"@en;
@@ -270,12 +254,6 @@ shex:predicate a rdf:Property;
   rdfs:comment """The predicate of a TripleConstraint or Annotation."""@en;
   rdfs:domain [ owl:unionOf (shex:Annotation shex:TripleConstraint)];
   rdfs:range rdfs:Resource;
-  rdfs:isDefinedBy shex: .
-shex:reference a rdf:Property;
-  rdfs:label "reference"@en;
-  rdfs:comment """Reference to a shape."""@en;
-  rdfs:domain shex:ShapeRef;
-  rdfs:range shex:Shape;
   rdfs:isDefinedBy shex: .
 shex:semActs a rdf:Property;
   rdfs:label "semantic action"@en;

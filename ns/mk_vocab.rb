@@ -26,7 +26,7 @@ class Vocab
     @prefixes, @terms, @properties, @classes, @datatypes, @instances = {}, {}, {}, {}, {}, {}
     @imports, @seeAlso = [], []
     git_info = %x{git log -1 #{path}}.split("\n")
-    @commit = "https://github.com/shexSpec/spec/commit/" + (git_info[0] || 'uncommitted').split.last
+    @commit = "https://github.com/shexSpec/shexspec.github.io/commit/" + (git_info[0] || 'uncommitted').split.last
     @date = Date.parse((git_info[2] || Date.today.to_s).split(":",2).last).strftime("%Y-%m-%d")
 
     columns = []

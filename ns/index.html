@@ -22,7 +22,7 @@ var respecConfig = {
     },
     specStatus: "base",
     shortName: "shexns",
-    publishDate:  "2017-01-16",
+    publishDate:  "2017-01-18",
     edDraftURI: "http://shexspec.github.io/ns/",
     // lcEnd: "3000-01-01",
     // crEnd: "3000-01-01",
@@ -45,7 +45,7 @@ var respecConfig = {
       key: "Repository",
       data: [{
         value: "We are on GitHub",
-        href: "https://github.com/shexSpec/ns/"
+        href: "https://github.com/shexSpec/shexspec.github.io/"
       }, {
         value: "File a bug",
         href: "https://github.com/shexSpec/shex/issues"
@@ -57,7 +57,7 @@ var respecConfig = {
       //     href: "diff-20140327.html"
       //   }, {
         value: "Commit history",
-        href: "https://github.com/shexSpec/ns/commits/gh-pages"
+        href: "https://github.com/shexSpec/shexspec.github.io/commits/master"
       }]
     }] ,
     inlineCSS: true,
@@ -98,9 +98,9 @@ var respecConfig = {
         <!--These versions may also be retrieved from <code>FIXME</code> using an appropiate HTTP <em>Accept</em> header.-->
       </p>
       <dl>
-        <dt>Published:</dt><dd><time property="dc:date">2017-01-16</time></dd>
+        <dt>Published:</dt><dd><time property="dc:date">2017-01-18</time></dd>
         <dt>Version Info:</dt>
-        <dd><a href="https://github.com/shexSpec/spec/commit/06d6c63900864a00af91051b6676078d9b025fce" property="owl:versionInfo">https://github.com/shexSpec/spec/commit/06d6c63900864a00af91051b6676078d9b025fce</a></dd>
+        <dd><a href="https://github.com/shexSpec/shexspec.github.io/commit/af16ff5da669b204026a80287d211f9b4ffaf2ef" property="owl:versionInfo">https://github.com/shexSpec/shexspec.github.io/commit/af16ff5da669b204026a80287d211f9b4ffaf2ef</a></dd>
         <dt>See Also:</dt>
           <dd><a href="https://shexspec.github.io/spec" property="rdfs:seeAlso">https://shexspec.github.io/spec</a></dd>
       </dl>
@@ -140,17 +140,6 @@ var respecConfig = {
           <td resource="shex:EachOf" typeof="rdfs:Class">
             <em property="rdfs:label">Each Of</em>
             <p property="rdfs:comment">A TripleExpression composed of one or more sub-expressions, all of which must match.</p>
-            <span property="rdfs:isDefinedBy" resource="shex:"></span>
-              <dl class="terms">
-                  <dt>rdfs:subClassOf</dt>
-                      <dd property="rdfs:subClassOf" resource="shex:TripleExpression">shex:TripleExpression</dd>
-              </dl>
-          </td>
-        </tr>
-        <tr><td class="bold">Inclusion</td>
-          <td resource="shex:Inclusion" typeof="rdfs:Class">
-            <em property="rdfs:label">Inclusion</em>
-            <p property="rdfs:comment">A TripleExpression included from a referenced ShapeExpression.</p>
             <span property="rdfs:isDefinedBy" resource="shex:"></span>
               <dl class="terms">
                   <dt>rdfs:subClassOf</dt>
@@ -256,17 +245,6 @@ var respecConfig = {
           <td resource="shex:ShapeOr" typeof="rdfs:Class">
             <em property="rdfs:label">Shape Or</em>
             <p property="rdfs:comment">A ShapeExpression composed of one or more sub-expressions, one of which must match.</p>
-            <span property="rdfs:isDefinedBy" resource="shex:"></span>
-              <dl class="terms">
-                  <dt>rdfs:subClassOf</dt>
-                      <dd property="rdfs:subClassOf" resource="shex:ShapeExpression">shex:ShapeExpression</dd>
-              </dl>
-          </td>
-        </tr>
-        <tr><td class="bold">ShapeRef</td>
-          <td resource="shex:ShapeRef" typeof="rdfs:Class">
-            <em property="rdfs:label">Shape Ref</em>
-            <p property="rdfs:comment">A reference to a ShapeExpression.</p>
             <span property="rdfs:isDefinedBy" resource="shex:"></span>
               <dl class="terms">
                   <dt>rdfs:subClassOf</dt>
@@ -402,12 +380,7 @@ var respecConfig = {
                   <dt>rdfs:range</dt>
                       <dd property="rdfs:range" resource="shex:TripleExpression">shex:TripleExpression</dd>
                   <dt>rdfs:domain</dt>
-                      <dd property="rdfs:domain" resource="_:">
-                        Union of
-                        <span property="owl:unionOf" inlist=true resource="shex:Shape">shex:Shape</span>
-                        <span property="owl:unionOf" inlist=true resource="shex:EachOf">shex:EachOf</span>
-                        <span property="owl:unionOf" inlist=true resource="shex:OneOf">shex:OneOf</span>
-                      </dd>
+                      <dd property="rdfs:domain" resource="shex:Shape">shex:Shape</dd>
               </dl>
           </td>
         </tr>
@@ -453,19 +426,6 @@ var respecConfig = {
                       <dd property="rdfs:range" resource="xsd:integer">xsd:integer</dd>
                   <dt>rdfs:domain</dt>
                       <dd property="rdfs:domain" resource="shex:NodeConstraint">shex:NodeConstraint</dd>
-              </dl>
-          </td>
-        </tr>
-        <tr><td class="bold">include</td>
-          <td resource="shex:include" typeof="rdf:Property">
-            <em property="rdfs:label">include</em>
-            <p property="rdfs:comment">Reference to a shape used to find a TripleConstraint.</p>
-            <span property="rdfs:isDefinedBy" resource="shex:"></span>
-              <dl class="terms">
-                  <dt>rdfs:range</dt>
-                      <dd property="rdfs:range" resource="shex:Shape">shex:Shape</dd>
-                  <dt>rdfs:domain</dt>
-                      <dd property="rdfs:domain" resource="shex:Inclusion">shex:Inclusion</dd>
               </dl>
           </td>
         </tr>
@@ -723,19 +683,6 @@ var respecConfig = {
               </dl>
           </td>
         </tr>
-        <tr><td class="bold">reference</td>
-          <td resource="shex:reference" typeof="rdf:Property">
-            <em property="rdfs:label">reference</em>
-            <p property="rdfs:comment">Reference to a shape.</p>
-            <span property="rdfs:isDefinedBy" resource="shex:"></span>
-              <dl class="terms">
-                  <dt>rdfs:range</dt>
-                      <dd property="rdfs:range" resource="shex:Shape">shex:Shape</dd>
-                  <dt>rdfs:domain</dt>
-                      <dd property="rdfs:domain" resource="shex:ShapeRef">shex:ShapeRef</dd>
-              </dl>
-          </td>
-        </tr>
         <tr><td class="bold">semActs</td>
           <td resource="shex:semActs" typeof="rdf:Property">
             <em property="rdfs:label">semantic action</em>
@@ -967,10 +914,6 @@ var respecConfig = {
         <dd>
             shex:EachOf
         </dd>
-        <dt>Inclusion</dt>
-        <dd>
-            shex:Inclusion
-        </dd>
         <dt>NodeConstraint</dt>
         <dd>
             shex:NodeConstraint
@@ -1014,10 +957,6 @@ var respecConfig = {
         <dt>ShapeOr</dt>
         <dd>
             shex:ShapeOr
-        </dd>
-        <dt>ShapeRef</dt>
-        <dd>
-            shex:ShapeRef
         </dd>
         <dt>Stem</dt>
         <dd>
@@ -1102,11 +1041,6 @@ var respecConfig = {
         <dd>
             @id
         </dd>
-        <dt>include</dt>
-        <dd>
-            shex:include
-            with string values interpreted as @id
-        </dd>
         <dt>inverse</dt>
         <dd>
             shex:inverse
@@ -1115,10 +1049,6 @@ var respecConfig = {
         <dt>iri</dt>
         <dd>
             shex:iri
-        </dd>
-        <dt>label</dt>
-        <dd>
-            @id
         </dd>
         <dt>language</dt>
         <dd>
@@ -1211,11 +1141,6 @@ var respecConfig = {
         <dt>rdfs</dt>
         <dd>
             http://www.w3.org/2000/01/rdf-schema#
-        </dd>
-        <dt>reference</dt>
-        <dd>
-            shex:reference
-            with string values interpreted as @id
         </dd>
         <dt>semActs</dt>
         <dd>
