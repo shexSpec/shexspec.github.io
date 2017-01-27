@@ -13,14 +13,12 @@
       "@type": "@id"
     },
     "id": "@id",
-    "label": "@id",
     "language": "@language",
     "type": "@type",
     "uri": "@id",
     "value": "@value",
     "Annotation": "shex:Annotation",
     "EachOf": "shex:EachOf",
-    "Inclusion": "shex:Inclusion",
     "NodeConstraint": "shex:NodeConstraint",
     "NodeKind": "shex:NodeKind",
     "OneOf": "shex:OneOf",
@@ -32,7 +30,6 @@
     "ShapeExternal": "shex:ShapeExternal",
     "ShapeNot": "shex:ShapeNot",
     "ShapeOr": "shex:ShapeOr",
-    "ShapeRef": "shex:ShapeRef",
     "Stem": "shex:Stem",
     "StemRange": "shex:StemRange",
     "TripleConstraint": "shex:TripleConstraint",
@@ -74,10 +71,6 @@
     "fractiondigits": {
       "@id": "shex:fractiondigits",
       "@type": "xsd:integer"
-    },
-    "include": {
-      "@id": "shex:include",
-      "@type": "@id"
     },
     "inverse": {
       "@id": "shex:inverse",
@@ -139,10 +132,6 @@
     },
     "predicate": {
       "@id": "shex:predicate",
-      "@type": "@id"
-    },
-    "reference": {
-      "@id": "shex:reference",
       "@type": "@id"
     },
     "semActs": {
@@ -282,8 +271,8 @@
     "dc:description": {
       "en": "This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context."
     },
-    "dc:date": "2017-01-16",
-    "owl:versionInfo": "https://github.com/shexSpec/spec/commit/06d6c63900864a00af91051b6676078d9b025fce",
+    "dc:date": "2017-01-18",
+    "owl:versionInfo": "https://github.com/shexSpec/shexspec.github.io/commit/af16ff5da669b204026a80287d211f9b4ffaf2ef",
     "rdfs:seeAlso": [
       "https://shexspec.github.io/spec"
     ],
@@ -306,17 +295,6 @@
         },
         "rdfs:comment": {
           "en": "A TripleExpression composed of one or more sub-expressions, all of which must match."
-        },
-        "rdfs:subClassOf": "shex:TripleExpression"
-      },
-      {
-        "@id": "shex:Inclusion",
-        "@type": "rdfs:Class",
-        "rdfs:label": {
-          "en": "Inclusion"
-        },
-        "rdfs:comment": {
-          "en": "A TripleExpression included from a referenced ShapeExpression."
         },
         "rdfs:subClassOf": "shex:TripleExpression"
       },
@@ -434,17 +412,6 @@
         },
         "rdfs:comment": {
           "en": "A ShapeExpression composed of one or more sub-expressions, one of which must match."
-        },
-        "rdfs:subClassOf": "shex:ShapeExpression"
-      },
-      {
-        "@id": "shex:ShapeRef",
-        "@type": "rdfs:Class",
-        "rdfs:label": {
-          "en": "Shape Ref"
-        },
-        "rdfs:comment": {
-          "en": "A reference to a ShapeExpression."
         },
         "rdfs:subClassOf": "shex:ShapeExpression"
       },
@@ -581,13 +548,7 @@
         "rdfs:comment": {
           "en": "Expression associated with the TripleExpression."
         },
-        "rdfs:domain": {
-          "owl:unionOf": [
-            "shex:Shape",
-            "shex:EachOf",
-            "shex:OneOf"
-          ]
-        },
+        "rdfs:domain": "shex:Shape",
         "rdfs:range": "shex:TripleExpression"
       },
       {
@@ -631,18 +592,6 @@
         "rdfs:subPropertyOf": "shex:numericFacet",
         "rdfs:domain": "shex:NodeConstraint",
         "rdfs:range": "xsd:integer"
-      },
-      {
-        "@id": "shex:include",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "include"
-        },
-        "rdfs:comment": {
-          "en": "Reference to a shape used to find a TripleConstraint."
-        },
-        "rdfs:domain": "shex:Inclusion",
-        "rdfs:range": "shex:Shape"
       },
       {
         "@id": "shex:inverse",
@@ -882,18 +831,6 @@
           ]
         },
         "rdfs:range": "rdfs:Resource"
-      },
-      {
-        "@id": "shex:reference",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "reference"
-        },
-        "rdfs:comment": {
-          "en": "Reference to a shape."
-        },
-        "rdfs:domain": "shex:ShapeRef",
-        "rdfs:range": "shex:Shape"
       },
       {
         "@id": "shex:semActs",
