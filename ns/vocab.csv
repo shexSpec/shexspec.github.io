@@ -8,41 +8,43 @@ rdf,prefix,,http://www.w3.org/1999/02/22-rdf-syntax-ns#,,,,,,,,
 rdfs,prefix,,http://www.w3.org/2000/01/rdf-schema#,,,,,,,,
 shex,prefix,,http://shex.io/ns/shex#,,,,,,,,
 xsd,prefix,,http://www.w3.org/2001/XMLSchema#,,,,,,,,
-object,rdf:Property,object,,Annotation,rdfs:Resource,,,1:1,0:N,,The object of an Annotation.
-predicate,rdf:Property,predicate,,"Annotation,TripleConstraint",rdfs:Resource,,,1:1,0:N,,The predicate of a TripleConstraint or Annotation.
-expressions,rdf:Property,expressions,,"EachOf,OneOf",TripleExpression,,@list,1:N,0:N,,List of 2 or more expressions associated with the TripleExpression.
 annotation,rdf:Property,annotation,,"EachOf,OneOf,TripleConstraint",Annotation,,,0:N,1:N,,Annotations on a TripleExpression.
-max,rdf:Property,maximum cardinality,,"EachOf,OneOf,TripleConstraint",xsd:integer,,,1:1,,,Maximum number of times this TripleExpression may match.
-min,rdf:Property,minimum cardinatliy,,"EachOf,OneOf,TripleConstraint",xsd:integer,,,1:1,,,Minimum number of times this TripleExpression may match.
-semActs,rdf:Property,semantic action,,"EachOf,OneOf,TripleConstraint",SemAct,,@list,0:N,1:N,,Semantic Actions on this TripleExpression.
-datatype,rdf:Property,datatype,,NodeConstraint,xsd:Datatype,,,0:1,0:N,,A datatype constraint.
+closed,rdf:Property,closed,,Shape,xsd:boolean,,,0:1,,,"Indicates that a Shape is closed, meaning that it may contain no property values other than those used within TripleConstraints."
+code,rdf:Property,code,,SemAct,xsd:string,,,1:1,,,Code executed by Semantic Action.
+datatype,rdf:Property,datatype,,NodeConstraint,rdfs:Datatype,,,0:1,0:N,,A datatype constraint.
+exclusion,rdf:Property,exclusion,,StemRange,"rdfs:Resource,Stem",,,0:N,0:N,,Values that are excluded from value matching.
+expression,rdf:Property,expression,,Shape,TripleExpression,,,0:N,0:N,,Expression associated with the TripleExpression.
+expressions,rdf:Property,expressions,,"EachOf,OneOf",TripleExpression,,@list,1:N,0:N,,List of 2 or more expressions associated with the TripleExpression.
+extra,rdf:Property,extra,,Shape,rdfs:Resource,,,0:N,0:N,,Properties which may have extra values beyond those matched through a constraint.
 fractiondigits,rdf:Property,fraction digits,numericFacet,NodeConstraint,xsd:integer,,,0:1,,,"for ""fractiondigits"" constraints, v is less than or equals the number of digits to the right of the decimal place in the XML Schema canonical form[xmlschema-2] of the value of n, ignoring trailing zeros."
+inverse,rdf:Property,inverse,,TripleConstraint,xsd:boolean,,,0:1,,,"Constrains the subject of a triple, rather than the object."
 length,rdf:Property,length,stringFacet,NodeConstraint,xsd:integer,,,0:1,,,The exact length of the value of the cell.
+max,rdf:Property,maximum cardinality,,"EachOf,OneOf,TripleConstraint",xsd:integer,,,1:1,,,Maximum number of times this TripleExpression may match.
 maxexclusive,rdf:Property,max exclusive,numericFacet,NodeConstraint,"xsd:integer,xsd:decimal,xsd:double",,,0:1,,,An atomic property that contains a single number that is the maximum valid value (exclusive).
-maxinclusive,rdf:Property,max inclusive,numericFacet,NodeConstraint,"xsd:integer,xsd:decimal,xsd:double",,,0:1,,,An atomic property that contains a single number that is the minimum valid value (inclusive).
+maxinclusive,rdf:Property,max inclusive,numericFacet,NodeConstraint,"xsd:integer,xsd:decimal,xsd:double",,,0:1,,,An atomic property that contains a single number that is the maximum valid value (inclusive).
 maxlength,rdf:Property,max length,stringFacet,NodeConstraint,xsd:integer,,,0:1,,,A numeric atomic property that contains a single integer that is the maximum length of the value.
+min,rdf:Property,minimum cardinatliy,,"EachOf,OneOf,TripleConstraint",xsd:integer,,,1:1,,,Minimum number of times this TripleExpression may match.
+minexclusive,rdf:Property,min exclusive,numericFacet,NodeConstraint,"xsd:integer,xsd:decimal,xsd:double",,,,,,An atomic property that contains a single number that is the minimum valid value (exclusive).,
+mininclusive,rdf:Property,min inclusive,numericFacet,NodeConstraint,"xsd:integer,xsd:decimal,xsd:double",,,,,,An atomic property that contains a single number that is the minimum valid value (inclusive).,
 minlength,rdf:Property,min length,stringFacet,NodeConstraint,xsd:integer,,,0:1,,,An atomic property that contains a single integer that is the minimum length of the value.
+name,rdf:Property,name,,SemAct,rdfs:Resource,,,1:1,0:N,,Identifier of SemAct extension.
 nodeKind,rdf:Property,node kind,,NodeConstraint,NodeKind,@vocab,,0:1,,,"Restiction on the kind of node matched; restricted to the defined instances of NodeKind. One of shex:iri, shex:bnode, shex:literal, or shex:nonliteral."
+numericFacet,rdf:Property,,xsFacet,,,,,,,,Abstract property of numeric facets on a NodeConstraint.
+object,rdf:Property,object,,Annotation,rdfs:Resource,,,1:1,0:N,,The object of an Annotation.
 pattern,rdf:Property,pattern,stringFacet,NodeConstraint,xsd:string,,,0:1,,,A regular expression used for matching a value.
-totaldigits,rdf:Property,total digits,numericFacet,NodeConstraint,xsd:integer,,,0:1,,,"for ""totaldigits"" constraints, v equals the number of digits in the XML Schema canonical form[xmlschema-2] of the value of n"
-values,rdf:Property,values,,NodeConstraint,"rdfs:Resource,Stem,StemRange",,@list,0:N,0:N,,A value restriction on a NodeConstraint.
-xsFacet,rdf:Property,,,NodeConstraint,,,,,,,An abstract property of string and numeric facets on a NodeConstraint.
+predicate,rdf:Property,predicate,,"Annotation,TripleConstraint",rdfs:Resource,,,1:1,0:N,,The predicate of a TripleConstraint or Annotation.
+semActs,rdf:Property,semantic action,,"EachOf,OneOf,TripleConstraint",SemAct,,@list,0:N,1:N,,Semantic Actions on this TripleExpression.
 shapes,rdf:Property,shapes,,Schema,ShapeExpression,,,0:1,1:1,,Shapes in this Schema.
+shapeExpr,rdf:Property,shape expression,,ShapeNot,ShapeExpression,,,1:1,0:N,,Shape Expression referenced by this shape.
+shapeExprs,rdf:Property,shape expressions,shapeExpr,"ShapeAnd,ShapeOr",ShapeExpression,,@list,1:N,0:N,,A list of 2 or more Shape Expressions referenced by this shape.
 start,rdf:Property,start,,Schema,ShapeExpression,,,0:1,0:1,,A ShapeExpression matched against the focus node prior to any other mapped expressions.
 startActs,rdf:Property,start actions,,Schema,SemAct,,@list,0:N,,,Semantic Actions run on the Schema.
-code,rdf:Property,code,,SemAct,xsd:string,,,1:1,,,Code executed by Semantic Action.
-name,rdf:Property,name,,SemAct,rdfs:Resource,,,1:1,0:N,,Identifier of SemAct extension.
-closed,rdf:Property,closed,,Shape,xsd:boolean,,,0:1,,,"Indicates that a Shape is closed, meaning that it may contain no property values other than those used within TripleConstraints."
-expression,rdf:Property,expression,,Shape,TripleExpression,,,0:N,0:N,,Expression associated with the TripleExpression.
-extra,rdf:Property,extra,,Shape,rdfs:Resource,,,0:N,0:N,,Properties which may have extra values beyond those matched through a constraint.
-shapeExprs,rdf:Property,shape expressions,shapeExpr,"ShapeAnd,ShapeOr",ShapeExpression,,@list,1:N,0:N,,A list of 2 or more Shape Expressions referenced by this shape.
-shapeExpr,rdf:Property,shape expression,,ShapeNot,ShapeExpression,,,1:1,0:N,,Shape Expression referenced by this shape.
 stem,rdf:Property,stem,,"Stem,StemRange","xsd:anyUri,Wildcard",,,1:1,0:N,,A stem value used for matching or excluding values.
-exclusion,rdf:Property,exclusion,,StemRange,"rdfs:Resource,Stem",,,0:N,0:N,,Values that are excluded from value matching.
-inverse,rdf:Property,inverse,,TripleConstraint,xsd:boolean,,,0:1,,,"Constrains the subject of a triple, rather than the object."
-valueExpr,rdf:Property,value expression,,TripleConstraint,ShapeExpression,,,1:1,0:N,,A ShapeExpression used for matching the object (or subject if inverted) of a TripleConstraint.
-numericFacet,rdf:Property,,xsFacet,,,,,,,,Abstract property of numeric facets on a NodeConstraint.
 stringFacet,rdf:Property,,xsFacet,,,,,,,,An abstract property of string facets on a NodeConstraint.
+totaldigits,rdf:Property,total digits,numericFacet,NodeConstraint,xsd:integer,,,0:1,,,"for ""totaldigits"" constraints, v equals the number of digits in the XML Schema canonical form[xmlschema-2] of the value of n"
+values,rdf:Property,values,,NodeConstraint,"rdfs:Resource,Stem,StemRange",,@list,0:N,0:N,,A value restriction on a NodeConstraint.
+valueExpr,rdf:Property,value expression,,TripleConstraint,ShapeExpression,,,1:1,0:N,,A ShapeExpression used for matching the object (or subject if inverted) of a TripleConstraint.
+xsFacet,rdf:Property,,,NodeConstraint,,,,,,,An abstract property of string and numeric facets on a NodeConstraint.
 Annotation,rdfs:Class,Annotation,,,,,,,,,Annotations provide a format-independent way to provide additional information about elements in a schema. 
 EachOf,rdfs:Class,Each Of,TripleExpression,,,,,,,,"A TripleExpression composed of one or more sub-expressions, all of which must match."
 NodeConstraint,rdfs:Class,Node Constraint,ShapeExpression,,,,,,,,A constraint on the type or value of an RDF Node.

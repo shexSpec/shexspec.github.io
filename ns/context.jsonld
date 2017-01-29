@@ -35,12 +35,28 @@
     "TripleConstraint": "shex:TripleConstraint",
     "TripleExpression": "shex:TripleExpression",
     "Wildcard": "shex:Wildcard",
-    "object": {
-      "@id": "shex:object",
+    "annotation": {
+      "@id": "shex:annotation",
       "@type": "@id"
     },
-    "predicate": {
-      "@id": "shex:predicate",
+    "closed": {
+      "@id": "shex:closed",
+      "@type": "xsd:boolean"
+    },
+    "code": {
+      "@id": "shex:code",
+      "@language": null
+    },
+    "datatype": {
+      "@id": "shex:datatype",
+      "@type": "@id"
+    },
+    "exclusion": {
+      "@id": "shex:exclusion",
+      "@type": "@id"
+    },
+    "expression": {
+      "@id": "shex:expression",
       "@type": "@id"
     },
     "expressions": {
@@ -48,33 +64,24 @@
       "@type": "@id",
       "@container": "@list"
     },
-    "annotation": {
-      "@id": "shex:annotation",
+    "extra": {
+      "@id": "shex:extra",
       "@type": "@id"
-    },
-    "max": {
-      "@id": "shex:max",
-      "@type": "xsd:integer"
-    },
-    "min": {
-      "@id": "shex:min",
-      "@type": "xsd:integer"
-    },
-    "semActs": {
-      "@id": "shex:semActs",
-      "@type": "@id",
-      "@container": "@list"
-    },
-    "datatype": {
-      "@id": "shex:datatype",
-      "@type": "xsd:Datatype"
     },
     "fractiondigits": {
       "@id": "shex:fractiondigits",
       "@type": "xsd:integer"
     },
+    "inverse": {
+      "@id": "shex:inverse",
+      "@type": "xsd:boolean"
+    },
     "length": {
       "@id": "shex:length",
+      "@type": "xsd:integer"
+    },
+    "max": {
+      "@id": "shex:max",
       "@type": "xsd:integer"
     },
     "maxexclusive": {
@@ -89,33 +96,62 @@
       "@id": "shex:maxlength",
       "@type": "xsd:integer"
     },
+    "min": {
+      "@id": "shex:min",
+      "@type": "xsd:integer"
+    },
+    "minexclusive": {
+      "@id": "shex:minexclusive",
+      "@type": "xsd:integer"
+    },
+    "mininclusive": {
+      "@id": "shex:mininclusive",
+      "@type": "xsd:integer"
+    },
     "minlength": {
       "@id": "shex:minlength",
       "@type": "xsd:integer"
+    },
+    "name": {
+      "@id": "shex:name",
+      "@type": "@id"
     },
     "nodeKind": {
       "@id": "shex:nodeKind",
       "@type": "@vocab"
     },
+    "numericFacet": {
+      "@id": "shex:numericFacet"
+    },
+    "object": {
+      "@id": "shex:object",
+      "@type": "@id"
+    },
     "pattern": {
       "@id": "shex:pattern",
       "@language": null
     },
-    "totaldigits": {
-      "@id": "shex:totaldigits",
-      "@type": "xsd:integer"
+    "predicate": {
+      "@id": "shex:predicate",
+      "@type": "@id"
     },
-    "values": {
-      "@id": "shex:values",
+    "semActs": {
+      "@id": "shex:semActs",
       "@type": "@id",
       "@container": "@list"
-    },
-    "xsFacet": {
-      "@id": "shex:xsFacet"
     },
     "shapes": {
       "@id": "shex:shapes",
       "@type": "@id"
+    },
+    "shapeExpr": {
+      "@id": "shex:shapeExpr",
+      "@type": "@id"
+    },
+    "shapeExprs": {
+      "@id": "shex:shapeExprs",
+      "@type": "@id",
+      "@container": "@list"
     },
     "start": {
       "@id": "shex:start",
@@ -126,56 +162,28 @@
       "@type": "@id",
       "@container": "@list"
     },
-    "code": {
-      "@id": "shex:code",
-      "@language": null
-    },
-    "name": {
-      "@id": "shex:name",
-      "@type": "@id"
-    },
-    "closed": {
-      "@id": "shex:closed",
-      "@type": "xsd:boolean"
-    },
-    "expression": {
-      "@id": "shex:expression",
-      "@type": "@id"
-    },
-    "extra": {
-      "@id": "shex:extra",
-      "@type": "@id"
-    },
-    "shapeExprs": {
-      "@id": "shex:shapeExprs",
-      "@type": "@id",
-      "@container": "@list"
-    },
-    "shapeExpr": {
-      "@id": "shex:shapeExpr",
-      "@type": "@id"
-    },
     "stem": {
       "@id": "shex:stem",
       "@type": "xsd:anyUri"
     },
-    "exclusion": {
-      "@id": "shex:exclusion",
-      "@type": "@id"
+    "stringFacet": {
+      "@id": "shex:stringFacet"
     },
-    "inverse": {
-      "@id": "shex:inverse",
-      "@type": "xsd:boolean"
+    "totaldigits": {
+      "@id": "shex:totaldigits",
+      "@type": "xsd:integer"
+    },
+    "values": {
+      "@id": "shex:values",
+      "@type": "@id",
+      "@container": "@list"
     },
     "valueExpr": {
       "@id": "shex:valueExpr",
       "@type": "@id"
     },
-    "numericFacet": {
-      "@id": "shex:numericFacet"
-    },
-    "stringFacet": {
-      "@id": "shex:stringFacet"
+    "xsFacet": {
+      "@id": "shex:xsFacet"
     },
     "literal": "shex:literal",
     "nonliteral": "shex:nonliteral",
@@ -264,8 +272,8 @@
     "dc:description": {
       "en": "This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context."
     },
-    "dc:date": "2017-01-22",
-    "owl:versionInfo": "https://github.com/shexSpec/shexspec.github.io/commit/8699b802204fe7c964ed4dff965ceb54d3c080f3",
+    "dc:date": "2017-01-29",
+    "owl:versionInfo": "https://github.com/shexSpec/shexspec.github.io/commit/f9cdd8b47f90fbcf8264bbc67d8ff421df000c61",
     "rdfs:seeAlso": [
       "https://shexspec.github.io/spec"
     ],
@@ -462,33 +470,87 @@
     ],
     "rdfs_properties": [
       {
-        "@id": "shex:object",
+        "@id": "shex:annotation",
         "@type": "rdf:Property",
         "rdfs:label": {
-          "en": "object"
+          "en": "annotation"
         },
         "rdfs:comment": {
-          "en": "The object of an Annotation."
-        },
-        "rdfs:domain": "shex:Annotation",
-        "rdfs:range": "rdfs:Resource"
-      },
-      {
-        "@id": "shex:predicate",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "predicate"
-        },
-        "rdfs:comment": {
-          "en": "The predicate of a TripleConstraint or Annotation."
+          "en": "Annotations on a TripleExpression."
         },
         "rdfs:domain": {
           "owl:unionOf": [
-            "shex:Annotation",
+            "shex:EachOf",
+            "shex:OneOf",
             "shex:TripleConstraint"
           ]
         },
-        "rdfs:range": "rdfs:Resource"
+        "rdfs:range": "shex:Annotation"
+      },
+      {
+        "@id": "shex:closed",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "closed"
+        },
+        "rdfs:comment": {
+          "en": "Indicates that a Shape is closed, meaning that it may contain no property values other than those used within TripleConstraints."
+        },
+        "rdfs:domain": "shex:Shape",
+        "rdfs:range": "xsd:boolean"
+      },
+      {
+        "@id": "shex:code",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "code"
+        },
+        "rdfs:comment": {
+          "en": "Code executed by Semantic Action."
+        },
+        "rdfs:domain": "shex:SemAct",
+        "rdfs:range": "xsd:string"
+      },
+      {
+        "@id": "shex:datatype",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "datatype"
+        },
+        "rdfs:comment": {
+          "en": "A datatype constraint."
+        },
+        "rdfs:domain": "shex:NodeConstraint",
+        "rdfs:range": "rdfs:Datatype"
+      },
+      {
+        "@id": "shex:exclusion",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "exclusion"
+        },
+        "rdfs:comment": {
+          "en": "Values that are excluded from value matching."
+        },
+        "rdfs:domain": "shex:StemRange",
+        "rdfs:range": {
+          "owl:unionOf": [
+            "rdfs:Resource",
+            "shex:Stem"
+          ]
+        }
+      },
+      {
+        "@id": "shex:expression",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "expression"
+        },
+        "rdfs:comment": {
+          "en": "Expression associated with the TripleExpression."
+        },
+        "rdfs:domain": "shex:Shape",
+        "rdfs:range": "shex:TripleExpression"
       },
       {
         "@id": "shex:expressions",
@@ -508,22 +570,54 @@
         "rdfs:range": "shex:TripleExpression"
       },
       {
-        "@id": "shex:annotation",
+        "@id": "shex:extra",
         "@type": "rdf:Property",
         "rdfs:label": {
-          "en": "annotation"
+          "en": "extra"
         },
         "rdfs:comment": {
-          "en": "Annotations on a TripleExpression."
+          "en": "Properties which may have extra values beyond those matched through a constraint."
         },
-        "rdfs:domain": {
-          "owl:unionOf": [
-            "shex:EachOf",
-            "shex:OneOf",
-            "shex:TripleConstraint"
-          ]
+        "rdfs:domain": "shex:Shape",
+        "rdfs:range": "rdfs:Resource"
+      },
+      {
+        "@id": "shex:fractiondigits",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "fraction digits"
         },
-        "rdfs:range": "shex:Annotation"
+        "rdfs:comment": {
+          "en": "for \"fractiondigits\" constraints, v is less than or equals the number of digits to the right of the decimal place in the XML Schema canonical form[xmlschema-2] of the value of n, ignoring trailing zeros."
+        },
+        "rdfs:subPropertyOf": "shex:numericFacet",
+        "rdfs:domain": "shex:NodeConstraint",
+        "rdfs:range": "xsd:integer"
+      },
+      {
+        "@id": "shex:inverse",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "inverse"
+        },
+        "rdfs:comment": {
+          "en": "Constrains the subject of a triple, rather than the object."
+        },
+        "rdfs:domain": "shex:TripleConstraint",
+        "rdfs:range": "xsd:boolean"
+      },
+      {
+        "@id": "shex:length",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "length"
+        },
+        "rdfs:comment": {
+          "en": "The exact length of the value of the cell."
+        },
+        "rdfs:subPropertyOf": "shex:stringFacet",
+        "rdfs:domain": "shex:NodeConstraint",
+        "rdfs:range": "xsd:integer"
       },
       {
         "@id": "shex:max",
@@ -541,80 +635,6 @@
             "shex:TripleConstraint"
           ]
         },
-        "rdfs:range": "xsd:integer"
-      },
-      {
-        "@id": "shex:min",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "minimum cardinatliy"
-        },
-        "rdfs:comment": {
-          "en": "Minimum number of times this TripleExpression may match."
-        },
-        "rdfs:domain": {
-          "owl:unionOf": [
-            "shex:EachOf",
-            "shex:OneOf",
-            "shex:TripleConstraint"
-          ]
-        },
-        "rdfs:range": "xsd:integer"
-      },
-      {
-        "@id": "shex:semActs",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "semantic action"
-        },
-        "rdfs:comment": {
-          "en": "Semantic Actions on this TripleExpression."
-        },
-        "rdfs:domain": {
-          "owl:unionOf": [
-            "shex:EachOf",
-            "shex:OneOf",
-            "shex:TripleConstraint"
-          ]
-        },
-        "rdfs:range": "shex:SemAct"
-      },
-      {
-        "@id": "shex:datatype",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "datatype"
-        },
-        "rdfs:comment": {
-          "en": "A datatype constraint."
-        },
-        "rdfs:domain": "shex:NodeConstraint",
-        "rdfs:range": "xsd:Datatype"
-      },
-      {
-        "@id": "shex:fractiondigits",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "fraction digits"
-        },
-        "rdfs:comment": {
-          "en": "for \"fractiondigits\" constraints, v is less than or equals the number of digits to the right of the decimal place in the XML Schema canonical form[xmlschema-2] of the value of n, ignoring trailing zeros."
-        },
-        "rdfs:subPropertyOf": "shex:numericFacet",
-        "rdfs:domain": "shex:NodeConstraint",
-        "rdfs:range": "xsd:integer"
-      },
-      {
-        "@id": "shex:length",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "length"
-        },
-        "rdfs:comment": {
-          "en": "The exact length of the value of the cell."
-        },
-        "rdfs:subPropertyOf": "shex:stringFacet",
-        "rdfs:domain": "shex:NodeConstraint",
         "rdfs:range": "xsd:integer"
       },
       {
@@ -643,7 +663,7 @@
           "en": "max inclusive"
         },
         "rdfs:comment": {
-          "en": "An atomic property that contains a single number that is the minimum valid value (inclusive)."
+          "en": "An atomic property that contains a single number that is the maximum valid value (inclusive)."
         },
         "rdfs:subPropertyOf": "shex:numericFacet",
         "rdfs:domain": "shex:NodeConstraint",
@@ -669,6 +689,62 @@
         "rdfs:range": "xsd:integer"
       },
       {
+        "@id": "shex:min",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "minimum cardinatliy"
+        },
+        "rdfs:comment": {
+          "en": "Minimum number of times this TripleExpression may match."
+        },
+        "rdfs:domain": {
+          "owl:unionOf": [
+            "shex:EachOf",
+            "shex:OneOf",
+            "shex:TripleConstraint"
+          ]
+        },
+        "rdfs:range": "xsd:integer"
+      },
+      {
+        "@id": "shex:minexclusive",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "min exclusive"
+        },
+        "rdfs:comment": {
+          "en": "An atomic property that contains a single number that is the minimum valid value (exclusive)."
+        },
+        "rdfs:subPropertyOf": "shex:numericFacet",
+        "rdfs:domain": "shex:NodeConstraint",
+        "rdfs:range": {
+          "owl:unionOf": [
+            "xsd:integer",
+            "xsd:decimal",
+            "xsd:double"
+          ]
+        }
+      },
+      {
+        "@id": "shex:mininclusive",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "min inclusive"
+        },
+        "rdfs:comment": {
+          "en": "An atomic property that contains a single number that is the minimum valid value (inclusive)."
+        },
+        "rdfs:subPropertyOf": "shex:numericFacet",
+        "rdfs:domain": "shex:NodeConstraint",
+        "rdfs:range": {
+          "owl:unionOf": [
+            "xsd:integer",
+            "xsd:decimal",
+            "xsd:double"
+          ]
+        }
+      },
+      {
         "@id": "shex:minlength",
         "@type": "rdf:Property",
         "rdfs:label": {
@@ -680,6 +756,18 @@
         "rdfs:subPropertyOf": "shex:stringFacet",
         "rdfs:domain": "shex:NodeConstraint",
         "rdfs:range": "xsd:integer"
+      },
+      {
+        "@id": "shex:name",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "name"
+        },
+        "rdfs:comment": {
+          "en": "Identifier of SemAct extension."
+        },
+        "rdfs:domain": "shex:SemAct",
+        "rdfs:range": "rdfs:Resource"
       },
       {
         "@id": "shex:nodeKind",
@@ -694,6 +782,29 @@
         "rdfs:range": "shex:NodeKind"
       },
       {
+        "@id": "shex:numericFacet",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": ""
+        },
+        "rdfs:comment": {
+          "en": "Abstract property of numeric facets on a NodeConstraint."
+        },
+        "rdfs:subPropertyOf": "shex:xsFacet"
+      },
+      {
+        "@id": "shex:object",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "object"
+        },
+        "rdfs:comment": {
+          "en": "The object of an Annotation."
+        },
+        "rdfs:domain": "shex:Annotation",
+        "rdfs:range": "rdfs:Resource"
+      },
+      {
         "@id": "shex:pattern",
         "@type": "rdf:Property",
         "rdfs:label": {
@@ -705,6 +816,140 @@
         "rdfs:subPropertyOf": "shex:stringFacet",
         "rdfs:domain": "shex:NodeConstraint",
         "rdfs:range": "xsd:string"
+      },
+      {
+        "@id": "shex:predicate",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "predicate"
+        },
+        "rdfs:comment": {
+          "en": "The predicate of a TripleConstraint or Annotation."
+        },
+        "rdfs:domain": {
+          "owl:unionOf": [
+            "shex:Annotation",
+            "shex:TripleConstraint"
+          ]
+        },
+        "rdfs:range": "rdfs:Resource"
+      },
+      {
+        "@id": "shex:semActs",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "semantic action"
+        },
+        "rdfs:comment": {
+          "en": "Semantic Actions on this TripleExpression."
+        },
+        "rdfs:domain": {
+          "owl:unionOf": [
+            "shex:EachOf",
+            "shex:OneOf",
+            "shex:TripleConstraint"
+          ]
+        },
+        "rdfs:range": "shex:SemAct"
+      },
+      {
+        "@id": "shex:shapes",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "shapes"
+        },
+        "rdfs:comment": {
+          "en": "Shapes in this Schema."
+        },
+        "rdfs:domain": "shex:Schema",
+        "rdfs:range": "shex:ShapeExpression"
+      },
+      {
+        "@id": "shex:shapeExpr",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "shape expression"
+        },
+        "rdfs:comment": {
+          "en": "Shape Expression referenced by this shape."
+        },
+        "rdfs:domain": "shex:ShapeNot",
+        "rdfs:range": "shex:ShapeExpression"
+      },
+      {
+        "@id": "shex:shapeExprs",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "shape expressions"
+        },
+        "rdfs:comment": {
+          "en": "A list of 2 or more Shape Expressions referenced by this shape."
+        },
+        "rdfs:subPropertyOf": "shex:shapeExpr",
+        "rdfs:domain": {
+          "owl:unionOf": [
+            "shex:ShapeAnd",
+            "shex:ShapeOr"
+          ]
+        },
+        "rdfs:range": "shex:ShapeExpression"
+      },
+      {
+        "@id": "shex:start",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "start"
+        },
+        "rdfs:comment": {
+          "en": "A ShapeExpression matched against the focus node prior to any other mapped expressions."
+        },
+        "rdfs:domain": "shex:Schema",
+        "rdfs:range": "shex:ShapeExpression"
+      },
+      {
+        "@id": "shex:startActs",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "start actions"
+        },
+        "rdfs:comment": {
+          "en": "Semantic Actions run on the Schema."
+        },
+        "rdfs:domain": "shex:Schema",
+        "rdfs:range": "shex:SemAct"
+      },
+      {
+        "@id": "shex:stem",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "stem"
+        },
+        "rdfs:comment": {
+          "en": "A stem value used for matching or excluding values."
+        },
+        "rdfs:domain": {
+          "owl:unionOf": [
+            "shex:Stem",
+            "shex:StemRange"
+          ]
+        },
+        "rdfs:range": {
+          "owl:unionOf": [
+            "xsd:anyUri",
+            "shex:Wildcard"
+          ]
+        }
+      },
+      {
+        "@id": "shex:stringFacet",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": ""
+        },
+        "rdfs:comment": {
+          "en": "An abstract property of string facets on a NodeConstraint."
+        },
+        "rdfs:subPropertyOf": "shex:xsFacet"
       },
       {
         "@id": "shex:totaldigits",
@@ -738,194 +983,6 @@
         }
       },
       {
-        "@id": "shex:xsFacet",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": ""
-        },
-        "rdfs:comment": {
-          "en": "An abstract property of string and numeric facets on a NodeConstraint."
-        },
-        "rdfs:domain": "shex:NodeConstraint"
-      },
-      {
-        "@id": "shex:shapes",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "shapes"
-        },
-        "rdfs:comment": {
-          "en": "Shapes in this Schema."
-        },
-        "rdfs:domain": "shex:Schema",
-        "rdfs:range": "shex:ShapeExpression"
-      },
-      {
-        "@id": "shex:start",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "start"
-        },
-        "rdfs:comment": {
-          "en": "A ShapeExpression matched against the focus node prior to any other mapped expressions."
-        },
-        "rdfs:domain": "shex:Schema",
-        "rdfs:range": "shex:ShapeExpression"
-      },
-      {
-        "@id": "shex:startActs",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "start actions"
-        },
-        "rdfs:comment": {
-          "en": "Semantic Actions run on the Schema."
-        },
-        "rdfs:domain": "shex:Schema",
-        "rdfs:range": "shex:SemAct"
-      },
-      {
-        "@id": "shex:code",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "code"
-        },
-        "rdfs:comment": {
-          "en": "Code executed by Semantic Action."
-        },
-        "rdfs:domain": "shex:SemAct",
-        "rdfs:range": "xsd:string"
-      },
-      {
-        "@id": "shex:name",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "name"
-        },
-        "rdfs:comment": {
-          "en": "Identifier of SemAct extension."
-        },
-        "rdfs:domain": "shex:SemAct",
-        "rdfs:range": "rdfs:Resource"
-      },
-      {
-        "@id": "shex:closed",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "closed"
-        },
-        "rdfs:comment": {
-          "en": "Indicates that a Shape is closed, meaning that it may contain no property values other than those used within TripleConstraints."
-        },
-        "rdfs:domain": "shex:Shape",
-        "rdfs:range": "xsd:boolean"
-      },
-      {
-        "@id": "shex:expression",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "expression"
-        },
-        "rdfs:comment": {
-          "en": "Expression associated with the TripleExpression."
-        },
-        "rdfs:domain": "shex:Shape",
-        "rdfs:range": "shex:TripleExpression"
-      },
-      {
-        "@id": "shex:extra",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "extra"
-        },
-        "rdfs:comment": {
-          "en": "Properties which may have extra values beyond those matched through a constraint."
-        },
-        "rdfs:domain": "shex:Shape",
-        "rdfs:range": "rdfs:Resource"
-      },
-      {
-        "@id": "shex:shapeExprs",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "shape expressions"
-        },
-        "rdfs:comment": {
-          "en": "A list of 2 or more Shape Expressions referenced by this shape."
-        },
-        "rdfs:subPropertyOf": "shex:shapeExpr",
-        "rdfs:domain": {
-          "owl:unionOf": [
-            "shex:ShapeAnd",
-            "shex:ShapeOr"
-          ]
-        },
-        "rdfs:range": "shex:ShapeExpression"
-      },
-      {
-        "@id": "shex:shapeExpr",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "shape expression"
-        },
-        "rdfs:comment": {
-          "en": "Shape Expression referenced by this shape."
-        },
-        "rdfs:domain": "shex:ShapeNot",
-        "rdfs:range": "shex:ShapeExpression"
-      },
-      {
-        "@id": "shex:stem",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "stem"
-        },
-        "rdfs:comment": {
-          "en": "A stem value used for matching or excluding values."
-        },
-        "rdfs:domain": {
-          "owl:unionOf": [
-            "shex:Stem",
-            "shex:StemRange"
-          ]
-        },
-        "rdfs:range": {
-          "owl:unionOf": [
-            "xsd:anyUri",
-            "shex:Wildcard"
-          ]
-        }
-      },
-      {
-        "@id": "shex:exclusion",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "exclusion"
-        },
-        "rdfs:comment": {
-          "en": "Values that are excluded from value matching."
-        },
-        "rdfs:domain": "shex:StemRange",
-        "rdfs:range": {
-          "owl:unionOf": [
-            "rdfs:Resource",
-            "shex:Stem"
-          ]
-        }
-      },
-      {
-        "@id": "shex:inverse",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "inverse"
-        },
-        "rdfs:comment": {
-          "en": "Constrains the subject of a triple, rather than the object."
-        },
-        "rdfs:domain": "shex:TripleConstraint",
-        "rdfs:range": "xsd:boolean"
-      },
-      {
         "@id": "shex:valueExpr",
         "@type": "rdf:Property",
         "rdfs:label": {
@@ -938,26 +995,15 @@
         "rdfs:range": "shex:ShapeExpression"
       },
       {
-        "@id": "shex:numericFacet",
+        "@id": "shex:xsFacet",
         "@type": "rdf:Property",
         "rdfs:label": {
           "en": ""
         },
         "rdfs:comment": {
-          "en": "Abstract property of numeric facets on a NodeConstraint."
+          "en": "An abstract property of string and numeric facets on a NodeConstraint."
         },
-        "rdfs:subPropertyOf": "shex:xsFacet"
-      },
-      {
-        "@id": "shex:stringFacet",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": ""
-        },
-        "rdfs:comment": {
-          "en": "An abstract property of string facets on a NodeConstraint."
-        },
-        "rdfs:subPropertyOf": "shex:xsFacet"
+        "rdfs:domain": "shex:NodeConstraint"
       }
     ],
     "rdfs_instances": [
