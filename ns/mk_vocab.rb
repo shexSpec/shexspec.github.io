@@ -276,6 +276,82 @@ class Vocab
 
     output.join("\n")
   end
+  
+  def toShexTypeDef(term)
+    toRet = term.include?(":") ? term : "shex:#{term}"
+    if toRet == "rdfs:Resource"
+      return "IRI"
+    end
+    if toRet.start_with?('xsd')
+      return toRet
+    end
+    return "@" + toRet
+  end
+  
+  def toMultiplicityString(inStr)
+    case inStr
+    when "0:1" then return "?"
+    when "1:1" then return ""
+    when "1:N" then return "+"
+    when "0:N" then return "*"
+    else return ""
+    end
+  end
+  
+  def to_shexc
+    output = []
+
+    @prefixes.each {|id, entry| output << "PREFIX #{id}: <#{entry[:subClassOf]}>"}
+
+    output << "#ShExc definition of ShExJ"
+    output << %(##{TITLE})
+    output << %(##{DESCRIPTION})
+    output << %(#Date: #{date})
+    output << %(#Imports #{imports.map {|i| '<' + i + '>'}.join(", ")})
+    output << %(#Version #{commit})
+    output << %(#See also #{seeAlso.map {|i| '<' + i + '>'}.join(", ")})
+    output << "  \n"
+    output << "start = @shex:Schema"
+    output << ""
+
+    # <EmployeeShape> { 
+    output << "\n# Shape definitions"
+    @classes.each do |id, entry|
+      output << "shex:#{id} {"
+      #output << %(  // rdfs:label "#{entry[:label]}"@en;)
+      #output << %(  // rdfs:comment """#{entry[:comment]}"""@en;)
+      output << %(  #// rdfs:subClassOf #{namespaced(entry[:subClassOf])};) if entry[:subClassOf]
+      #output << %(  // rdfs:isDefinedBy shex: .)
+      
+      @properties.each do |propid, entry|
+        domains = entry[:domain].to_s.split(',')
+
+        if domains.include? id then
+          ranges = entry[:range].to_s.split(',')
+                case ranges.length
+                when 0  then ;
+                when 1  then output << "  shex:#{propid} #{toShexTypeDef(entry[:range])}#{toMultiplicityString(entry[:ForwardMultiplicity])} ;"
+                else
+                  output << "  shex:#{propid} (#{ranges.map {|d| %(#{toShexTypeDef(d)}) }.join(' OR ')})#{toMultiplicityString(entry[:ForwardMultiplicity])} ;"
+                end
+          #output << %(    // rdfs:label "#{entry[:label]}"@en;)
+          #output << %(    // rdfs:comment """#{entry[:comment]}"""@en;)
+          #output << %(    // rdfs:subPropertyOf #{namespaced(entry[:subClassOf])};) if entry[:subClassOf]
+        end
+      end
+      childs = []
+      @classes.each do |childId, childEntry|
+        if childEntry[:subClassOf] == id
+          childs << "&shex:" + childId
+        end
+      end
+      output << "  (#{childs.join(' | ')})" if childs.length != 0
+      
+      output << "}"
+    end
+    output.join("\n")
+  end
+
 
 end
 
@@ -320,9 +396,10 @@ case options[:format]
 when :jsonld  then options[:output].puts(vocab.to_jsonld)
 when :ttl     then options[:output].puts(vocab.to_ttl)
 when :html    then options[:output].puts(vocab.to_html)
+when :shexc   then options[:output].puts(vocab.to_shexc)
 else
-  [:jsonld, :ttl, :html].each do |format|
-    fn = {jsonld: "context.jsonld", ttl: "shex.ttl", html: "index.html"}[format]
+  [:jsonld, :ttl, :html, :shexc].each do |format|
+    fn = {jsonld: "context.jsonld", ttl: "shex.ttl", html: "index.html",shexc: "shex.shexc"}[format]
     File.open(fn, "w") do |output|
       output.puts(vocab.send("to_#{format}".to_sym))
     end

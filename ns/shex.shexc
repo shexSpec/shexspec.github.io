@@ -1,0 +1,108 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX shex: <http://shex.io/ns/shex#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+#ShExc definition of ShExJ
+#Shape Expression Vocabulary Terms
+#This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context.
+#Date: 2017-01-22
+#Imports 
+#Version https://github.com/shexSpec/shexspec.github.io/commit/8699b802204fe7c964ed4dff965ceb54d3c080f3
+#See also <https://shexspec.github.io/spec>
+  
+
+start = @shex:Schema
+
+
+# Shape definitions
+shex:Annotation {
+  shex:object IRI ;
+  shex:predicate IRI ;
+}
+shex:EachOf {
+  #// rdfs:subClassOf shex:TripleExpression;
+  shex:expressions @shex:TripleExpression+ ;
+  shex:annotation @shex:Annotation* ;
+  shex:max xsd:integer ;
+  shex:min xsd:integer ;
+  shex:semActs @shex:SemAct* ;
+}
+shex:NodeConstraint {
+  #// rdfs:subClassOf shex:ShapeExpression;
+  shex:datatype xsd:Datatype? ;
+  shex:fractiondigits xsd:integer? ;
+  shex:length xsd:integer? ;
+  shex:maxexclusive (xsd:integer OR xsd:decimal OR xsd:double)? ;
+  shex:maxinclusive (xsd:integer OR xsd:decimal OR xsd:double)? ;
+  shex:maxlength xsd:integer? ;
+  shex:minlength xsd:integer? ;
+  shex:nodeKind @shex:NodeKind? ;
+  shex:pattern xsd:string? ;
+  shex:totaldigits xsd:integer? ;
+  shex:values (IRI OR @shex:Stem OR @shex:StemRange)* ;
+}
+shex:NodeKind {
+}
+shex:OneOf {
+  #// rdfs:subClassOf shex:TripleExpression;
+  shex:expressions @shex:TripleExpression+ ;
+  shex:annotation @shex:Annotation* ;
+  shex:max xsd:integer ;
+  shex:min xsd:integer ;
+  shex:semActs @shex:SemAct* ;
+}
+shex:Schema {
+  shex:shapes @shex:ShapeExpression? ;
+  shex:start @shex:ShapeExpression? ;
+  shex:startActs @shex:SemAct* ;
+}
+shex:SemAct {
+  shex:code xsd:string ;
+  shex:name IRI ;
+}
+shex:Shape {
+  #// rdfs:subClassOf shex:ShapeExpression;
+  shex:closed xsd:boolean? ;
+  shex:expression @shex:TripleExpression* ;
+  shex:extra IRI* ;
+}
+shex:ShapeAnd {
+  #// rdfs:subClassOf shex:ShapeExpression;
+  shex:shapeExprs @shex:ShapeExpression+ ;
+}
+shex:ShapeExpression {
+  (&shex:NodeConstraint | &shex:Shape | &shex:ShapeAnd | &shex:ShapeExternal | &shex:ShapeNot | &shex:ShapeOr)
+}
+shex:ShapeExternal {
+  #// rdfs:subClassOf shex:ShapeExpression;
+}
+shex:ShapeNot {
+  #// rdfs:subClassOf shex:ShapeExpression;
+  shex:shapeExpr @shex:ShapeExpression ;
+}
+shex:ShapeOr {
+  #// rdfs:subClassOf shex:ShapeExpression;
+  shex:shapeExprs @shex:ShapeExpression+ ;
+}
+shex:Stem {
+  shex:stem (xsd:anyUri OR @shex:Wildcard) ;
+}
+shex:StemRange {
+  shex:stem (xsd:anyUri OR @shex:Wildcard) ;
+  shex:exclusion (IRI OR @shex:Stem)* ;
+}
+shex:TripleConstraint {
+  #// rdfs:subClassOf shex:TripleExpression;
+  shex:predicate IRI ;
+  shex:annotation @shex:Annotation* ;
+  shex:max xsd:integer ;
+  shex:min xsd:integer ;
+  shex:semActs @shex:SemAct* ;
+  shex:inverse xsd:boolean? ;
+  shex:valueExpr @shex:ShapeExpression ;
+}
+shex:TripleExpression {
+  (&shex:EachOf | &shex:OneOf | &shex:TripleConstraint)
+}
+shex:Wildcard {
+}
