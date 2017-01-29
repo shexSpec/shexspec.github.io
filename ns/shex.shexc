@@ -7,7 +7,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 #This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context.
 #Date: 2017-01-29
 #Imports 
-#Version https://github.com/shexSpec/shexspec.github.io/commit/f9cdd8b47f90fbcf8264bbc67d8ff421df000c61
+#Version https://github.com/shexSpec/shexspec.github.io/commit/761482b6a1a28e02a22ec2cc4f42d2018aae15bf
 #See also <https://shexspec.github.io/spec>
   
 

@@ -100,7 +100,7 @@ var respecConfig = {
       <dl>
         <dt>Published:</dt><dd><time property="dc:date">2017-01-29</time></dd>
         <dt>Version Info:</dt>
-        <dd><a href="https://github.com/shexSpec/shexspec.github.io/commit/f9cdd8b47f90fbcf8264bbc67d8ff421df000c61" property="owl:versionInfo">https://github.com/shexSpec/shexspec.github.io/commit/f9cdd8b47f90fbcf8264bbc67d8ff421df000c61</a></dd>
+        <dd><a href="https://github.com/shexSpec/shexspec.github.io/commit/761482b6a1a28e02a22ec2cc4f42d2018aae15bf" property="owl:versionInfo">https://github.com/shexSpec/shexspec.github.io/commit/761482b6a1a28e02a22ec2cc4f42d2018aae15bf</a></dd>
         <dt>See Also:</dt>
           <dd><a href="https://shexspec.github.io/spec" property="rdfs:seeAlso">https://shexspec.github.io/spec</a></dd>
       </dl>
@@ -703,19 +703,6 @@ var respecConfig = {
               </dl>
           </td>
         </tr>
-        <tr><td class="bold">shapes</td>
-          <td resource="shex:shapes" typeof="rdf:Property">
-            <em property="rdfs:label">shapes</em>
-            <p property="rdfs:comment">Shapes in this Schema.</p>
-            <span property="rdfs:isDefinedBy" resource="shex:"></span>
-              <dl class="terms">
-                  <dt>rdfs:range</dt>
-                      <dd property="rdfs:range" resource="shex:ShapeExpression">shex:ShapeExpression</dd>
-                  <dt>rdfs:domain</dt>
-                      <dd property="rdfs:domain" resource="shex:Schema">shex:Schema</dd>
-              </dl>
-          </td>
-        </tr>
         <tr><td class="bold">shapeExpr</td>
           <td resource="shex:shapeExpr" typeof="rdf:Property">
             <em property="rdfs:label">shape expression</em>
@@ -745,6 +732,19 @@ var respecConfig = {
                         <span property="owl:unionOf" inlist=true resource="shex:ShapeAnd">shex:ShapeAnd</span>
                         <span property="owl:unionOf" inlist=true resource="shex:ShapeOr">shex:ShapeOr</span>
                       </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">shapes</td>
+          <td resource="shex:shapes" typeof="rdf:Property">
+            <em property="rdfs:label">shapes</em>
+            <p property="rdfs:comment">Shapes in this Schema.</p>
+            <span property="rdfs:isDefinedBy" resource="shex:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="shex:ShapeExpression">shex:ShapeExpression</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="shex:Schema">shex:Schema</dd>
               </dl>
           </td>
         </tr>
@@ -821,6 +821,19 @@ var respecConfig = {
               </dl>
           </td>
         </tr>
+        <tr><td class="bold">valueExpr</td>
+          <td resource="shex:valueExpr" typeof="rdf:Property">
+            <em property="rdfs:label">value expression</em>
+            <p property="rdfs:comment">A ShapeExpression used for matching the object (or subject if inverted) of a TripleConstraint.</p>
+            <span property="rdfs:isDefinedBy" resource="shex:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="shex:ShapeExpression">shex:ShapeExpression</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="shex:TripleConstraint">shex:TripleConstraint</dd>
+              </dl>
+          </td>
+        </tr>
         <tr><td class="bold">values</td>
           <td resource="shex:values" typeof="rdf:Property">
             <em property="rdfs:label">values</em>
@@ -836,19 +849,6 @@ var respecConfig = {
                       </dd>
                   <dt>rdfs:domain</dt>
                       <dd property="rdfs:domain" resource="shex:NodeConstraint">shex:NodeConstraint</dd>
-              </dl>
-          </td>
-        </tr>
-        <tr><td class="bold">valueExpr</td>
-          <td resource="shex:valueExpr" typeof="rdf:Property">
-            <em property="rdfs:label">value expression</em>
-            <p property="rdfs:comment">A ShapeExpression used for matching the object (or subject if inverted) of a TripleConstraint.</p>
-            <span property="rdfs:isDefinedBy" resource="shex:"></span>
-              <dl class="terms">
-                  <dt>rdfs:range</dt>
-                      <dd property="rdfs:range" resource="shex:ShapeExpression">shex:ShapeExpression</dd>
-                  <dt>rdfs:domain</dt>
-                      <dd property="rdfs:domain" resource="shex:TripleConstraint">shex:TripleConstraint</dd>
               </dl>
           </td>
         </tr>
@@ -875,6 +875,20 @@ var respecConfig = {
       <h2>Instance Definitions</h2>
       <p>The following are instance definitions in the <code>shex</code> namespace:</p>
       <table class="rdfs-definition">
+        <tr><td class="bold">bnode</td>
+          <td resource="shex:bnode" typeof="NodeKind">
+            <em property="rdfs:label">bnode</em>
+            <p property="rdfs:comment">Requires node to be a Blank Node</p>
+            <span property="rdfs:isDefinedBy" resource="shex:"></span>
+          </td>
+        </tr>
+        <tr><td class="bold">iri</td>
+          <td resource="shex:iri" typeof="NodeKind">
+            <em property="rdfs:label">iri</em>
+            <p property="rdfs:comment">Requires node to be an IRI</p>
+            <span property="rdfs:isDefinedBy" resource="shex:"></span>
+          </td>
+        </tr>
         <tr><td class="bold">literal</td>
           <td resource="shex:literal" typeof="NodeKind">
             <em property="rdfs:label">literal</em>
@@ -886,20 +900,6 @@ var respecConfig = {
           <td resource="shex:nonliteral" typeof="NodeKind">
             <em property="rdfs:label">nonliteral</em>
             <p property="rdfs:comment">Requires node to be a Blank Node or IRI</p>
-            <span property="rdfs:isDefinedBy" resource="shex:"></span>
-          </td>
-        </tr>
-        <tr><td class="bold">iri</td>
-          <td resource="shex:iri" typeof="NodeKind">
-            <em property="rdfs:label">iri</em>
-            <p property="rdfs:comment">Requires node to be an IRI</p>
-            <span property="rdfs:isDefinedBy" resource="shex:"></span>
-          </td>
-        </tr>
-        <tr><td class="bold">bnode</td>
-          <td resource="shex:bnode" typeof="NodeKind">
-            <em property="rdfs:label">bnode</em>
-            <p property="rdfs:comment">Requires node to be a Blank Node</p>
             <span property="rdfs:isDefinedBy" resource="shex:"></span>
           </td>
         </tr>

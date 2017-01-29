@@ -140,10 +140,6 @@
       "@type": "@id",
       "@container": "@list"
     },
-    "shapes": {
-      "@id": "shex:shapes",
-      "@type": "@id"
-    },
     "shapeExpr": {
       "@id": "shex:shapeExpr",
       "@type": "@id"
@@ -152,6 +148,10 @@
       "@id": "shex:shapeExprs",
       "@type": "@id",
       "@container": "@list"
+    },
+    "shapes": {
+      "@id": "shex:shapes",
+      "@type": "@id"
     },
     "start": {
       "@id": "shex:start",
@@ -173,22 +173,22 @@
       "@id": "shex:totaldigits",
       "@type": "xsd:integer"
     },
+    "valueExpr": {
+      "@id": "shex:valueExpr",
+      "@type": "@id"
+    },
     "values": {
       "@id": "shex:values",
       "@type": "@id",
       "@container": "@list"
     },
-    "valueExpr": {
-      "@id": "shex:valueExpr",
-      "@type": "@id"
-    },
     "xsFacet": {
       "@id": "shex:xsFacet"
     },
-    "literal": "shex:literal",
-    "nonliteral": "shex:nonliteral",
+    "bnode": "shex:bnode",
     "iri": "shex:iri",
-    "bnode": "shex:bnode"
+    "literal": "shex:literal",
+    "nonliteral": "shex:nonliteral"
   },
   "@graph": {
     "@context": {
@@ -273,7 +273,7 @@
       "en": "This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context."
     },
     "dc:date": "2017-01-29",
-    "owl:versionInfo": "https://github.com/shexSpec/shexspec.github.io/commit/f9cdd8b47f90fbcf8264bbc67d8ff421df000c61",
+    "owl:versionInfo": "https://github.com/shexSpec/shexspec.github.io/commit/761482b6a1a28e02a22ec2cc4f42d2018aae15bf",
     "rdfs:seeAlso": [
       "https://shexspec.github.io/spec"
     ],
@@ -853,18 +853,6 @@
         "rdfs:range": "shex:SemAct"
       },
       {
-        "@id": "shex:shapes",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "shapes"
-        },
-        "rdfs:comment": {
-          "en": "Shapes in this Schema."
-        },
-        "rdfs:domain": "shex:Schema",
-        "rdfs:range": "shex:ShapeExpression"
-      },
-      {
         "@id": "shex:shapeExpr",
         "@type": "rdf:Property",
         "rdfs:label": {
@@ -892,6 +880,18 @@
             "shex:ShapeOr"
           ]
         },
+        "rdfs:range": "shex:ShapeExpression"
+      },
+      {
+        "@id": "shex:shapes",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "shapes"
+        },
+        "rdfs:comment": {
+          "en": "Shapes in this Schema."
+        },
+        "rdfs:domain": "shex:Schema",
         "rdfs:range": "shex:ShapeExpression"
       },
       {
@@ -965,6 +965,18 @@
         "rdfs:range": "xsd:integer"
       },
       {
+        "@id": "shex:valueExpr",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "value expression"
+        },
+        "rdfs:comment": {
+          "en": "A ShapeExpression used for matching the object (or subject if inverted) of a TripleConstraint."
+        },
+        "rdfs:domain": "shex:TripleConstraint",
+        "rdfs:range": "shex:ShapeExpression"
+      },
+      {
         "@id": "shex:values",
         "@type": "rdf:Property",
         "rdfs:label": {
@@ -983,18 +995,6 @@
         }
       },
       {
-        "@id": "shex:valueExpr",
-        "@type": "rdf:Property",
-        "rdfs:label": {
-          "en": "value expression"
-        },
-        "rdfs:comment": {
-          "en": "A ShapeExpression used for matching the object (or subject if inverted) of a TripleConstraint."
-        },
-        "rdfs:domain": "shex:TripleConstraint",
-        "rdfs:range": "shex:ShapeExpression"
-      },
-      {
         "@id": "shex:xsFacet",
         "@type": "rdf:Property",
         "rdfs:label": {
@@ -1007,6 +1007,26 @@
       }
     ],
     "rdfs_instances": [
+      {
+        "@id": "shex:bnode",
+        "@type": "NodeKind",
+        "rdfs:label": {
+          "en": "bnode"
+        },
+        "rdfs:comment": {
+          "en": "Requires node to be a Blank Node"
+        }
+      },
+      {
+        "@id": "shex:iri",
+        "@type": "NodeKind",
+        "rdfs:label": {
+          "en": "iri"
+        },
+        "rdfs:comment": {
+          "en": "Requires node to be an IRI"
+        }
+      },
       {
         "@id": "shex:literal",
         "@type": "NodeKind",
@@ -1025,26 +1045,6 @@
         },
         "rdfs:comment": {
           "en": "Requires node to be a Blank Node or IRI"
-        }
-      },
-      {
-        "@id": "shex:iri",
-        "@type": "NodeKind",
-        "rdfs:label": {
-          "en": "iri"
-        },
-        "rdfs:comment": {
-          "en": "Requires node to be an IRI"
-        }
-      },
-      {
-        "@id": "shex:bnode",
-        "@type": "NodeKind",
-        "rdfs:label": {
-          "en": "bnode"
-        },
-        "rdfs:comment": {
-          "en": "Requires node to be a Blank Node"
         }
       }
     ]

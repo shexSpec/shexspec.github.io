@@ -32,7 +32,7 @@ class Vocab
     columns = []
     csv.shift.each_with_index {|c, i| columns[i] = c.to_sym if c}
 
-    csv.each do |line|
+    csv.sort_by(&:to_s).each do |line|
       entry = {}
       # Create entry as object indexed by symbolized column name
       line.each_with_index {|v, i| entry[columns[i]] = v ? v.gsub("\r", "\n").gsub("\\", "\\\\") : nil}

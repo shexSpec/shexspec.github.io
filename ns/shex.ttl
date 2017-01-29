@@ -9,7 +9,7 @@ shex: a owl:Ontology;
   dc:description """This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context."""@en;
   dc:date "2017-01-29"^^xsd:date;
   dc:imports ;
-  owl:versionInfo <https://github.com/shexSpec/shexspec.github.io/commit/f9cdd8b47f90fbcf8264bbc67d8ff421df000c61>;
+  owl:versionInfo <https://github.com/shexSpec/shexspec.github.io/commit/761482b6a1a28e02a22ec2cc4f42d2018aae15bf>;
   rdfs:seeAlso <https://shexspec.github.io/spec>;
   .
 
@@ -262,12 +262,6 @@ shex:semActs a rdf:Property;
   rdfs:domain [ owl:unionOf (shex:EachOf shex:OneOf shex:TripleConstraint)];
   rdfs:range shex:SemAct;
   rdfs:isDefinedBy shex: .
-shex:shapes a rdf:Property;
-  rdfs:label "shapes"@en;
-  rdfs:comment """Shapes in this Schema."""@en;
-  rdfs:domain shex:Schema;
-  rdfs:range shex:ShapeExpression;
-  rdfs:isDefinedBy shex: .
 shex:shapeExpr a rdf:Property;
   rdfs:label "shape expression"@en;
   rdfs:comment """Shape Expression referenced by this shape."""@en;
@@ -279,6 +273,12 @@ shex:shapeExprs a rdf:Property;
   rdfs:comment """A list of 2 or more Shape Expressions referenced by this shape."""@en;
   rdfs:subPropertyOf shex:shapeExpr;
   rdfs:domain [ owl:unionOf (shex:ShapeAnd shex:ShapeOr)];
+  rdfs:range shex:ShapeExpression;
+  rdfs:isDefinedBy shex: .
+shex:shapes a rdf:Property;
+  rdfs:label "shapes"@en;
+  rdfs:comment """Shapes in this Schema."""@en;
+  rdfs:domain shex:Schema;
   rdfs:range shex:ShapeExpression;
   rdfs:isDefinedBy shex: .
 shex:start a rdf:Property;
@@ -311,17 +311,17 @@ shex:totaldigits a rdf:Property;
   rdfs:domain shex:NodeConstraint;
   rdfs:range xsd:integer;
   rdfs:isDefinedBy shex: .
-shex:values a rdf:Property;
-  rdfs:label "values"@en;
-  rdfs:comment """A value restriction on a NodeConstraint."""@en;
-  rdfs:domain shex:NodeConstraint;
-  rdfs:range [ owl:unionOf (rdfs:Resource shex:Stem shex:StemRange)];
-  rdfs:isDefinedBy shex: .
 shex:valueExpr a rdf:Property;
   rdfs:label "value expression"@en;
   rdfs:comment """A ShapeExpression used for matching the object (or subject if inverted) of a TripleConstraint."""@en;
   rdfs:domain shex:TripleConstraint;
   rdfs:range shex:ShapeExpression;
+  rdfs:isDefinedBy shex: .
+shex:values a rdf:Property;
+  rdfs:label "values"@en;
+  rdfs:comment """A value restriction on a NodeConstraint."""@en;
+  rdfs:domain shex:NodeConstraint;
+  rdfs:range [ owl:unionOf (rdfs:Resource shex:Stem shex:StemRange)];
   rdfs:isDefinedBy shex: .
 shex:xsFacet a rdf:Property;
   rdfs:label ""@en;
@@ -332,6 +332,14 @@ shex:xsFacet a rdf:Property;
 # Datatype definitions
 
 # Instance definitions
+shex:bnode a shex:NodeKind;
+  rdfs:label "bnode"@en;
+  rdfs:comment """Requires node to be a Blank Node"""@en;
+  rdfs:isDefinedBy shex: .
+shex:iri a shex:NodeKind;
+  rdfs:label "iri"@en;
+  rdfs:comment """Requires node to be an IRI"""@en;
+  rdfs:isDefinedBy shex: .
 shex:literal a shex:NodeKind;
   rdfs:label "literal"@en;
   rdfs:comment """Requires node to be an rdf:Literal"""@en;
@@ -339,12 +347,4 @@ shex:literal a shex:NodeKind;
 shex:nonliteral a shex:NodeKind;
   rdfs:label "nonliteral"@en;
   rdfs:comment """Requires node to be a Blank Node or IRI"""@en;
-  rdfs:isDefinedBy shex: .
-shex:iri a shex:NodeKind;
-  rdfs:label "iri"@en;
-  rdfs:comment """Requires node to be an IRI"""@en;
-  rdfs:isDefinedBy shex: .
-shex:bnode a shex:NodeKind;
-  rdfs:label "bnode"@en;
-  rdfs:comment """Requires node to be a Blank Node"""@en;
   rdfs:isDefinedBy shex: .
