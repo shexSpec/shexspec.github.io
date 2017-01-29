@@ -7,9 +7,9 @@
 shex: a owl:Ontology;
   dc:title "Shape Expression Vocabulary Terms"@en;
   dc:description """This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context."""@en;
-  dc:date "2017-01-18"^^xsd:date;
+  dc:date "2017-01-22"^^xsd:date;
   dc:imports ;
-  owl:versionInfo <https://github.com/shexSpec/shexspec.github.io/commit/af16ff5da669b204026a80287d211f9b4ffaf2ef>;
+  owl:versionInfo <https://github.com/shexSpec/shexspec.github.io/commit/8699b802204fe7c964ed4dff965ceb54d3c080f3>;
   rdfs:seeAlso <https://shexspec.github.io/spec>;
   .
 
@@ -98,41 +98,17 @@ shex:Wildcard a rdfs:Class;
   rdfs:isDefinedBy shex: .
 
 # Property definitions
-shex:annotation a rdf:Property;
-  rdfs:label "annotation"@en;
-  rdfs:comment """Annotations on a TripleExpression."""@en;
-  rdfs:domain [ owl:unionOf (shex:EachOf shex:OneOf shex:TripleConstraint)];
-  rdfs:range shex:Annotation;
+shex:object a rdf:Property;
+  rdfs:label "object"@en;
+  rdfs:comment """The object of an Annotation."""@en;
+  rdfs:domain shex:Annotation;
+  rdfs:range rdfs:Resource;
   rdfs:isDefinedBy shex: .
-shex:closed a rdf:Property;
-  rdfs:label "closed"@en;
-  rdfs:comment """Indicates that a Shape is closed, meaning that it may contain no property values other than those used within TripleConstraints."""@en;
-  rdfs:domain shex:Shape;
-  rdfs:range xsd:boolean;
-  rdfs:isDefinedBy shex: .
-shex:code a rdf:Property;
-  rdfs:label "code"@en;
-  rdfs:comment """Code executed by Semantic Action."""@en;
-  rdfs:domain shex:SemAct;
-  rdfs:range xsd:string;
-  rdfs:isDefinedBy shex: .
-shex:datatype a rdf:Property;
-  rdfs:label "datatype"@en;
-  rdfs:comment """A datatype constraint."""@en;
-  rdfs:domain shex:NodeConstraint;
-  rdfs:range rdfs:Datatype;
-  rdfs:isDefinedBy shex: .
-shex:exclusion a rdf:Property;
-  rdfs:label "exclusion"@en;
-  rdfs:comment """Values that are excluded from value matching."""@en;
-  rdfs:domain shex:StemRange;
-  rdfs:range [ owl:unionOf (rdfs:Resource shex:Stem)];
-  rdfs:isDefinedBy shex: .
-shex:expression a rdf:Property;
-  rdfs:label "expression"@en;
-  rdfs:comment """Expression associated with the TripleExpression."""@en;
-  rdfs:domain shex:Shape;
-  rdfs:range shex:TripleExpression;
+shex:predicate a rdf:Property;
+  rdfs:label "predicate"@en;
+  rdfs:comment """The predicate of a TripleConstraint or Annotation."""@en;
+  rdfs:domain [ owl:unionOf (shex:Annotation shex:TripleConstraint)];
+  rdfs:range rdfs:Resource;
   rdfs:isDefinedBy shex: .
 shex:expressions a rdf:Property;
   rdfs:label "expressions"@en;
@@ -140,11 +116,35 @@ shex:expressions a rdf:Property;
   rdfs:domain [ owl:unionOf (shex:EachOf shex:OneOf)];
   rdfs:range shex:TripleExpression;
   rdfs:isDefinedBy shex: .
-shex:extra a rdf:Property;
-  rdfs:label "extra"@en;
-  rdfs:comment """Properties which may have extra values beyond those matched through a constraint."""@en;
-  rdfs:domain shex:Shape;
-  rdfs:range rdfs:Resource;
+shex:annotation a rdf:Property;
+  rdfs:label "annotation"@en;
+  rdfs:comment """Annotations on a TripleExpression."""@en;
+  rdfs:domain [ owl:unionOf (shex:EachOf shex:OneOf shex:TripleConstraint)];
+  rdfs:range shex:Annotation;
+  rdfs:isDefinedBy shex: .
+shex:max a rdf:Property;
+  rdfs:label "maximum cardinality"@en;
+  rdfs:comment """Maximum number of times this TripleExpression may match."""@en;
+  rdfs:domain [ owl:unionOf (shex:EachOf shex:OneOf shex:TripleConstraint)];
+  rdfs:range xsd:integer;
+  rdfs:isDefinedBy shex: .
+shex:min a rdf:Property;
+  rdfs:label "minimum cardinatliy"@en;
+  rdfs:comment """Minimum number of times this TripleExpression may match."""@en;
+  rdfs:domain [ owl:unionOf (shex:EachOf shex:OneOf shex:TripleConstraint)];
+  rdfs:range xsd:integer;
+  rdfs:isDefinedBy shex: .
+shex:semActs a rdf:Property;
+  rdfs:label "semantic action"@en;
+  rdfs:comment """Semantic Actions on this TripleExpression."""@en;
+  rdfs:domain [ owl:unionOf (shex:EachOf shex:OneOf shex:TripleConstraint)];
+  rdfs:range shex:SemAct;
+  rdfs:isDefinedBy shex: .
+shex:datatype a rdf:Property;
+  rdfs:label "datatype"@en;
+  rdfs:comment """A datatype constraint."""@en;
+  rdfs:domain shex:NodeConstraint;
+  rdfs:range xsd:Datatype;
   rdfs:isDefinedBy shex: .
 shex:fractiondigits a rdf:Property;
   rdfs:label "fraction digits"@en;
@@ -153,23 +153,12 @@ shex:fractiondigits a rdf:Property;
   rdfs:domain shex:NodeConstraint;
   rdfs:range xsd:integer;
   rdfs:isDefinedBy shex: .
-shex:inverse a rdf:Property;
-  rdfs:label "inverse"@en;
-  rdfs:comment """Constrains the subject of a triple, rather than the object."""@en;
-  rdfs:domain shex:TripleConstraint;
-  rdfs:range xsd:boolean;
-  rdfs:isDefinedBy shex: .
 shex:length a rdf:Property;
   rdfs:label "length"@en;
   rdfs:comment """The exact length of the value of the cell."""@en;
   rdfs:subPropertyOf shex:stringFacet;
   rdfs:domain shex:NodeConstraint;
   rdfs:range xsd:integer;
-  rdfs:isDefinedBy shex: .
-shex:max a rdf:Property;
-  rdfs:label "maximum cardinality"@en;
-  rdfs:comment """Maximum number of times this TripleExpression may match."""@en;
-  rdfs:domain [ owl:unionOf (shex:EachOf shex:OneOf shex:TripleConstraint)];
   rdfs:isDefinedBy shex: .
 shex:maxexclusive a rdf:Property;
   rdfs:label "max exclusive"@en;
@@ -180,7 +169,7 @@ shex:maxexclusive a rdf:Property;
   rdfs:isDefinedBy shex: .
 shex:maxinclusive a rdf:Property;
   rdfs:label "max inclusive"@en;
-  rdfs:comment """An atomic property that contains a single number that is the maximum valid value (inclusive)."""@en;
+  rdfs:comment """An atomic property that contains a single number that is the minimum valid value (inclusive)."""@en;
   rdfs:subPropertyOf shex:numericFacet;
   rdfs:domain shex:NodeConstraint;
   rdfs:range [ owl:unionOf (xsd:integer xsd:decimal xsd:double)];
@@ -192,26 +181,6 @@ shex:maxlength a rdf:Property;
   rdfs:domain shex:NodeConstraint;
   rdfs:range xsd:integer;
   rdfs:isDefinedBy shex: .
-shex:min a rdf:Property;
-  rdfs:label "minimum cardinatliy"@en;
-  rdfs:comment """Minimum number of times this TripleExpression may match."""@en;
-  rdfs:domain [ owl:unionOf (shex:EachOf shex:OneOf shex:TripleConstraint)];
-  rdfs:range xsd:integer;
-  rdfs:isDefinedBy shex: .
-shex:minexclusive a rdf:Property;
-  rdfs:label "min exclusive"@en;
-  rdfs:comment """An atomic property that contains a single number that is the minimum valid value (exclusive)."""@en;
-  rdfs:subPropertyOf shex:numericFacet;
-  rdfs:domain shex:NodeConstraint;
-  rdfs:range [ owl:unionOf (xsd:integer xsd:decimal xsd:double)];
-  rdfs:isDefinedBy shex: .
-shex:mininclusive a rdf:Property;
-  rdfs:label "min inclusive"@en;
-  rdfs:comment """An atomic property that contains a single number that is the minimum valid value (inclusive)."""@en;
-  rdfs:subPropertyOf shex:numericFacet;
-  rdfs:domain shex:NodeConstraint;
-  rdfs:range [ owl:unionOf (xsd:integer xsd:decimal xsd:double)];
-  rdfs:isDefinedBy shex: .
 shex:minlength a rdf:Property;
   rdfs:label "min length"@en;
   rdfs:comment """An atomic property that contains a single integer that is the minimum length of the value."""@en;
@@ -219,28 +188,11 @@ shex:minlength a rdf:Property;
   rdfs:domain shex:NodeConstraint;
   rdfs:range xsd:integer;
   rdfs:isDefinedBy shex: .
-shex:name a rdf:Property;
-  rdfs:label "name"@en;
-  rdfs:comment """Identifier of SemAct extension."""@en;
-  rdfs:domain shex:SemAct;
-  rdfs:range rdfs:Resource;
-  rdfs:isDefinedBy shex: .
 shex:nodeKind a rdf:Property;
   rdfs:label "node kind"@en;
   rdfs:comment """Restiction on the kind of node matched; restricted to the defined instances of NodeKind. One of shex:iri, shex:bnode, shex:literal, or shex:nonliteral."""@en;
   rdfs:domain shex:NodeConstraint;
   rdfs:range shex:NodeKind;
-  rdfs:isDefinedBy shex: .
-shex:numericFacet a rdf:Property;
-  rdfs:label ""@en;
-  rdfs:comment """Abstract property of numeric facets on a NodeConstraint."""@en;
-  rdfs:subPropertyOf shex:xsFacet;
-  rdfs:isDefinedBy shex: .
-shex:object a rdf:Property;
-  rdfs:label "object"@en;
-  rdfs:comment """The object of an Annotation."""@en;
-  rdfs:domain shex:Annotation;
-  rdfs:range rdfs:Resource;
   rdfs:isDefinedBy shex: .
 shex:pattern a rdf:Property;
   rdfs:label "pattern"@en;
@@ -248,60 +200,6 @@ shex:pattern a rdf:Property;
   rdfs:subPropertyOf shex:stringFacet;
   rdfs:domain shex:NodeConstraint;
   rdfs:range xsd:string;
-  rdfs:isDefinedBy shex: .
-shex:predicate a rdf:Property;
-  rdfs:label "predicate"@en;
-  rdfs:comment """The predicate of a TripleConstraint or Annotation."""@en;
-  rdfs:domain [ owl:unionOf (shex:Annotation shex:TripleConstraint)];
-  rdfs:range rdfs:Resource;
-  rdfs:isDefinedBy shex: .
-shex:semActs a rdf:Property;
-  rdfs:label "semantic action"@en;
-  rdfs:comment """Semantic Actions on this TripleExpression."""@en;
-  rdfs:domain [ owl:unionOf (shex:EachOf shex:OneOf shex:TripleConstraint)];
-  rdfs:range shex:SemAct;
-  rdfs:isDefinedBy shex: .
-shex:shapes a rdf:Property;
-  rdfs:label "shapes"@en;
-  rdfs:comment """Shapes in this Schema."""@en;
-  rdfs:domain shex:Schema;
-  rdfs:range shex:ShapeExpression;
-  rdfs:isDefinedBy shex: .
-shex:shapeExpr a rdf:Property;
-  rdfs:label "shape expression"@en;
-  rdfs:comment """Shape Expression referenced by this shape."""@en;
-  rdfs:domain shex:ShapeNot;
-  rdfs:range shex:ShapeExpression;
-  rdfs:isDefinedBy shex: .
-shex:shapeExprs a rdf:Property;
-  rdfs:label "shape expressions"@en;
-  rdfs:comment """A list of 2 or more Shape Expressions referenced by this shape."""@en;
-  rdfs:subPropertyOf shex:shapeExpr;
-  rdfs:domain [ owl:unionOf (shex:ShapeAnd shex:ShapeOr)];
-  rdfs:range shex:ShapeExpression;
-  rdfs:isDefinedBy shex: .
-shex:start a rdf:Property;
-  rdfs:label "start"@en;
-  rdfs:comment """A ShapeExpression matched against the focus node prior to any other mapped expressions."""@en;
-  rdfs:domain shex:Schema;
-  rdfs:range shex:ShapeExpression;
-  rdfs:isDefinedBy shex: .
-shex:startActs a rdf:Property;
-  rdfs:label "start actions"@en;
-  rdfs:comment """Semantic Actions run on the Schema."""@en;
-  rdfs:domain shex:Schema;
-  rdfs:range shex:SemAct;
-  rdfs:isDefinedBy shex: .
-shex:stem a rdf:Property;
-  rdfs:label "stem"@en;
-  rdfs:comment """A stem value used for matching or excluding values."""@en;
-  rdfs:domain [ owl:unionOf (shex:Stem shex:StemRange)];
-  rdfs:range [ owl:unionOf (xsd:anyUri shex:Wildcard)];
-  rdfs:isDefinedBy shex: .
-shex:stringFacet a rdf:Property;
-  rdfs:label ""@en;
-  rdfs:comment """An abstract property of string facets on a NodeConstraint."""@en;
-  rdfs:subPropertyOf shex:xsFacet;
   rdfs:isDefinedBy shex: .
 shex:totaldigits a rdf:Property;
   rdfs:label "total digits"@en;
@@ -316,16 +214,105 @@ shex:values a rdf:Property;
   rdfs:domain shex:NodeConstraint;
   rdfs:range [ owl:unionOf (rdfs:Resource shex:Stem shex:StemRange)];
   rdfs:isDefinedBy shex: .
+shex:xsFacet a rdf:Property;
+  rdfs:label ""@en;
+  rdfs:comment """An abstract property of string and numeric facets on a NodeConstraint."""@en;
+  rdfs:domain shex:NodeConstraint;
+  rdfs:isDefinedBy shex: .
+shex:shapes a rdf:Property;
+  rdfs:label "shapes"@en;
+  rdfs:comment """Shapes in this Schema."""@en;
+  rdfs:domain shex:Schema;
+  rdfs:range shex:ShapeExpression;
+  rdfs:isDefinedBy shex: .
+shex:start a rdf:Property;
+  rdfs:label "start"@en;
+  rdfs:comment """A ShapeExpression matched against the focus node prior to any other mapped expressions."""@en;
+  rdfs:domain shex:Schema;
+  rdfs:range shex:ShapeExpression;
+  rdfs:isDefinedBy shex: .
+shex:startActs a rdf:Property;
+  rdfs:label "start actions"@en;
+  rdfs:comment """Semantic Actions run on the Schema."""@en;
+  rdfs:domain shex:Schema;
+  rdfs:range shex:SemAct;
+  rdfs:isDefinedBy shex: .
+shex:code a rdf:Property;
+  rdfs:label "code"@en;
+  rdfs:comment """Code executed by Semantic Action."""@en;
+  rdfs:domain shex:SemAct;
+  rdfs:range xsd:string;
+  rdfs:isDefinedBy shex: .
+shex:name a rdf:Property;
+  rdfs:label "name"@en;
+  rdfs:comment """Identifier of SemAct extension."""@en;
+  rdfs:domain shex:SemAct;
+  rdfs:range rdfs:Resource;
+  rdfs:isDefinedBy shex: .
+shex:closed a rdf:Property;
+  rdfs:label "closed"@en;
+  rdfs:comment """Indicates that a Shape is closed, meaning that it may contain no property values other than those used within TripleConstraints."""@en;
+  rdfs:domain shex:Shape;
+  rdfs:range xsd:boolean;
+  rdfs:isDefinedBy shex: .
+shex:expression a rdf:Property;
+  rdfs:label "expression"@en;
+  rdfs:comment """Expression associated with the TripleExpression."""@en;
+  rdfs:domain shex:Shape;
+  rdfs:range shex:TripleExpression;
+  rdfs:isDefinedBy shex: .
+shex:extra a rdf:Property;
+  rdfs:label "extra"@en;
+  rdfs:comment """Properties which may have extra values beyond those matched through a constraint."""@en;
+  rdfs:domain shex:Shape;
+  rdfs:range rdfs:Resource;
+  rdfs:isDefinedBy shex: .
+shex:shapeExprs a rdf:Property;
+  rdfs:label "shape expressions"@en;
+  rdfs:comment """A list of 2 or more Shape Expressions referenced by this shape."""@en;
+  rdfs:subPropertyOf shex:shapeExpr;
+  rdfs:domain [ owl:unionOf (shex:ShapeAnd shex:ShapeOr)];
+  rdfs:range shex:ShapeExpression;
+  rdfs:isDefinedBy shex: .
+shex:shapeExpr a rdf:Property;
+  rdfs:label "shape expression"@en;
+  rdfs:comment """Shape Expression referenced by this shape."""@en;
+  rdfs:domain shex:ShapeNot;
+  rdfs:range shex:ShapeExpression;
+  rdfs:isDefinedBy shex: .
+shex:stem a rdf:Property;
+  rdfs:label "stem"@en;
+  rdfs:comment """A stem value used for matching or excluding values."""@en;
+  rdfs:domain [ owl:unionOf (shex:Stem shex:StemRange)];
+  rdfs:range [ owl:unionOf (xsd:anyUri shex:Wildcard)];
+  rdfs:isDefinedBy shex: .
+shex:exclusion a rdf:Property;
+  rdfs:label "exclusion"@en;
+  rdfs:comment """Values that are excluded from value matching."""@en;
+  rdfs:domain shex:StemRange;
+  rdfs:range [ owl:unionOf (rdfs:Resource shex:Stem)];
+  rdfs:isDefinedBy shex: .
+shex:inverse a rdf:Property;
+  rdfs:label "inverse"@en;
+  rdfs:comment """Constrains the subject of a triple, rather than the object."""@en;
+  rdfs:domain shex:TripleConstraint;
+  rdfs:range xsd:boolean;
+  rdfs:isDefinedBy shex: .
 shex:valueExpr a rdf:Property;
   rdfs:label "value expression"@en;
   rdfs:comment """A ShapeExpression used for matching the object (or subject if inverted) of a TripleConstraint."""@en;
   rdfs:domain shex:TripleConstraint;
   rdfs:range shex:ShapeExpression;
   rdfs:isDefinedBy shex: .
-shex:xsFacet a rdf:Property;
+shex:numericFacet a rdf:Property;
   rdfs:label ""@en;
-  rdfs:comment """An abstract property of string and numeric facets on a NodeConstraint."""@en;
-  rdfs:domain shex:NodeConstraint;
+  rdfs:comment """Abstract property of numeric facets on a NodeConstraint."""@en;
+  rdfs:subPropertyOf shex:xsFacet;
+  rdfs:isDefinedBy shex: .
+shex:stringFacet a rdf:Property;
+  rdfs:label ""@en;
+  rdfs:comment """An abstract property of string facets on a NodeConstraint."""@en;
+  rdfs:subPropertyOf shex:xsFacet;
   rdfs:isDefinedBy shex: .
 
 # Datatype definitions
