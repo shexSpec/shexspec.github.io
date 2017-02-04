@@ -2,8 +2,9 @@
 # Parse vocabulary definition in CSV to generate Context+Vocabulary in JSON-LD or Turtle
 
 require 'getoptlong'
-require 'csv'
+require 'rdf'
 require 'json'
+require 'json/ld'
 require 'erubis'
 
 class Vocab
@@ -15,268 +16,99 @@ class Vocab
     :array_nl     => "\n"
   )
 
-  TITLE = "Shape Expression Vocabulary Terms".freeze
-  DESCRIPTION = %(This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context.).freeze
   attr_accessor :prefixes, :terms, :properties, :classes, :instances, :datatypes,
                 :imports, :date, :commit, :seeAlso
 
   def initialize
-    path = File.expand_path("../vocab.csv", __FILE__)
-    csv = CSV.new(File.open(path))
-    @prefixes, @terms, @properties, @classes, @datatypes, @instances = {}, {}, {}, {}, {}, {}
-    @imports, @seeAlso = [], []
-    git_info = %x{git log -1 #{path}}.split("\n")
-    @commit = "https://github.com/shexSpec/shexspec.github.io/commit/" + (git_info[0] || 'uncommitted').split.last
-    @date = Date.parse((git_info[2] || Date.today.to_s).split(":",2).last).strftime("%Y-%m-%d")
-
-    columns = []
-    csv.shift.each_with_index {|c, i| columns[i] = c.to_sym if c}
-
-    csv.sort_by(&:to_s).each do |line|
-      entry = {}
-      # Create entry as object indexed by symbolized column name
-      line.each_with_index {|v, i| entry[columns[i]] = v ? v.gsub("\r", "\n").gsub("\\", "\\\\") : nil}
-
-      case entry[:type]
-      when 'prefix'         then @prefixes[entry[:id]] = entry
-      when 'term'           then @terms[entry[:id]] = entry
-      when 'rdf:Property'   then @properties[entry[:id]] = entry
-      when 'rdfs:Class'     then @classes[entry[:id]] = entry
-      when 'rdfs:Datatype'  then @datatypes[entry[:id]] = entry
-      when 'owl:imports'    then @imports << entry[:subClassOf]
-      when 'rdfs:seeAlso'   then @seeAlso << entry[:subClassOf]
-      else                       @instances[entry[:id]] = entry
-      end
-    end
-
-  end
-
-  def namespaced(term)
-    term.include?(":") ? term : "shex:#{term}"
-  end
-
-  def to_jsonld
-    context = {}
-    rdfs_context = ::JSON.parse %({
-      "id": "@id",
-      "type": "@type",
-      "dc:title": {"@container": "@language"},
-      "dc:description": {"@container": "@language"},
-      "dc:date": {"@type": "xsd:date"},
-      "rdfs:comment": {"@container": "@language"},
-      "rdfs:domain": {"@type": "@id"},
-      "rdfs:label": {"@container": "@language"},
-      "rdfs:range": {"@type": "@id"},
-      "rdfs:seeAlso": {"@type": "@id"},
-      "rdfs:subClassOf": {"@type": "@id"},
-      "rdfs:subPropertyOf": {"@type": "@id"},
-      "owl:equivalentClass": {"@type": "@vocab"},
-      "owl:equivalentProperty": {"@type": "@vocab"},
-      "owl:oneOf": {"@container": "@list", "@type": "@vocab"},
-      "owl:imports": {"@type": "@id"},
-      "owl:versionInfo": {"@type": "@id"},
-      "owl:inverseOf": {"@type": "@vocab"},
-      "owl:unionOf": {"@type": "@vocab", "@container": "@list"},
-      "rdfs_classes": {"@reverse": "rdfs:isDefinedBy", "@type": "@id"},
-      "rdfs_properties": {"@reverse": "rdfs:isDefinedBy", "@type": "@id"},
-      "rdfs_datatypes": {"@reverse": "rdfs:isDefinedBy", "@type": "@id"},
-      "rdfs_instances": {"@reverse": "rdfs:isDefinedBy", "@type": "@id"}
-    })
-    rdfs_classes, rdfs_properties, rdfs_datatypes, rdfs_instances = [], [], [], []
-
-    prefixes.each do |id, entry|
-      context[id] = entry[:subClassOf]
-    end
-
-    terms.each do |id, entry|
-      context[id] = if [:@container, :@type].any? {|k| entry[k]}
-        {'@id' => entry[:subClassOf]}.
-        merge(entry[:@container] ? {'@container' => entry[:@container]} : {}).
-        merge(entry[:@type] ? {'@type' => entry[:@type]} : {})
-      else
-        entry[:subClassOf]
-      end
-    end
-
-    classes.each  do |id, entry|
-      term = entry[:term] || id
-      context[term] = namespaced(id)
-
-      # Class definition
-      node = {
-        '@id' => namespaced(id),
-        '@type' => 'rdfs:Class',
-        'rdfs:label' => {"en" => entry[:label].to_s},
-        'rdfs:comment' => {"en" => entry[:comment].to_s},
-      }
-      node['rdfs:subClassOf'] = namespaced(entry[:subClassOf]) if entry[:subClassOf]
-      rdfs_classes << node
-    end
-
-    properties.each do |id, entry|
-      defn = {"@id" => namespaced(id)}
-      case entry[:range]
-      when "xsd:string"  then defn['@language'] = nil
-      when /xsd:/        then defn['@type'] = entry[:range].split(',').first
-      when nil,
-          'rdfs:Literal' then ;
-      else                    defn['@type'] = '@id'
-      end
-
-      defn['@container'] = entry[:@container] if entry[:@container]
-      defn['@type'] = entry[:@type] if entry[:@type]
-
-      term = entry[:term] || id
-      context[term] = defn
-
-      # Property definition
-      node = {
-        '@id' => namespaced(id),
-        '@type' => 'rdf:Property',
-        'rdfs:label' => {"en" => entry[:label].to_s},
-        'rdfs:comment' => {"en" => entry[:comment].to_s},
-      }
-      node['rdfs:subPropertyOf'] = namespaced(entry[:subClassOf]) if entry[:subClassOf]
-
-      domains = entry[:domain].to_s.split(',')
-      case domains.length
-      when 0  then ;
-      when 1  then node['rdfs:domain'] = namespaced(domains.first)
-      else         node['rdfs:domain'] = {'owl:unionOf' => domains.map {|d| namespaced(d)}}
-      end
-
-      ranges = entry[:range].to_s.split(',')
-      case ranges.length
-      when 0  then ;
-      when 1  then node['rdfs:range'] = namespaced(ranges.first)
-      else         node['rdfs:range'] = {'owl:unionOf' => ranges.map {|r| namespaced(r)}}
-      end
-
-      rdfs_properties << node
-    end
-
-    datatypes.each  do |id, entry|
-      context[id] = namespaced(id)
-
-      # Datatype definition
-      node = {
-        '@id' => namespaced(id),
-        '@type' => 'rdfs:Datatype',
-        'rdfs:label' => {"en" => entry[:label].to_s},
-        'rdfs:comment' => {"en" => entry[:comment].to_s},
-      }
-      node['rdfs:subClassOf'] = namespaced(entry[:subClassOf]) if entry[:subClassOf]
-      rdfs_datatypes << node
-    end
-
-    instances.each do |id, entry|
-      context[id] = namespaced(id)
-      # Instance definition
-      rdfs_instances << {
-        '@id' => namespaced(id),
-        '@type' => entry[:type],
-        'rdfs:label' => {"en" => entry[:label].to_s},
-        'rdfs:comment' => {"en" => entry[:comment].to_s},
-      }
-    end
-
-    # Use separate rdfs context so as not to polute the ShEx context.
-    ontology = {
-      "@context" => rdfs_context,
-      "@id" => prefixes["shex"][:subClassOf],
-      "@type" => "owl:Ontology",
-      "dc:title" => {"en" => TITLE},
-      "dc:description" => {"en" => DESCRIPTION},
-      "dc:date" => date,
-      "owl:imports" => imports,
-      "owl:versionInfo" => commit,
-      "rdfs:seeAlso" => seeAlso,
-      "rdfs_classes" => rdfs_classes,
-      "rdfs_properties" => rdfs_properties,
-      "rdfs_datatypes" => rdfs_datatypes,
-      "rdfs_instances" => rdfs_instances
-    }.delete_if {|k,v| Array(v).empty?}
-
-    {
-      "@context" => context,
-      "@graph" => ontology
-    }.to_json(JSON_STATE)
+    path = File.expand_path("../context.jsonld", __FILE__)
+    @json = JSON.parse(File.read(path))
+    @context = JSON::LD::Context.parse(@json['@context'])
+    @prefixes = {
+      owl: RDF::OWL.to_uri.to_s,
+      rdf: RDF.to_uri.to_s,
+      rdfs: RDF::RDFS.to_uri.to_s,
+      shex: @context.term_definitions['shex'].id.to_s,
+      xsd: RDF::XSD.to_uri.to_s,
+    }
+    # This is read from context now, where it needs to be maintained manually
+    #git_info = %x{git log -1 #{path}}.split("\n")
+    #@commit = "https://github.com/shexSpec/shexspec.github.io/commit/" + (git_info[0] || 'uncommitted').split.last
+    #@date = Date.parse((git_info[2] || Date.today.to_s).split(":",2).last).strftime("%Y-%m-%d")
   end
 
   def to_html
-    json = JSON.parse(to_jsonld)
     eruby = Erubis::Eruby.new(File.read("template.html"))
-    eruby.result(ont: json['@graph'], context: json['@context'])
+    eruby.result(ont: @json['@graph'], context: @json['@context'])
   end
 
   def to_ttl
     output = []
 
-    @prefixes.each {|id, entry| output << "@prefix #{id}: <#{entry[:subClassOf]}> ."}
+    @prefixes.each {|id, uri| output << "prefix #{id}: <#{uri}>"}
 
-    output << "\n# CSVM Ontology definition"
-    output << "shex: a owl:Ontology;"
-    output << %(  dc:title "#{TITLE}"@en;)
-    output << %(  dc:description """#{DESCRIPTION}"""@en;)
-    output << %(  dc:date "#{date}"^^xsd:date;)
-    output << %(  dc:imports #{imports.map {|i| '<' + i + '>'}.join(", ")};)
-    output << %(  owl:versionInfo <#{commit}>;)
-    output << %(  rdfs:seeAlso #{seeAlso.map {|i| '<' + i + '>'}.join(", ")};)
+    # Vocabulary Definition
+    ont = @json['@graph']
+    output << "\n# Shape Expressions Vocabulary"
+    output << "shex: a #{Array(ont['@type']).join(', ')} ;"
+    output << %(  dc:title #{ont['dc:title'].map {|lan, str| %("#{str}"@#{lan})}.join(",\n    ")} ;)
+    output << %(  dc:description #{ont['dc:description'].map {|lan, str| %("""#{str}"""@#{lan})}.join(",\n    ")} ;)
+    output << %(  dc:date "#{ont['dc:date']}"^^xsd:date ;)
+    output << %(  owl:versionInfo <#{ont['owl:versionInfo']}> ;)
+    output << %(  rdfs:seeAlso #{ont['rdfs:seeAlso'].map {|i| '<' + i + '>'}.join(",\n    ")} ;)
     output << "  .\n"
 
     output << "\n# Class definitions"#{
-    @classes.each do |id, entry|
-      output << "shex:#{id} a rdfs:Class;"
-      output << %(  rdfs:label "#{entry[:label]}"@en;)
-      output << %(  rdfs:comment """#{entry[:comment]}"""@en;)
-      output << %(  rdfs:subClassOf #{namespaced(entry[:subClassOf])};) if entry[:subClassOf]
-      output << %(  rdfs:isDefinedBy shex: .)
+    ont['rdfs_classes'].each do |entry|
+      output << "#{entry['@id']} a rdfs:Class;"
+      output << %(  rdfs:label #{entry['rdfs:label'].map {|lan, str| %("#{str}"@#{lan})}.join(",\n    ")} ;)
+      output << %(  rdfs:comment #{entry['rdfs:comment'].map {|lan, str| %("#{str}"@#{lan})}.join(",\n    ")} ;)
+      output << %(  rdfs:subClassOf #{entry['rdfs:subClassOf']} ;) if entry['rdfs:subClassOf']
+      output << %(  rdfs:isDefinedBy shex:\n  .)
     end
 
     output << "\n# Property definitions"
-    @properties.each do |id, entry|
-      output << "shex:#{id} a rdf:Property;"
-      output << %(  rdfs:label "#{entry[:label]}"@en;)
-      output << %(  rdfs:comment """#{entry[:comment]}"""@en;)
-      output << %(  rdfs:subPropertyOf #{namespaced(entry[:subClassOf])};) if entry[:subClassOf]
-      domains = entry[:domain].to_s.split(',')
+    ont['rdfs_properties'].each do |entry|
+      output << "#{entry['@id']} a rdf:Property;"
+      output << %(  rdfs:label #{entry['rdfs:label'].map {|lan, str| %("#{str}"@#{lan})}.join(",\n    ")} ;)
+      output << %(  rdfs:comment #{entry['rdfs:comment'].map {|lan, str| %("#{str}"@#{lan})}.join(",\n    ")} ;)
+      output << %(  rdfs:subPropertyOf #{entry['rdfs:subPropertyOf']} ;) if entry['rdfs:subPropertyOf']
+
+      domains = flatten_union(entry['rdfs:domain'])
       case domains.length
-      when 0  then ;
-      when 1  then output << %(  rdfs:domain #{namespaced(entry[:domain])};)
-      else
-        output << %(  rdfs:domain [ owl:unionOf (#{domains.map {|d| namespaced(d)}.join(' ')})];)
+      when 0 then ;
+      when 1 then output << %(  rdfs:domain #{domains.first} ;)
+      else        output << %(  rdfs:domain [owl:unionOf (#{domains.join(' ')})] ;)
       end
 
-      ranges = entry[:range].to_s.split(',')
+      ranges = flatten_union(entry['rdfs:range'])
       case ranges.length
-      when 0  then ;
-      when 1  then output << %(  rdfs:range #{namespaced(entry[:range])};)
-      else
-        output << %(  rdfs:range [ owl:unionOf (#{ranges.map {|d| namespaced(d)}.join(' ')})];)
+      when 0 then ;
+      when 1 then output << %(  rdfs:range #{ranges.first} ;)
+      else        output << %(  rdfs:range [owl:unionOf (#{ranges.join(' ')})] ;)
       end
-      output << %(  rdfs:isDefinedBy shex: .)
-    end
 
-    output << "\n# Datatype definitions"
-    @datatypes.each do |id, entry|
-      output << "shex:#{id} a rdfs:Datatype;"
-      output << %(  rdfs:label "#{entry[:label]}"@en;)
-      output << %(  rdfs:comment """#{entry[:comment]}"""@en;)
-      output << %(  rdfs:subClassOf #{namespaced(entry[:subClassOf])};) if entry[:subClassOf]
-      output << %(  rdfs:isDefinedBy shex: .)
+      output << %(  rdfs:isDefinedBy shex:\n  .)
     end
 
     output << "\n# Instance definitions"
-    @instances.each do |id, entry|
-      output << "shex:#{id} a #{namespaced(entry[:type])};"
-      output << %(  rdfs:label "#{entry[:label]}"@en;)
-      output << %(  rdfs:comment """#{entry[:comment]}"""@en;)
-      output << %(  rdfs:isDefinedBy shex: .)
+    ont['rdfs_instances'].each do |entry|
+      output << "#{entry['@id']} a shex:#{entry['@type']} ;"
+      output << %(  rdfs:label #{entry['rdfs:label'].map {|lan, str| %("#{str}"@#{lan})}.join(",\n    ")} ;)
+      output << %(  rdfs:comment #{entry['rdfs:comment'].map {|lan, str| %("#{str}"@#{lan})}.join(",\n    ")} ;)
+      output << %(  rdfs:isDefinedBy shex:\n  .)
     end
 
     output.join("\n")
   end
   
+  def flatten_union(entry)
+    case entry
+    when nil    then []
+    when String then [entry]
+    else        entry['owl:unionOf']
+    end
+  end
+
   def toShexTypeDef(term)
     toRet = term.include?(":") ? term : "shex:#{term}"
     if toRet == "rdfs:Resource"
@@ -301,39 +133,42 @@ class Vocab
   def to_shexc
     output = []
 
-    @prefixes.each {|id, entry| output << "PREFIX #{id}: <#{entry[:subClassOf]}>"}
+    @prefixes.each {|id, uri| output << "prefix #{id}: <#{uri}>"}
 
+    ont = @json['@graph']
     output << "#ShExc definition of ShExJ"
-    output << %(##{TITLE})
-    output << %(##{DESCRIPTION})
-    output << %(#Date: #{date})
-    output << %(#Imports #{imports.map {|i| '<' + i + '>'}.join(", ")})
+    output << %(##{ont['dc:title']['en']})
+    output << %(##{ont['dc:description']['en']})
+    output << %(#Date: #{ont['dc:date']})
+    output << %(#Version #{ont['owl:versionInfo']})
+    output << %(See also #{ont['rdfs:seeAlso'].map {|i| '<' + i + '>'}.join(",\n    ")} ;)
     output << %(#Version #{commit})
-    output << %(#See also #{seeAlso.map {|i| '<' + i + '>'}.join(", ")})
     output << "  \n"
     output << "start = @shex:Schema"
     output << ""
 
     # <EmployeeShape> { 
     output << "\n# Shape definitions"
-    @classes.each do |id, entry|
-      output << "shex:#{id} {"
-      #output << %(  // rdfs:label "#{entry[:label]}"@en;)
-      #output << %(  // rdfs:comment """#{entry[:comment]}"""@en;)
-      output << %(  #// rdfs:subClassOf #{namespaced(entry[:subClassOf])};) if entry[:subClassOf]
+    ont['rdfs_classes'].each do |entry|
+      id = entry['@id']
+      output << "#{id} {"
+      #output << %(  // rdfs:label #{entry['rdfs:label'].map {|lan, str| %("#{str}"@#{lan})}.join(",\n    ")};)
+      #output << %(  // rdfs:comment #{entry['rdfs:comment'].map {|lan, str| %("#{str}"@#{lan})}.join(",\n    ")};)
+      output << %(  #// rdfs:subClassOf #{entry['rdfs:subClassOf']};) if entry['rdfs:subClassOf']
       #output << %(  // rdfs:isDefinedBy shex: .)
-      
-      @properties.each do |propid, entry|
-        domains = entry[:domain].to_s.split(',')
+
+      ont['rdfs_properties'].each do |entry|
+        propid = entry['@id']
+        domains = flatten_union(entry['rdfs:domain'])
 
         if domains.include? id then
-          ranges = entry[:range].to_s.split(',')
-                case ranges.length
-                when 0  then ;
-                when 1  then output << "  shex:#{propid} #{toShexTypeDef(entry[:range])}#{toMultiplicityString(entry[:ForwardMultiplicity])} ;"
-                else
-                  output << "  shex:#{propid} (#{ranges.map {|d| %(#{toShexTypeDef(d)}) }.join(' OR ')})#{toMultiplicityString(entry[:ForwardMultiplicity])} ;"
-                end
+          ranges = flatten_union(entry['rdfs:range'])
+          case ranges.length
+          when 0  then ;
+          when 1  then output << "  shex:#{propid} #{toShexTypeDef(ranges.first)}#{toMultiplicityString(entry[:ForwardMultiplicity])} ;"
+          else
+            output << "  shex:#{propid} (#{ranges.map {|d| %(#{toShexTypeDef(d)}) }.join(' OR ')})#{toMultiplicityString(entry[:ForwardMultiplicity])} ;"
+          end
           #output << %(    // rdfs:label "#{entry[:label]}"@en;)
           #output << %(    // rdfs:comment """#{entry[:comment]}"""@en;)
           #output << %(    // rdfs:subPropertyOf #{namespaced(entry[:subClassOf])};) if entry[:subClassOf]
@@ -393,13 +228,12 @@ end
 
 vocab = Vocab.new
 case options[:format]
-when :jsonld  then options[:output].puts(vocab.to_jsonld)
 when :ttl     then options[:output].puts(vocab.to_ttl)
 when :html    then options[:output].puts(vocab.to_html)
 when :shexc   then options[:output].puts(vocab.to_shexc)
 else
-  [:jsonld, :ttl, :html, :shexc].each do |format|
-    fn = {jsonld: "context.jsonld", ttl: "shex.ttl", html: "index.html",shexc: "shex.shexc"}[format]
+  [:ttl, :html, :shexc].each do |format|
+    fn = {ttl: "shex.ttl", html: "index.html",shexc: "shex.shexc"}[format]
     File.open(fn, "w") do |output|
       output.puts(vocab.send("to_#{format}".to_sym))
     end

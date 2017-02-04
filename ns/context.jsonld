@@ -4,19 +4,13 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "shex": "http://shex.io/ns/shex#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "annotations": {
-      "@id": "annotation",
-      "@type": "@id"
-    },
-    "exclusions": {
-      "@id": "exclusion",
-      "@type": "@id"
-    },
+
     "id": "@id",
     "language": "@language",
     "type": "@type",
     "uri": "@id",
     "value": "@value",
+
     "Annotation": "shex:Annotation",
     "EachOf": "shex:EachOf",
     "NodeConstraint": "shex:NodeConstraint",
@@ -35,239 +29,73 @@
     "TripleConstraint": "shex:TripleConstraint",
     "TripleExpression": "shex:TripleExpression",
     "Wildcard": "shex:Wildcard",
-    "annotation": {
-      "@id": "shex:annotation",
-      "@type": "@id"
-    },
-    "closed": {
-      "@id": "shex:closed",
-      "@type": "xsd:boolean"
-    },
-    "code": {
-      "@id": "shex:code",
-      "@language": null
-    },
-    "datatype": {
-      "@id": "shex:datatype",
-      "@type": "@id"
-    },
-    "exclusion": {
-      "@id": "shex:exclusion",
-      "@type": "@id"
-    },
-    "expression": {
-      "@id": "shex:expression",
-      "@type": "@id"
-    },
-    "expressions": {
-      "@id": "shex:expressions",
-      "@type": "@id",
-      "@container": "@list"
-    },
-    "extra": {
-      "@id": "shex:extra",
-      "@type": "@id"
-    },
-    "fractiondigits": {
-      "@id": "shex:fractiondigits",
-      "@type": "xsd:integer"
-    },
-    "inverse": {
-      "@id": "shex:inverse",
-      "@type": "xsd:boolean"
-    },
-    "length": {
-      "@id": "shex:length",
-      "@type": "xsd:integer"
-    },
-    "max": {
-      "@id": "shex:max",
-      "@type": "xsd:integer"
-    },
-    "maxexclusive": {
-      "@id": "shex:maxexclusive",
-      "@type": "xsd:integer"
-    },
-    "maxinclusive": {
-      "@id": "shex:maxinclusive",
-      "@type": "xsd:integer"
-    },
-    "maxlength": {
-      "@id": "shex:maxlength",
-      "@type": "xsd:integer"
-    },
-    "min": {
-      "@id": "shex:min",
-      "@type": "xsd:integer"
-    },
-    "minexclusive": {
-      "@id": "shex:minexclusive",
-      "@type": "xsd:integer"
-    },
-    "mininclusive": {
-      "@id": "shex:mininclusive",
-      "@type": "xsd:integer"
-    },
-    "minlength": {
-      "@id": "shex:minlength",
-      "@type": "xsd:integer"
-    },
-    "name": {
-      "@id": "shex:name",
-      "@type": "@id"
-    },
-    "nodeKind": {
-      "@id": "shex:nodeKind",
-      "@type": "@vocab"
-    },
-    "numericFacet": {
-      "@id": "shex:numericFacet"
-    },
-    "object": {
-      "@id": "shex:object",
-      "@type": "@id"
-    },
-    "pattern": {
-      "@id": "shex:pattern",
-      "@language": null
-    },
-    "predicate": {
-      "@id": "shex:predicate",
-      "@type": "@id"
-    },
-    "semActs": {
-      "@id": "shex:semActs",
-      "@type": "@id",
-      "@container": "@list"
-    },
-    "shapeExpr": {
-      "@id": "shex:shapeExpr",
-      "@type": "@id"
-    },
-    "shapeExprs": {
-      "@id": "shex:shapeExprs",
-      "@type": "@id",
-      "@container": "@list"
-    },
-    "shapes": {
-      "@id": "shex:shapes",
-      "@type": "@id"
-    },
-    "start": {
-      "@id": "shex:start",
-      "@type": "@id"
-    },
-    "startActs": {
-      "@id": "shex:startActs",
-      "@type": "@id",
-      "@container": "@list"
-    },
-    "stem": {
-      "@id": "shex:stem",
-      "@type": "xsd:anyUri"
-    },
-    "stringFacet": {
-      "@id": "shex:stringFacet"
-    },
-    "totaldigits": {
-      "@id": "shex:totaldigits",
-      "@type": "xsd:integer"
-    },
-    "valueExpr": {
-      "@id": "shex:valueExpr",
-      "@type": "@id"
-    },
-    "values": {
-      "@id": "shex:values",
-      "@type": "@id",
-      "@container": "@list"
-    },
-    "xsFacet": {
-      "@id": "shex:xsFacet"
-    },
+
+    "annotation": {"@id": "shex:annotation", "@type": "@id"},
+    "annotations": {"@id": "annotation", "@type": "@id"},
     "bnode": "shex:bnode",
+    "closed": {"@id": "shex:closed", "@type": "xsd:boolean"},
+    "code": {"@id": "shex:code", "@language": null},
+    "datatype": {"@id": "shex:datatype", "@type": "@id"},
+    "exclusion": {"@id": "shex:exclusion", "@type": "@id"},
+    "exclusions": {"@id": "exclusion", "@type": "@id"},
+    "expression": {"@id": "shex:expression", "@type": "@id"},
+    "expressions": {"@id": "shex:expressions", "@type": "@id", "@container": "@list"},
+    "extra": {"@id": "shex:extra", "@type": "@id"},
+    "fractiondigits": {"@id": "shex:fractiondigits", "@type": "xsd:integer"},
+    "inverse": {"@id": "shex:inverse", "@type": "xsd:boolean"},
     "iri": "shex:iri",
+    "length": {"@id": "shex:length", "@type": "xsd:integer"},
     "literal": "shex:literal",
-    "nonliteral": "shex:nonliteral"
+    "max": {"@id": "shex:max", "@type": "xsd:integer"},
+    "maxexclusive": {"@id": "shex:maxexclusive", "@type": "xsd:integer"},
+    "maxinclusive": {"@id": "shex:maxinclusive", "@type": "xsd:integer"},
+    "maxlength": {"@id": "shex:maxlength", "@type": "xsd:integer"},
+    "min": {"@id": "shex:min", "@type": "xsd:integer"},
+    "minexclusive": {"@id": "shex:minexclusive", "@type": "xsd:integer"},
+    "mininclusive": {"@id": "shex:mininclusive", "@type": "xsd:integer"},
+    "minlength": {"@id": "shex:minlength", "@type": "xsd:integer"},
+    "name": {"@id": "shex:name", "@type": "@id"},
+    "nodeKind": {"@id": "shex:nodeKind", "@type": "@vocab"},
+    "nonliteral": "shex:nonliteral",
+    "object": {"@id": "shex:object", "@type": "@id"},
+    "pattern": {"@id": "shex:pattern", "@language": null},
+    "predicate": {"@id": "shex:predicate", "@type": "@id"},
+    "semActs": {"@id": "shex:semActs", "@type": "@id", "@container": "@list"},
+    "shapeExpr": {"@id": "shex:shapeExpr", "@type": "@id"},
+    "shapeExprs": {"@id": "shex:shapeExprs", "@type": "@id", "@container": "@list"},
+    "shapes": {"@id": "shex:shapes", "@type": "@id"},
+    "start": {"@id": "shex:start", "@type": "@id"},
+    "startActs": {"@id": "shex:startActs", "@type": "@id", "@container": "@list"},
+    "stem": {"@id": "shex:stem", "@type": "xsd:anyUri"},
+    "totaldigits": {"@id": "shex:totaldigits", "@type": "xsd:integer"},
+    "valueExpr": {"@id": "shex:valueExpr", "@type": "@id"},
+    "values": {"@id": "shex:values", "@type": "@id", "@container": "@list"}
   },
   "@graph": {
     "@context": {
       "id": "@id",
       "type": "@type",
-      "dc:title": {
-        "@container": "@language"
-      },
-      "dc:description": {
-        "@container": "@language"
-      },
-      "dc:date": {
-        "@type": "xsd:date"
-      },
-      "rdfs:comment": {
-        "@container": "@language"
-      },
-      "rdfs:domain": {
-        "@type": "@id"
-      },
-      "rdfs:label": {
-        "@container": "@language"
-      },
-      "rdfs:range": {
-        "@type": "@id"
-      },
-      "rdfs:seeAlso": {
-        "@type": "@id"
-      },
-      "rdfs:subClassOf": {
-        "@type": "@id"
-      },
-      "rdfs:subPropertyOf": {
-        "@type": "@id"
-      },
-      "owl:equivalentClass": {
-        "@type": "@vocab"
-      },
-      "owl:equivalentProperty": {
-        "@type": "@vocab"
-      },
-      "owl:oneOf": {
-        "@container": "@list",
-        "@type": "@vocab"
-      },
-      "owl:imports": {
-        "@type": "@id"
-      },
-      "owl:versionInfo": {
-        "@type": "@id"
-      },
-      "owl:inverseOf": {
-        "@type": "@vocab"
-      },
-      "owl:unionOf": {
-        "@type": "@vocab",
-        "@container": "@list"
-      },
-      "rdfs_classes": {
-        "@reverse": "rdfs:isDefinedBy",
-        "@type": "@id"
-      },
-      "rdfs_properties": {
-        "@reverse": "rdfs:isDefinedBy",
-        "@type": "@id"
-      },
-      "rdfs_datatypes": {
-        "@reverse": "rdfs:isDefinedBy",
-        "@type": "@id"
-      },
-      "rdfs_instances": {
-        "@reverse": "rdfs:isDefinedBy",
-        "@type": "@id"
-      }
+      "dc:title": {"@container": "@language"},
+      "dc:description": {"@container": "@language"},
+      "dc:date": {"@type": "xsd:date"},
+      "rdfs:comment": {"@container": "@language"},
+      "rdfs:domain": {"@type": "@id"},
+      "rdfs:label": {"@container": "@language"},
+      "rdfs:range": {"@type": "@id"},
+      "rdfs:seeAlso": {"@type": "@id"},
+      "rdfs:subClassOf": {"@type": "@id"},
+      "rdfs:subPropertyOf": {"@type": "@id"},
+      "owl:versionInfo": {"@type": "@id"},
+      "owl:unionOf": {"@type": "@vocab", "@container": "@list"},
+      "rdfs_classes": {"@reverse": "rdfs:isDefinedBy", "@type": "@id"},
+      "rdfs_properties": {"@reverse": "rdfs:isDefinedBy", "@type": "@id"},
+      "rdfs_datatypes": {"@reverse": "rdfs:isDefinedBy", "@type": "@id"},
+      "rdfs_instances": {"@reverse": "rdfs:isDefinedBy", "@type": "@id"}
     },
     "@id": "http://shex.io/ns/shex#",
     "@type": "owl:Ontology",
     "dc:title": {
-      "en": "Shape Expression Vocabulary Terms"
+      "en": "Shape Expression Vocabulary"
     },
     "dc:description": {
       "en": "This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context."
