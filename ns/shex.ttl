@@ -19,6 +19,10 @@ shex:Annotation a rdfs:Class;
   rdfs:label "Annotation"@en;
   rdfs:comment """Annotations provide a format-independent way to provide additional information about elements in a schema. """@en;
   rdfs:isDefinedBy shex: .
+shex:Cardinality a rdfs:Class;
+  rdfs:label "Cardinality"@en;
+  rdfs:comment """Class of cardinality values, with sole instance `INF`."""@en;
+  rdfs:isDefinedBy shex: .
 shex:EachOf a rdfs:Class;
   rdfs:label "Each Of"@en;
   rdfs:comment """A TripleExpression composed of one or more sub-expressions, all of which must match."""@en;
@@ -168,9 +172,9 @@ shex:length a rdf:Property;
   rdfs:isDefinedBy shex: .
 shex:max a rdf:Property;
   rdfs:label "maximum cardinality"@en;
-  rdfs:comment """Maximum number of times this TripleExpression may match."""@en;
+  rdfs:comment """Maximum number of times this TripleExpression may match; shex:INF for “*”"""@en;
   rdfs:domain [ owl:unionOf (shex:EachOf shex:OneOf shex:TripleConstraint)];
-  rdfs:range xsd:integer;
+  rdfs:range [ owl:unionOf (xsd:integer  rdfs:Resource)];
   rdfs:isDefinedBy shex: .
 shex:maxexclusive a rdf:Property;
   rdfs:label "max exclusive"@en;
@@ -332,6 +336,10 @@ shex:xsFacet a rdf:Property;
 # Datatype definitions
 
 # Instance definitions
+shex:INF a shex:Cardinality;
+  rdfs:label "infinity"@en;
+  rdfs:comment """Equivalent to `max: “*”`."""@en;
+  rdfs:isDefinedBy shex: .
 shex:bnode a shex:NodeKind;
   rdfs:label "bnode"@en;
   rdfs:comment """Requires node to be a Blank Node"""@en;

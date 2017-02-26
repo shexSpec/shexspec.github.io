@@ -18,6 +18,7 @@
     "uri": "@id",
     "value": "@value",
     "Annotation": "shex:Annotation",
+    "Cardinality": "shex:Cardinality",
     "EachOf": "shex:EachOf",
     "NodeConstraint": "shex:NodeConstraint",
     "NodeKind": "shex:NodeKind",
@@ -82,7 +83,7 @@
     },
     "max": {
       "@id": "shex:max",
-      "@type": "xsd:integer"
+      "@type": "@vocab"
     },
     "maxexclusive": {
       "@id": "shex:maxexclusive",
@@ -185,6 +186,7 @@
     "xsFacet": {
       "@id": "shex:xsFacet"
     },
+    "INF": "shex:INF",
     "bnode": "shex:bnode",
     "iri": "shex:iri",
     "literal": "shex:literal",
@@ -286,6 +288,16 @@
         },
         "rdfs:comment": {
           "en": "Annotations provide a format-independent way to provide additional information about elements in a schema. "
+        }
+      },
+      {
+        "@id": "shex:Cardinality",
+        "@type": "rdfs:Class",
+        "rdfs:label": {
+          "en": "Cardinality"
+        },
+        "rdfs:comment": {
+          "en": "Class of cardinality values, with sole instance `INF`."
         }
       },
       {
@@ -626,7 +638,7 @@
           "en": "maximum cardinality"
         },
         "rdfs:comment": {
-          "en": "Maximum number of times this TripleExpression may match."
+          "en": "Maximum number of times this TripleExpression may match; shex:INF for “*”"
         },
         "rdfs:domain": {
           "owl:unionOf": [
@@ -635,7 +647,12 @@
             "shex:TripleConstraint"
           ]
         },
-        "rdfs:range": "xsd:integer"
+        "rdfs:range": {
+          "owl:unionOf": [
+            "xsd:integer",
+            " rdfs:Resource"
+          ]
+        }
       },
       {
         "@id": "shex:maxexclusive",
@@ -1007,6 +1024,16 @@
       }
     ],
     "rdfs_instances": [
+      {
+        "@id": "shex:INF",
+        "@type": "Cardinality",
+        "rdfs:label": {
+          "en": "infinity"
+        },
+        "rdfs:comment": {
+          "en": "Equivalent to `max: “*”`."
+        }
+      },
       {
         "@id": "shex:bnode",
         "@type": "NodeKind",
