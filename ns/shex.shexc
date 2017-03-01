@@ -4,10 +4,10 @@ PREFIX shex: <http://shex.io/ns/shex#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 #ShExc definition of ShExJ
 #Shape Expression Vocabulary
-#This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context.
-#Date: 2017-02-25
+#This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes.
+#Date: 2017-03-01
 #Imports 
-#Version https://github.com/shexSpec/shexspec.github.io/commit/438072ef278b13410485054901dd37c7b0e30da1
+#Version https://github.com/shexSpec/shexspec.github.io/commit/d67e017ce72deca83124e8a619f3cc6664e4604e
 #See also <https://shexspec.github.io/spec>
   
 
@@ -20,6 +20,7 @@ shex:Annotation {
   shex:predicate IRI ;
 }
 shex:Cardinality {
+  [shex:unbounded]
 }
 shex:EachOf {
   #// rdfs:subClassOf shex:TripleExpression;
@@ -33,19 +34,30 @@ shex:NodeConstraint {
   #// rdfs:subClassOf shex:ShapeExpression;
   shex:datatype @rdfs:Datatype? ;
   shex:fractiondigits xsd:integer? ;
+    #// rdfs:subPropertyOf shex:numericFacet;
   shex:length xsd:integer? ;
+    #// rdfs:subPropertyOf shex:stringFacet;
   shex:maxexclusive (xsd:integer OR xsd:decimal OR xsd:double)? ;
+    #// rdfs:subPropertyOf shex:numericFacet;
   shex:maxinclusive (xsd:integer OR xsd:decimal OR xsd:double)? ;
+    #// rdfs:subPropertyOf shex:numericFacet;
   shex:maxlength xsd:integer? ;
+    #// rdfs:subPropertyOf shex:stringFacet;
   shex:minexclusive (xsd:integer OR xsd:decimal OR xsd:double) ;
+    #// rdfs:subPropertyOf shex:numericFacet;
   shex:mininclusive (xsd:integer OR xsd:decimal OR xsd:double) ;
+    #// rdfs:subPropertyOf shex:numericFacet;
   shex:minlength xsd:integer? ;
+    #// rdfs:subPropertyOf shex:stringFacet;
   shex:nodeKind @shex:NodeKind? ;
   shex:pattern xsd:string? ;
+    #// rdfs:subPropertyOf shex:stringFacet;
   shex:totaldigits xsd:integer? ;
+    #// rdfs:subPropertyOf shex:numericFacet;
   shex:values (IRI OR @shex:Stem OR @shex:StemRange)* ;
 }
 shex:NodeKind {
+  [shex:bnode shex:iri shex:literal shex:nonliteral]
 }
 shex:OneOf {
   #// rdfs:subClassOf shex:TripleExpression;
@@ -73,6 +85,7 @@ shex:Shape {
 shex:ShapeAnd {
   #// rdfs:subClassOf shex:ShapeExpression;
   shex:shapeExprs @shex:ShapeExpression+ ;
+    #// rdfs:subPropertyOf shex:shapeExpr;
 }
 shex:ShapeExpression {
   (&shex:NodeConstraint | &shex:Shape | &shex:ShapeAnd | &shex:ShapeExternal | &shex:ShapeNot | &shex:ShapeOr)
@@ -87,6 +100,7 @@ shex:ShapeNot {
 shex:ShapeOr {
   #// rdfs:subClassOf shex:ShapeExpression;
   shex:shapeExprs @shex:ShapeExpression+ ;
+    #// rdfs:subPropertyOf shex:shapeExpr;
 }
 shex:Stem {
   shex:stem (xsd:anyUri OR @shex:Wildcard) ;

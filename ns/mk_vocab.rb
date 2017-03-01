@@ -16,7 +16,7 @@ class Vocab
   )
 
   TITLE = "Shape Expression Vocabulary".freeze
-  DESCRIPTION = %(This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context.).freeze
+  DESCRIPTION = %(This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes.).freeze
   attr_accessor :prefixes, :terms, :properties, :classes, :instances, :datatypes,
                 :imports, :date, :commit, :seeAlso
 
@@ -318,11 +318,11 @@ class Vocab
     output << "\n# Shape definitions"
     @classes.each do |id, entry|
       output << "shex:#{id} {"
-      #output << %(  // rdfs:label "#{entry[:label]}"@en;)
-      #output << %(  // rdfs:comment """#{entry[:comment]}"""@en;)
+      #output << %(  #// rdfs:label "#{entry[:label]}"@en;)
+      #output << %(  #// rdfs:comment """#{entry[:comment]}"""@en;)
       output << %(  #// rdfs:subClassOf #{namespaced(entry[:subClassOf])};) if entry[:subClassOf]
       #output << %(  // rdfs:isDefinedBy shex: .)
-      
+
       @properties.each do |propid, entry|
         domains = entry[:domain].to_s.split(',')
 
@@ -334,9 +334,9 @@ class Vocab
                 else
                   output << "  shex:#{propid} (#{ranges.map {|d| %(#{toShexTypeDef(d)}) }.join(' OR ')})#{toMultiplicityString(entry[:ForwardMultiplicity])} ;"
                 end
-          #output << %(    // rdfs:label "#{entry[:label]}"@en;)
-          #output << %(    // rdfs:comment """#{entry[:comment]}"""@en;)
-          #output << %(    // rdfs:subPropertyOf #{namespaced(entry[:subClassOf])};) if entry[:subClassOf]
+          #output << %(    #// rdfs:label "#{entry[:label]}"@en;)
+          #output << %(    #// rdfs:comment """#{entry[:comment]}"""@en;)
+          output << %(    #// rdfs:subPropertyOf #{namespaced(entry[:subClassOf])};) if entry[:subClassOf]
         end
       end
       childs = []
@@ -347,6 +347,9 @@ class Vocab
       end
       output << "  (#{childs.join(' | ')})" if childs.length != 0
       
+      values = @instances.select {|instid, entry| entry[:type] == id}.map {|instid, entry| "shex:#{instid}"}
+      output << "  [#{values.join(' ')}]" unless values.empty?
+
       output << "}"
     end
     output.join("\n")

@@ -275,7 +275,7 @@
       "en": "This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes."
     },
     "dc:date": "2017-03-01",
-    "owl:versionInfo": "https://github.com/shexSpec/shexspec.github.io/commit/0b6079d33b0fd41703d44b1ad06fce7d05780929",
+    "owl:versionInfo": "https://github.com/shexSpec/shexspec.github.io/commit/d67e017ce72deca83124e8a619f3cc6664e4604e",
     "rdfs:seeAlso": [
       "https://shexspec.github.io/spec"
     ],
