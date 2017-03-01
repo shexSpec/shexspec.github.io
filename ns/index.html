@@ -1,7 +1,7 @@
 <html lang="en">
   <head>
     <meta charset='utf-8'/>
-    <title>Shape Expression Vocabulary Terms</title>
+    <title>Shape Expression Vocabulary</title>
     <script class="remove" src="https://www.w3.org/Tools/respec/respec-w3c-common"></script>
     <script class="remove">
 var respecConfig = {
@@ -22,7 +22,7 @@ var respecConfig = {
     },
     specStatus: "base",
     shortName: "shexns",
-    publishDate:  "2017-01-29",
+    publishDate:  "2017-03-01",
     edDraftURI: "http://shexspec.github.io/ns/",
     // lcEnd: "3000-01-01",
     // crEnd: "3000-01-01",
@@ -86,7 +86,7 @@ var respecConfig = {
   <body resource="http://shexspec.github.io/ns/" typeof="owl:Ontology" prefix="shex: http://shexspec.github.io/ns/">
     <section id="abstract">
       <p>This document describes the
-        <span property="dc:title">Shape Expression Vocabulary Terms</span>
+        <span property="dc:title">Shape Expression Vocabulary</span>
         and Term definitions used
         for creating Metadata descriptions for Tabular Data. This document provides the RDFS [[RDF-SCHEMA]] vocabulary definition for terms defined
         in [[tabular-metadata]] and a description of the JSON-LD context definition for use with
@@ -98,9 +98,9 @@ var respecConfig = {
         <!--These versions may also be retrieved from <code>FIXME</code> using an appropiate HTTP <em>Accept</em> header.-->
       </p>
       <dl>
-        <dt>Published:</dt><dd><time property="dc:date">2017-01-29</time></dd>
+        <dt>Published:</dt><dd><time property="dc:date">2017-03-01</time></dd>
         <dt>Version Info:</dt>
-        <dd><a href="https://github.com/shexSpec/shexspec.github.io/commit/761482b6a1a28e02a22ec2cc4f42d2018aae15bf" property="owl:versionInfo">https://github.com/shexSpec/shexspec.github.io/commit/761482b6a1a28e02a22ec2cc4f42d2018aae15bf</a></dd>
+        <dd><a href="https://github.com/shexSpec/shexspec.github.io/commit/0b6079d33b0fd41703d44b1ad06fce7d05780929" property="owl:versionInfo">https://github.com/shexSpec/shexspec.github.io/commit/0b6079d33b0fd41703d44b1ad06fce7d05780929</a></dd>
         <dt>See Also:</dt>
           <dd><a href="https://shexspec.github.io/spec" property="rdfs:seeAlso">https://shexspec.github.io/spec</a></dd>
       </dl>
@@ -112,7 +112,7 @@ var respecConfig = {
     </section>
     <section>
       <h2>Introduction</h2>
-      <p property="dc:description">This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context.</p>
+      <p property="dc:description">This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes.</p>
       <p>This specification makes use of the following namespaces:</p>
       <dl class="terms">
         <dt><code>shex</code>:</dt>
@@ -139,7 +139,7 @@ var respecConfig = {
         <tr><td class="bold">Cardinality</td>
           <td resource="shex:Cardinality" typeof="rdfs:Class">
             <em property="rdfs:label">Cardinality</em>
-            <p property="rdfs:comment">Class of cardinality values, with sole instance `INF`.</p>
+            <p property="rdfs:comment">Class of cardinality values, with sole instance `unbounded`.</p>
             <span property="rdfs:isDefinedBy" resource="shex:"></span>
           </td>
         </tr>
@@ -467,14 +467,14 @@ var respecConfig = {
         <tr><td class="bold">max</td>
           <td resource="shex:max" typeof="rdf:Property">
             <em property="rdfs:label">maximum cardinality</em>
-            <p property="rdfs:comment">Maximum number of times this TripleExpression may match; shex:INF for “*”</p>
+            <p property="rdfs:comment">Maximum number of times this TripleExpression may match; shex:unbounded for “*”</p>
             <span property="rdfs:isDefinedBy" resource="shex:"></span>
               <dl class="terms">
                   <dt>rdfs:range</dt>
                       <dd property="rdfs:range" resource="_:">
                         Union of
                         <span property="owl:unionOf" inlist=true resource="xsd:integer">xsd:integer</span>
-                        <span property="owl:unionOf" inlist=true resource=" rdfs:Resource"> rdfs:Resource</span>
+                        <span property="owl:unionOf" inlist=true resource="shex: Cardinality">shex: Cardinality</span>
                       </dd>
                   <dt>rdfs:domain</dt>
                       <dd property="rdfs:domain" resource="_:">
@@ -886,13 +886,6 @@ var respecConfig = {
       <h2>Instance Definitions</h2>
       <p>The following are instance definitions in the <code>shex</code> namespace:</p>
       <table class="rdfs-definition">
-        <tr><td class="bold">INF</td>
-          <td resource="shex:INF" typeof="Cardinality">
-            <em property="rdfs:label">infinity</em>
-            <p property="rdfs:comment">Equivalent to `max: “*”`.</p>
-            <span property="rdfs:isDefinedBy" resource="shex:"></span>
-          </td>
-        </tr>
         <tr><td class="bold">bnode</td>
           <td resource="shex:bnode" typeof="NodeKind">
             <em property="rdfs:label">bnode</em>
@@ -921,6 +914,13 @@ var respecConfig = {
             <span property="rdfs:isDefinedBy" resource="shex:"></span>
           </td>
         </tr>
+        <tr><td class="bold">unbounded</td>
+          <td resource="shex:unbounded" typeof="Cardinality">
+            <em property="rdfs:label">unbounded</em>
+            <p property="rdfs:comment">Equivalent to `max: “*”`.</p>
+            <span property="rdfs:isDefinedBy" resource="shex:"></span>
+          </td>
+        </tr>
       </table>
     </section>
     <section>
@@ -937,10 +937,6 @@ var respecConfig = {
         <dt>EachOf</dt>
         <dd>
             shex:EachOf
-        </dd>
-        <dt>INF</dt>
-        <dd>
-            shex:INF
         </dd>
         <dt>NodeConstraint</dt>
         <dd>
@@ -1225,6 +1221,10 @@ var respecConfig = {
         <dt>type</dt>
         <dd>
             @type
+        </dd>
+        <dt>unbounded</dt>
+        <dd>
+            shex:unbounded
         </dd>
         <dt>uri</dt>
         <dd>

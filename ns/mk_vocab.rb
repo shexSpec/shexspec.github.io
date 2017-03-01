@@ -15,7 +15,7 @@ class Vocab
     :array_nl     => "\n"
   )
 
-  TITLE = "Shape Expression Vocabulary Terms".freeze
+  TITLE = "Shape Expression Vocabulary".freeze
   DESCRIPTION = %(This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context.).freeze
   attr_accessor :prefixes, :terms, :properties, :classes, :instances, :datatypes,
                 :imports, :date, :commit, :seeAlso

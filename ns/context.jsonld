@@ -186,11 +186,11 @@
     "xsFacet": {
       "@id": "shex:xsFacet"
     },
-    "INF": "shex:INF",
     "bnode": "shex:bnode",
     "iri": "shex:iri",
     "literal": "shex:literal",
-    "nonliteral": "shex:nonliteral"
+    "nonliteral": "shex:nonliteral",
+    "unbounded": "shex:unbounded"
   },
   "@graph": {
     "@context": {
@@ -269,13 +269,13 @@
     "@id": "http://shex.io/ns/shex#",
     "@type": "owl:Ontology",
     "dc:title": {
-      "en": "Shape Expression Vocabulary Terms"
+      "en": "Shape Expression Vocabulary"
     },
     "dc:description": {
-      "en": "This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context."
+      "en": "This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes."
     },
-    "dc:date": "2017-01-29",
-    "owl:versionInfo": "https://github.com/shexSpec/shexspec.github.io/commit/761482b6a1a28e02a22ec2cc4f42d2018aae15bf",
+    "dc:date": "2017-03-01",
+    "owl:versionInfo": "https://github.com/shexSpec/shexspec.github.io/commit/0b6079d33b0fd41703d44b1ad06fce7d05780929",
     "rdfs:seeAlso": [
       "https://shexspec.github.io/spec"
     ],
@@ -297,7 +297,7 @@
           "en": "Cardinality"
         },
         "rdfs:comment": {
-          "en": "Class of cardinality values, with sole instance `INF`."
+          "en": "Class of cardinality values, with sole instance `unbounded`."
         }
       },
       {
@@ -638,7 +638,7 @@
           "en": "maximum cardinality"
         },
         "rdfs:comment": {
-          "en": "Maximum number of times this TripleExpression may match; shex:INF for “*”"
+          "en": "Maximum number of times this TripleExpression may match; shex:unbounded for “*”"
         },
         "rdfs:domain": {
           "owl:unionOf": [
@@ -650,7 +650,7 @@
         "rdfs:range": {
           "owl:unionOf": [
             "xsd:integer",
-            " rdfs:Resource"
+            "shex: Cardinality"
           ]
         }
       },
@@ -1025,16 +1025,6 @@
     ],
     "rdfs_instances": [
       {
-        "@id": "shex:INF",
-        "@type": "Cardinality",
-        "rdfs:label": {
-          "en": "infinity"
-        },
-        "rdfs:comment": {
-          "en": "Equivalent to `max: “*”`."
-        }
-      },
-      {
         "@id": "shex:bnode",
         "@type": "NodeKind",
         "rdfs:label": {
@@ -1072,6 +1062,16 @@
         },
         "rdfs:comment": {
           "en": "Requires node to be a Blank Node or IRI"
+        }
+      },
+      {
+        "@id": "shex:unbounded",
+        "@type": "Cardinality",
+        "rdfs:label": {
+          "en": "unbounded"
+        },
+        "rdfs:comment": {
+          "en": "Equivalent to `max: “*”`."
         }
       }
     ]

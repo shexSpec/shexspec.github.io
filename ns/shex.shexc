@@ -3,11 +3,11 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX shex: <http://shex.io/ns/shex#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 #ShExc definition of ShExJ
-#Shape Expression Vocabulary Terms
+#Shape Expression Vocabulary
 #This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context.
-#Date: 2017-01-29
+#Date: 2017-02-25
 #Imports 
-#Version https://github.com/shexSpec/shexspec.github.io/commit/761482b6a1a28e02a22ec2cc4f42d2018aae15bf
+#Version https://github.com/shexSpec/shexspec.github.io/commit/438072ef278b13410485054901dd37c7b0e30da1
 #See also <https://shexspec.github.io/spec>
   
 
@@ -25,7 +25,7 @@ shex:EachOf {
   #// rdfs:subClassOf shex:TripleExpression;
   shex:annotation @shex:Annotation* ;
   shex:expressions @shex:TripleExpression+ ;
-  shex:max (xsd:integer OR @ rdfs:Resource) ;
+  shex:max (xsd:integer OR @shex: Cardinality) ;
   shex:min xsd:integer ;
   shex:semActs @shex:SemAct* ;
 }
@@ -51,7 +51,7 @@ shex:OneOf {
   #// rdfs:subClassOf shex:TripleExpression;
   shex:annotation @shex:Annotation* ;
   shex:expressions @shex:TripleExpression+ ;
-  shex:max (xsd:integer OR @ rdfs:Resource) ;
+  shex:max (xsd:integer OR @shex: Cardinality) ;
   shex:min xsd:integer ;
   shex:semActs @shex:SemAct* ;
 }
@@ -99,7 +99,7 @@ shex:TripleConstraint {
   #// rdfs:subClassOf shex:TripleExpression;
   shex:annotation @shex:Annotation* ;
   shex:inverse xsd:boolean? ;
-  shex:max (xsd:integer OR @ rdfs:Resource) ;
+  shex:max (xsd:integer OR @shex: Cardinality) ;
   shex:min xsd:integer ;
   shex:predicate IRI ;
   shex:semActs @shex:SemAct* ;

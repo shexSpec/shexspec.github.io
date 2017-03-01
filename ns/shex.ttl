@@ -5,11 +5,11 @@
 
 # CSVM Ontology definition
 shex: a owl:Ontology;
-  dc:title "Shape Expression Vocabulary Terms"@en;
-  dc:description """This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context."""@en;
-  dc:date "2017-01-29"^^xsd:date;
+  dc:title "Shape Expression Vocabulary"@en;
+  dc:description """This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes."""@en;
+  dc:date "2017-03-01"^^xsd:date;
   dc:imports ;
-  owl:versionInfo <https://github.com/shexSpec/shexspec.github.io/commit/761482b6a1a28e02a22ec2cc4f42d2018aae15bf>;
+  owl:versionInfo <https://github.com/shexSpec/shexspec.github.io/commit/0b6079d33b0fd41703d44b1ad06fce7d05780929>;
   rdfs:seeAlso <https://shexspec.github.io/spec>;
   .
 
@@ -21,7 +21,7 @@ shex:Annotation a rdfs:Class;
   rdfs:isDefinedBy shex: .
 shex:Cardinality a rdfs:Class;
   rdfs:label "Cardinality"@en;
-  rdfs:comment """Class of cardinality values, with sole instance `INF`."""@en;
+  rdfs:comment """Class of cardinality values, with sole instance `unbounded`."""@en;
   rdfs:isDefinedBy shex: .
 shex:EachOf a rdfs:Class;
   rdfs:label "Each Of"@en;
@@ -172,9 +172,9 @@ shex:length a rdf:Property;
   rdfs:isDefinedBy shex: .
 shex:max a rdf:Property;
   rdfs:label "maximum cardinality"@en;
-  rdfs:comment """Maximum number of times this TripleExpression may match; shex:INF for “*”"""@en;
+  rdfs:comment """Maximum number of times this TripleExpression may match; shex:unbounded for “*”"""@en;
   rdfs:domain [ owl:unionOf (shex:EachOf shex:OneOf shex:TripleConstraint)];
-  rdfs:range [ owl:unionOf (xsd:integer  rdfs:Resource)];
+  rdfs:range [ owl:unionOf (xsd:integer shex: Cardinality)];
   rdfs:isDefinedBy shex: .
 shex:maxexclusive a rdf:Property;
   rdfs:label "max exclusive"@en;
@@ -336,10 +336,6 @@ shex:xsFacet a rdf:Property;
 # Datatype definitions
 
 # Instance definitions
-shex:INF a shex:Cardinality;
-  rdfs:label "infinity"@en;
-  rdfs:comment """Equivalent to `max: “*”`."""@en;
-  rdfs:isDefinedBy shex: .
 shex:bnode a shex:NodeKind;
   rdfs:label "bnode"@en;
   rdfs:comment """Requires node to be a Blank Node"""@en;
@@ -355,4 +351,8 @@ shex:literal a shex:NodeKind;
 shex:nonliteral a shex:NodeKind;
   rdfs:label "nonliteral"@en;
   rdfs:comment """Requires node to be a Blank Node or IRI"""@en;
+  rdfs:isDefinedBy shex: .
+shex:unbounded a shex:Cardinality;
+  rdfs:label "unbounded"@en;
+  rdfs:comment """Equivalent to `max: “*”`."""@en;
   rdfs:isDefinedBy shex: .
