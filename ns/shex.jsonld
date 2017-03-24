@@ -2,7 +2,7 @@
   "@context": {
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "shex": "http://shex.io/ns/shex#",
+    "shex": "http://www.w3.org/ns/shex#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "annotations": {
       "@id": "annotation",
@@ -18,7 +18,6 @@
     "uri": "@id",
     "value": "@value",
     "Annotation": "shex:Annotation",
-    "Cardinality": "shex:Cardinality",
     "EachOf": "shex:EachOf",
     "NodeConstraint": "shex:NodeConstraint",
     "NodeKind": "shex:NodeKind",
@@ -83,7 +82,7 @@
     },
     "max": {
       "@id": "shex:max",
-      "@type": "@vocab"
+      "@type": "xsd:integer"
     },
     "maxexclusive": {
       "@id": "shex:maxexclusive",
@@ -189,8 +188,7 @@
     "bnode": "shex:bnode",
     "iri": "shex:iri",
     "literal": "shex:literal",
-    "nonliteral": "shex:nonliteral",
-    "unbounded": "shex:unbounded"
+    "nonliteral": "shex:nonliteral"
   },
   "@graph": {
     "@context": {
@@ -266,7 +264,7 @@
         "@type": "@id"
       }
     },
-    "@id": "http://shex.io/ns/shex#",
+    "@id": "http://www.w3.org/ns/shex#",
     "@type": "owl:Ontology",
     "dc:title": {
       "en": "Shape Expression Vocabulary"
@@ -288,16 +286,6 @@
         },
         "rdfs:comment": {
           "en": "Annotations provide a format-independent way to provide additional information about elements in a schema. "
-        }
-      },
-      {
-        "@id": "shex:Cardinality",
-        "@type": "rdfs:Class",
-        "rdfs:label": {
-          "en": "Cardinality"
-        },
-        "rdfs:comment": {
-          "en": "Class of cardinality values, with sole instance `unbounded`."
         }
       },
       {
@@ -638,7 +626,7 @@
           "en": "maximum cardinality"
         },
         "rdfs:comment": {
-          "en": "Maximum number of times this TripleExpression may match; shex:unbounded for “*”"
+          "en": "Maximum number of times this TripleExpression may match; -1 for “*”"
         },
         "rdfs:domain": {
           "owl:unionOf": [
@@ -647,12 +635,7 @@
             "shex:TripleConstraint"
           ]
         },
-        "rdfs:range": {
-          "owl:unionOf": [
-            "xsd:integer",
-            "shex: Cardinality"
-          ]
-        }
+        "rdfs:range": "xsd:integer"
       },
       {
         "@id": "shex:maxexclusive",
@@ -1062,16 +1045,6 @@
         },
         "rdfs:comment": {
           "en": "Requires node to be a Blank Node or IRI"
-        }
-      },
-      {
-        "@id": "shex:unbounded",
-        "@type": "Cardinality",
-        "rdfs:label": {
-          "en": "unbounded"
-        },
-        "rdfs:comment": {
-          "en": "Equivalent to `max: “*”`."
         }
       }
     ]

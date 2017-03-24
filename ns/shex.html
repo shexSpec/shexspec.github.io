@@ -83,7 +83,7 @@ var respecConfig = {
       .bold {font-weight: bold;}
     </style>
   </head>
-  <body resource="http://shex.io/ns/shex#" typeof="owl:Ontology" prefix="shex: http://shex.io/ns/shex#">
+  <body resource="http://www.w3.org/ns/shex#" typeof="owl:Ontology" prefix="shex: http://www.w3.org/ns/shex#">
     <section id="abstract">
       <p>This document describes the
         <span property="dc:title">Shape Expression Vocabulary</span>
@@ -133,13 +133,6 @@ var respecConfig = {
           <td resource="shex:Annotation" typeof="rdfs:Class">
             <em property="rdfs:label">Annotation</em>
             <p property="rdfs:comment">Annotations provide a format-independent way to provide additional information about elements in a schema. </p>
-            <span property="rdfs:isDefinedBy" resource="shex:"></span>
-          </td>
-        </tr>
-        <tr><td class="bold">Cardinality</td>
-          <td resource="shex:Cardinality" typeof="rdfs:Class">
-            <em property="rdfs:label">Cardinality</em>
-            <p property="rdfs:comment">Class of cardinality values, with sole instance `unbounded`.</p>
             <span property="rdfs:isDefinedBy" resource="shex:"></span>
           </td>
         </tr>
@@ -467,15 +460,11 @@ var respecConfig = {
         <tr><td class="bold">max</td>
           <td resource="shex:max" typeof="rdf:Property">
             <em property="rdfs:label">maximum cardinality</em>
-            <p property="rdfs:comment">Maximum number of times this TripleExpression may match; shex:unbounded for “*”</p>
+            <p property="rdfs:comment">Maximum number of times this TripleExpression may match; -1 for “*”</p>
             <span property="rdfs:isDefinedBy" resource="shex:"></span>
               <dl class="terms">
                   <dt>rdfs:range</dt>
-                      <dd property="rdfs:range" resource="_:">
-                        Union of
-                        <span property="owl:unionOf" inlist=true resource="xsd:integer">xsd:integer</span>
-                        <span property="owl:unionOf" inlist=true resource="shex: Cardinality">shex: Cardinality</span>
-                      </dd>
+                      <dd property="rdfs:range" resource="xsd:integer">xsd:integer</dd>
                   <dt>rdfs:domain</dt>
                       <dd property="rdfs:domain" resource="_:">
                         Union of
@@ -914,13 +903,6 @@ var respecConfig = {
             <span property="rdfs:isDefinedBy" resource="shex:"></span>
           </td>
         </tr>
-        <tr><td class="bold">unbounded</td>
-          <td resource="shex:unbounded" typeof="Cardinality">
-            <em property="rdfs:label">unbounded</em>
-            <p property="rdfs:comment">Equivalent to `max: “*”`.</p>
-            <span property="rdfs:isDefinedBy" resource="shex:"></span>
-          </td>
-        </tr>
       </table>
     </section>
     <section>
@@ -929,10 +911,6 @@ var respecConfig = {
         <dt>Annotation</dt>
         <dd>
             shex:Annotation
-        </dd>
-        <dt>Cardinality</dt>
-        <dd>
-            shex:Cardinality
         </dd>
         <dt>EachOf</dt>
         <dd>
@@ -1090,7 +1068,7 @@ var respecConfig = {
         <dt>max</dt>
         <dd>
             shex:max
-            with string values interpreted as @vocab
+            with string values interpreted as xsd:integer
         </dd>
         <dt>maxexclusive</dt>
         <dd>
@@ -1191,7 +1169,7 @@ var respecConfig = {
         </dd>
         <dt>shex</dt>
         <dd>
-            http://shex.io/ns/shex#
+            http://www.w3.org/ns/shex#
         </dd>
         <dt>start</dt>
         <dd>
@@ -1221,10 +1199,6 @@ var respecConfig = {
         <dt>type</dt>
         <dd>
             @type
-        </dd>
-        <dt>unbounded</dt>
-        <dd>
-            shex:unbounded
         </dd>
         <dt>uri</dt>
         <dd>

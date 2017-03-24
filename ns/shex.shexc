@@ -1,6 +1,6 @@
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX shex: <http://shex.io/ns/shex#>
+PREFIX shex: <http://www.w3.org/ns/shex#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 #ShExc definition of ShExJ
 #Shape Expression Vocabulary
@@ -19,14 +19,11 @@ shex:Annotation {
   shex:object IRI ;
   shex:predicate IRI ;
 }
-shex:Cardinality {
-  [shex:unbounded]
-}
 shex:EachOf {
   #// rdfs:subClassOf shex:TripleExpression;
   shex:annotation @shex:Annotation* ;
   shex:expressions @shex:TripleExpression+ ;
-  shex:max (xsd:integer OR @shex: Cardinality) ;
+  shex:max xsd:integer ;
   shex:min xsd:integer ;
   shex:semActs @shex:SemAct* ;
 }
@@ -63,7 +60,7 @@ shex:OneOf {
   #// rdfs:subClassOf shex:TripleExpression;
   shex:annotation @shex:Annotation* ;
   shex:expressions @shex:TripleExpression+ ;
-  shex:max (xsd:integer OR @shex: Cardinality) ;
+  shex:max xsd:integer ;
   shex:min xsd:integer ;
   shex:semActs @shex:SemAct* ;
 }
@@ -113,7 +110,7 @@ shex:TripleConstraint {
   #// rdfs:subClassOf shex:TripleExpression;
   shex:annotation @shex:Annotation* ;
   shex:inverse xsd:boolean? ;
-  shex:max (xsd:integer OR @shex: Cardinality) ;
+  shex:max xsd:integer ;
   shex:min xsd:integer ;
   shex:predicate IRI ;
   shex:semActs @shex:SemAct* ;

@@ -1,6 +1,6 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix shex: <http://shex.io/ns/shex#> .
+@prefix shex: <http://www.w3.org/ns/shex#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # CSVM Ontology definition
@@ -18,10 +18,6 @@ shex: a owl:Ontology;
 shex:Annotation a rdfs:Class;
   rdfs:label "Annotation"@en;
   rdfs:comment """Annotations provide a format-independent way to provide additional information about elements in a schema. """@en;
-  rdfs:isDefinedBy shex: .
-shex:Cardinality a rdfs:Class;
-  rdfs:label "Cardinality"@en;
-  rdfs:comment """Class of cardinality values, with sole instance `unbounded`."""@en;
   rdfs:isDefinedBy shex: .
 shex:EachOf a rdfs:Class;
   rdfs:label "Each Of"@en;
@@ -172,9 +168,9 @@ shex:length a rdf:Property;
   rdfs:isDefinedBy shex: .
 shex:max a rdf:Property;
   rdfs:label "maximum cardinality"@en;
-  rdfs:comment """Maximum number of times this TripleExpression may match; shex:unbounded for “*”"""@en;
+  rdfs:comment """Maximum number of times this TripleExpression may match; -1 for “*”"""@en;
   rdfs:domain [ owl:unionOf (shex:EachOf shex:OneOf shex:TripleConstraint)];
-  rdfs:range [ owl:unionOf (xsd:integer shex: Cardinality)];
+  rdfs:range xsd:integer;
   rdfs:isDefinedBy shex: .
 shex:maxexclusive a rdf:Property;
   rdfs:label "max exclusive"@en;
@@ -351,8 +347,4 @@ shex:literal a shex:NodeKind;
 shex:nonliteral a shex:NodeKind;
   rdfs:label "nonliteral"@en;
   rdfs:comment """Requires node to be a Blank Node or IRI"""@en;
-  rdfs:isDefinedBy shex: .
-shex:unbounded a shex:Cardinality;
-  rdfs:label "unbounded"@en;
-  rdfs:comment """Equivalent to `max: “*”`."""@en;
   rdfs:isDefinedBy shex: .
