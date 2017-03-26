@@ -27,6 +27,15 @@ shex:EachOf {
   shex:min xsd:integer ;
   shex:semActs @shex:SemAct* ;
 }
+shex:IriStem {
+  #// rdfs:subClassOf shex:StemRange;
+}
+shex:LanguageStem {
+  #// rdfs:subClassOf shex:StemRange;
+}
+shex:LiteralStem {
+  #// rdfs:subClassOf shex:StemRange;
+}
 shex:NodeConstraint {
   #// rdfs:subClassOf shex:ShapeExpression;
   shex:datatype @rdfs:Datatype? ;
@@ -105,6 +114,7 @@ shex:Stem {
 shex:StemRange {
   shex:exclusion (IRI OR @shex:Stem)* ;
   shex:stem (xsd:anyUri OR @shex:Wildcard) ;
+  (&shex:IriStem | &shex:LanguageStem | &shex:LiteralStem)
 }
 shex:TripleConstraint {
   #// rdfs:subClassOf shex:TripleExpression;

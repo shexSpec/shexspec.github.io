@@ -19,6 +19,9 @@
     "value": "@value",
     "Annotation": "shex:Annotation",
     "EachOf": "shex:EachOf",
+    "IriStem": "shex:IriStem",
+    "LanguageStem": "shex:LanguageStem",
+    "LiteralStem": "shex:LiteralStem",
     "NodeConstraint": "shex:NodeConstraint",
     "NodeKind": "shex:NodeKind",
     "OneOf": "shex:OneOf",
@@ -300,6 +303,39 @@
         "rdfs:subClassOf": "shex:TripleExpression"
       },
       {
+        "@id": "shex:IriStem",
+        "@type": "rdfs:Class",
+        "rdfs:label": {
+          "en": "IRI StemRange"
+        },
+        "rdfs:comment": {
+          "en": "An IRI prefix (or wildcard) along with a set of excluded values, used for node matching."
+        },
+        "rdfs:subClassOf": "shex:StemRange"
+      },
+      {
+        "@id": "shex:LanguageStem",
+        "@type": "rdfs:Class",
+        "rdfs:label": {
+          "en": "Language StemRange"
+        },
+        "rdfs:comment": {
+          "en": "An Language prefix (or wildcard) along with a set of excluded values, used for node matching."
+        },
+        "rdfs:subClassOf": "shex:StemRange"
+      },
+      {
+        "@id": "shex:LiteralStem",
+        "@type": "rdfs:Class",
+        "rdfs:label": {
+          "en": "Literal StemRange"
+        },
+        "rdfs:comment": {
+          "en": "An Literal prefix (or wildcard) along with a set of excluded values, used for node matching."
+        },
+        "rdfs:subClassOf": "shex:StemRange"
+      },
+      {
         "@id": "shex:NodeConstraint",
         "@type": "rdfs:Class",
         "rdfs:label": {
@@ -423,7 +459,7 @@
           "en": "Stem"
         },
         "rdfs:comment": {
-          "en": "An IRI prefix used for matching IRIs."
+          "en": "Abstract class for Stems"
         }
       },
       {
@@ -433,7 +469,7 @@
           "en": "StemRange"
         },
         "rdfs:comment": {
-          "en": "An IRI prefix (or wildcard) along with a set of excluded values, used for node matching."
+          "en": "Abstract Class for Stem Ranges"
         }
       },
       {

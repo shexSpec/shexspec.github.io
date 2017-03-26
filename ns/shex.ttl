@@ -24,6 +24,21 @@ shex:EachOf a rdfs:Class;
   rdfs:comment """A TripleExpression composed of one or more sub-expressions, all of which must match."""@en;
   rdfs:subClassOf shex:TripleExpression;
   rdfs:isDefinedBy shex: .
+shex:IriStem a rdfs:Class;
+  rdfs:label "IRI StemRange"@en;
+  rdfs:comment """An IRI prefix (or wildcard) along with a set of excluded values, used for node matching."""@en;
+  rdfs:subClassOf shex:StemRange;
+  rdfs:isDefinedBy shex: .
+shex:LanguageStem a rdfs:Class;
+  rdfs:label "Language StemRange"@en;
+  rdfs:comment """An Language prefix (or wildcard) along with a set of excluded values, used for node matching."""@en;
+  rdfs:subClassOf shex:StemRange;
+  rdfs:isDefinedBy shex: .
+shex:LiteralStem a rdfs:Class;
+  rdfs:label "Literal StemRange"@en;
+  rdfs:comment """An Literal prefix (or wildcard) along with a set of excluded values, used for node matching."""@en;
+  rdfs:subClassOf shex:StemRange;
+  rdfs:isDefinedBy shex: .
 shex:NodeConstraint a rdfs:Class;
   rdfs:label "Node Constraint"@en;
   rdfs:comment """A constraint on the type or value of an RDF Node."""@en;
@@ -77,11 +92,11 @@ shex:ShapeOr a rdfs:Class;
   rdfs:isDefinedBy shex: .
 shex:Stem a rdfs:Class;
   rdfs:label "Stem"@en;
-  rdfs:comment """An IRI prefix used for matching IRIs."""@en;
+  rdfs:comment """Abstract class for Stems"""@en;
   rdfs:isDefinedBy shex: .
 shex:StemRange a rdfs:Class;
   rdfs:label "StemRange"@en;
-  rdfs:comment """An IRI prefix (or wildcard) along with a set of excluded values, used for node matching."""@en;
+  rdfs:comment """Abstract Class for Stem Ranges"""@en;
   rdfs:isDefinedBy shex: .
 shex:TripleConstraint a rdfs:Class;
   rdfs:label "Triple Constraint"@en;
