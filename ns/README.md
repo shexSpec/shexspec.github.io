@@ -15,8 +15,4 @@ These go in www.w3.org/ns/.htaccess
 ForceType 'application/ld+json'
 Header set Access-Control-Allow-Origin "*"
 </Files>
-<Files ~ "shex.ttl">
-Header set Access-Control-Allow-Origin "*"
-</Files>
-
 ```
