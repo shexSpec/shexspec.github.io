@@ -1,5 +1,5 @@
 id,type,label,subClassOf,domain,range,@type,@container,ForwardMultiplicity,ReverseMultiplicity,term,comment,
-,rdfs:seeAlso,,https://shexspec.github.io/spec,,,,,,,,,
+,rdfs:seeAlso,,http://shex.io/shex-semantics,,,,,,,,,
 literal,NodeKind,literal,,,,,,,,,Requires node to be an rdf:Literal,
 nonliteral,NodeKind,nonliteral,,,,,,,,,Requires node to be a Blank Node or IRI,
 iri,NodeKind,iri,,,,,,,,,Requires node to be an IRI,

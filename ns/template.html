@@ -6,7 +6,7 @@
     <script class="remove">
 var respecConfig = {
     localBiblio: {
-      "shex": {
+      "shex-semantics": {
         "authors": [
           "Eric Prud'hommeaux",
           "Iovka Boneva",
@@ -14,7 +14,7 @@ var respecConfig = {
           "Gregg Kellogg"
         ],
         "title": "Shape Expressions Language",
-        "href" : "https://shexspec.github.io/spec",
+        "href" : "http://shex.io/shex-semantics",
         "rawDate": "2016-12-22",
         "status" : "CG-NOTE",
         "publisher": "W3C"
@@ -23,6 +23,7 @@ var respecConfig = {
     specStatus: "base",
     shortName: "shexns",
     publishDate:  "<%=ont["dc:date"]%>",
+    thisVersion:    "http://www.w3.org/ns/shex",
     edDraftURI: "http://shexspec.github.io/ns/",
     // lcEnd: "3000-01-01",
     // crEnd: "3000-01-01",
@@ -88,9 +89,8 @@ var respecConfig = {
       <p>This document describes the
         <span property="dc:title"><%= ont["dc:title"]["en"] %></span>
         and Term definitions used
-        for creating Metadata descriptions for Tabular Data. This document provides the RDFS [[RDF-SCHEMA]] vocabulary definition for terms defined
-        in [[tabular-metadata]] and a description of the JSON-LD context definition for use with
-        defining metadata documents.</p>
+        for describing Shape Expressions [[shex-semantics]]. This document provides the RDFS [[RDF-SCHEMA]] vocabulary definition and a description of the JSON-LD context definition for use with
+        defining shape expressions.</p>
       <p>Alternate versions of the vocabulary definition exist in
         <a rel="alternate" href="shex.ttl">Turtle</a> and
         <a rel="alternate" href="shex.jsonld">JSON-LD</a>,
@@ -124,7 +124,7 @@ var respecConfig = {
       <p>This specification makes use of the following namespaces:</p>
       <dl class="terms">
         <dt><code>shex</code>:</dt>
-        <dd><code>http://shexspec.github.io/ns/</code></dd>
+        <dd><code>http://www.w3.org/ns/shex#</code></dd>
         <dt><code>rdf</code>:</dt>
         <dd><code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code></dd>
         <dt><code>rdfs</code>:</dt>
