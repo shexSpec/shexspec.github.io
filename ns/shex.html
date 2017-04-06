@@ -22,7 +22,7 @@ var respecConfig = {
     },
     specStatus: "base",
     shortName: "shexns",
-    publishDate:  "2017-03-27",
+    publishDate:  "2017-04-06",
     thisVersion:    "http://www.w3.org/ns/shex",
     edDraftURI: "http://shexspec.github.io/ns/",
     // lcEnd: "3000-01-01",
@@ -98,9 +98,9 @@ var respecConfig = {
         <!--These versions may also be retrieved from <code>FIXME</code> using an appropiate HTTP <em>Accept</em> header.-->
       </p>
       <dl>
-        <dt>Published:</dt><dd><time property="dc:date">2017-03-27</time></dd>
+        <dt>Published:</dt><dd><time property="dc:date">2017-04-06</time></dd>
         <dt>Version Info:</dt>
-        <dd><a href="https://github.com/shexSpec/shexspec.github.io/commit/7f08f605defcbfc7b23cdce5306a0cd9fb3f52e0" property="owl:versionInfo">https://github.com/shexSpec/shexspec.github.io/commit/7f08f605defcbfc7b23cdce5306a0cd9fb3f52e0</a></dd>
+        <dd><a href="https://github.com/shexSpec/shexspec.github.io/commit/cf401362987b3ef3a394770f191c8b0e9f53f58a" property="owl:versionInfo">https://github.com/shexSpec/shexspec.github.io/commit/cf401362987b3ef3a394770f191c8b0e9f53f58a</a></dd>
         <dt>See Also:</dt>
           <dd><a href="http://shex.io/shex-semantics" property="rdfs:seeAlso">http://shex.io/shex-semantics</a></dd>
       </dl>
@@ -396,7 +396,7 @@ var respecConfig = {
                   <dt>rdfs:range</dt>
                       <dd property="rdfs:range" resource="_:">
                         Union of
-                        <span property="owl:unionOf" inlist=true resource="xsd:string">xsd:string</span>
+                        <span property="owl:unionOf" inlist=true resource="rdfs:Resource">rdfs:Resource</span>
                         <span property="owl:unionOf" inlist=true resource="shex:Stem">shex:Stem</span>
                       </dd>
                   <dt>rdfs:domain</dt>
@@ -816,7 +816,7 @@ var respecConfig = {
                   <dt>rdfs:range</dt>
                       <dd property="rdfs:range" resource="_:">
                         Union of
-                        <span property="owl:unionOf" inlist=true resource="xsd:string">xsd:string</span>
+                        <span property="owl:unionOf" inlist=true resource="xsd:anyUri">xsd:anyUri</span>
                         <span property="owl:unionOf" inlist=true resource="shex:Wildcard">shex:Wildcard</span>
                       </dd>
                   <dt>rdfs:domain</dt>
@@ -965,10 +965,6 @@ var respecConfig = {
         <dd>
             shex:NodeConstraint
         </dd>
-        <dt>NodeKind</dt>
-        <dd>
-            shex:NodeKind
-        </dd>
         <dt>OneOf</dt>
         <dd>
             shex:OneOf
@@ -988,10 +984,6 @@ var respecConfig = {
         <dt>ShapeAnd</dt>
         <dd>
             shex:ShapeAnd
-        </dd>
-        <dt>ShapeExpression</dt>
-        <dd>
-            shex:ShapeExpression
         </dd>
         <dt>ShapeExternal</dt>
         <dd>
@@ -1017,18 +1009,9 @@ var respecConfig = {
         <dd>
             shex:TripleConstraint
         </dd>
-        <dt>TripleExpression</dt>
-        <dd>
-            shex:TripleExpression
-        </dd>
         <dt>Wildcard</dt>
         <dd>
             shex:Wildcard
-        </dd>
-        <dt>annotation</dt>
-        <dd>
-            shex:annotation
-            with string values interpreted as @id
         </dd>
         <dt>annotations</dt>
         <dd>
@@ -1053,14 +1036,10 @@ var respecConfig = {
             shex:datatype
             with string values interpreted as @id
         </dd>
-        <dt>exclusion</dt>
-        <dd>
-            shex:exclusion
-            with string values interpreted as xsd:string
-        </dd>
         <dt>exclusions</dt>
         <dd>
             exclusion
+            with string values interpreted as @id
         </dd>
         <dt>expression</dt>
         <dd>
@@ -1163,10 +1142,6 @@ var respecConfig = {
         <dd>
             shex:nonliteral
         </dd>
-        <dt>numericFacet</dt>
-        <dd>
-            shex:numericFacet
-        </dd>
         <dt>object</dt>
         <dd>
             shex:object
@@ -1229,11 +1204,7 @@ var respecConfig = {
         <dt>stem</dt>
         <dd>
             shex:stem
-            with string values interpreted as xsd:string
-        </dd>
-        <dt>stringFacet</dt>
-        <dd>
-            shex:stringFacet
+            with string values interpreted as xsd:anyUri
         </dd>
         <dt>totaldigits</dt>
         <dd>
@@ -1262,10 +1233,6 @@ var respecConfig = {
             shex:values
             with string values interpreted as @id
               with array values interpreted as @list
-        </dd>
-        <dt>xsFacet</dt>
-        <dd>
-            shex:xsFacet
         </dd>
         <dt>xsd</dt>
         <dd>

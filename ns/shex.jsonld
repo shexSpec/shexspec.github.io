@@ -8,7 +8,10 @@
       "@id": "annotation",
       "@type": "@id"
     },
-    "exclusions": "exclusion",
+    "exclusions": {
+      "@id": "exclusion",
+      "@type": "@id"
+    },
     "id": "@id",
     "language": "@language",
     "type": "@type",
@@ -20,25 +23,18 @@
     "LanguageStem": "shex:LanguageStem",
     "LiteralStem": "shex:LiteralStem",
     "NodeConstraint": "shex:NodeConstraint",
-    "NodeKind": "shex:NodeKind",
     "OneOf": "shex:OneOf",
     "Schema": "shex:Schema",
     "SemAct": "shex:SemAct",
     "Shape": "shex:Shape",
     "ShapeAnd": "shex:ShapeAnd",
-    "ShapeExpression": "shex:ShapeExpression",
     "ShapeExternal": "shex:ShapeExternal",
     "ShapeNot": "shex:ShapeNot",
     "ShapeOr": "shex:ShapeOr",
     "Stem": "shex:Stem",
     "StemRange": "shex:StemRange",
     "TripleConstraint": "shex:TripleConstraint",
-    "TripleExpression": "shex:TripleExpression",
     "Wildcard": "shex:Wildcard",
-    "annotation": {
-      "@id": "shex:annotation",
-      "@type": "@id"
-    },
     "closed": {
       "@id": "shex:closed",
       "@type": "xsd:boolean"
@@ -50,10 +46,6 @@
     "datatype": {
       "@id": "shex:datatype",
       "@type": "@id"
-    },
-    "exclusion": {
-      "@id": "shex:exclusion",
-      "@type": "xsd:string"
     },
     "expression": {
       "@id": "shex:expression",
@@ -120,9 +112,6 @@
       "@id": "shex:nodeKind",
       "@type": "@vocab"
     },
-    "numericFacet": {
-      "@id": "shex:numericFacet"
-    },
     "object": {
       "@id": "shex:object",
       "@type": "@id"
@@ -164,10 +153,7 @@
     },
     "stem": {
       "@id": "shex:stem",
-      "@type": "xsd:string"
-    },
-    "stringFacet": {
-      "@id": "shex:stringFacet"
+      "@type": "xsd:anyUri"
     },
     "totaldigits": {
       "@id": "shex:totaldigits",
@@ -181,9 +167,6 @@
       "@id": "shex:values",
       "@type": "@id",
       "@container": "@list"
-    },
-    "xsFacet": {
-      "@id": "shex:xsFacet"
     },
     "bnode": "shex:bnode",
     "iri": "shex:iri",
@@ -272,8 +255,8 @@
     "dc:description": {
       "en": "This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex-semantics]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes."
     },
-    "dc:date": "2017-03-27",
-    "owl:versionInfo": "https://github.com/shexSpec/shexspec.github.io/commit/7f08f605defcbfc7b23cdce5306a0cd9fb3f52e0",
+    "dc:date": "2017-04-06",
+    "owl:versionInfo": "https://github.com/shexSpec/shexspec.github.io/commit/cf401362987b3ef3a394770f191c8b0e9f53f58a",
     "rdfs:seeAlso": [
       "http://shex.io/shex-semantics"
     ],
@@ -568,7 +551,7 @@
         "rdfs:domain": "shex:StemRange",
         "rdfs:range": {
           "owl:unionOf": [
-            "xsd:string",
+            "rdfs:Resource",
             "shex:Stem"
           ]
         }
@@ -968,7 +951,7 @@
         },
         "rdfs:range": {
           "owl:unionOf": [
-            "xsd:string",
+            "xsd:anyUri",
             "shex:Wildcard"
           ]
         }
