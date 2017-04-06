@@ -5,9 +5,9 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 #ShExc definition of ShExJ
 #Shape Expression Vocabulary
 #This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex-semantics]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes.
-#Date: 2017-03-26
+#Date: 2017-03-27
 #Imports 
-#Version https://github.com/shexSpec/shexspec.github.io/commit/b5e16586ba39f04f649960ee4a7f201916149a1b
+#Version https://github.com/shexSpec/shexspec.github.io/commit/7f08f605defcbfc7b23cdce5306a0cd9fb3f52e0
 #See also <http://shex.io/shex-semantics>
   
 
@@ -109,11 +109,11 @@ shex:ShapeOr {
     #// rdfs:subPropertyOf shex:shapeExpr;
 }
 shex:Stem {
-  shex:stem (xsd:anyUri OR @shex:Wildcard) ;
+  shex:stem (xsd:string OR @shex:Wildcard) ;
 }
 shex:StemRange {
-  shex:exclusion (IRI OR @shex:Stem)* ;
-  shex:stem (xsd:anyUri OR @shex:Wildcard) ;
+  shex:exclusion (xsd:string OR @shex:Stem)* ;
+  shex:stem (xsd:string OR @shex:Wildcard) ;
   (&shex:IriStem | &shex:LanguageStem | &shex:LiteralStem)
 }
 shex:TripleConstraint {

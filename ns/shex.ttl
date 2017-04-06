@@ -7,9 +7,9 @@
 shex: a owl:Ontology;
   dc:title "Shape Expression Vocabulary"@en;
   dc:description """This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex-semantics]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes."""@en;
-  dc:date "2017-03-26"^^xsd:date;
+  dc:date "2017-03-27"^^xsd:date;
   dc:imports ;
-  owl:versionInfo <https://github.com/shexSpec/shexspec.github.io/commit/b5e16586ba39f04f649960ee4a7f201916149a1b>;
+  owl:versionInfo <https://github.com/shexSpec/shexspec.github.io/commit/7f08f605defcbfc7b23cdce5306a0cd9fb3f52e0>;
   rdfs:seeAlso <http://shex.io/shex-semantics>;
   .
 
@@ -141,7 +141,7 @@ shex:exclusion a rdf:Property;
   rdfs:label "exclusion"@en;
   rdfs:comment """Values that are excluded from value matching."""@en;
   rdfs:domain shex:StemRange;
-  rdfs:range [ owl:unionOf (rdfs:Resource shex:Stem)];
+  rdfs:range [ owl:unionOf (xsd:string shex:Stem)];
   rdfs:isDefinedBy shex: .
 shex:expression a rdf:Property;
   rdfs:label "expression"@en;
@@ -312,7 +312,7 @@ shex:stem a rdf:Property;
   rdfs:label "stem"@en;
   rdfs:comment """A stem value used for matching or excluding values."""@en;
   rdfs:domain [ owl:unionOf (shex:Stem shex:StemRange)];
-  rdfs:range [ owl:unionOf (xsd:anyUri shex:Wildcard)];
+  rdfs:range [ owl:unionOf (xsd:string shex:Wildcard)];
   rdfs:isDefinedBy shex: .
 shex:stringFacet a rdf:Property;
   rdfs:label ""@en;
