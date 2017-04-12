@@ -15,7 +15,6 @@
     "id": "@id",
     "language": "@language",
     "type": "@type",
-    "uri": "@id",
     "value": "@value",
     "Annotation": "shex:Annotation",
     "EachOf": "shex:EachOf",
@@ -279,8 +278,8 @@
     "dc:description": {
       "en": "This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex-semantics]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes."
     },
-    "dc:date": "2017-03-27",
-    "owl:versionInfo": "https://github.com/shexSpec/shexspec.github.io/commit/7f08f605defcbfc7b23cdce5306a0cd9fb3f52e0",
+    "dc:date": "2017-04-12",
+    "owl:versionInfo": "https://github.com/shexSpec/shexspec.github.io/commit/07d3e76be478d8c7f8c2e9d3b1f95635890239e0",
     "rdfs:seeAlso": [
       "http://shex.io/shex-semantics"
     ],

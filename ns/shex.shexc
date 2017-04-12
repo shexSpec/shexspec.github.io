@@ -5,9 +5,9 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 #ShExc definition of ShExJ
 #Shape Expression Vocabulary
 #This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex-semantics]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes.
-#Date: 2017-03-27
+#Date: 2017-04-12
 #Imports 
-#Version https://github.com/shexSpec/shexspec.github.io/commit/7f08f605defcbfc7b23cdce5306a0cd9fb3f52e0
+#Version https://github.com/shexSpec/shexspec.github.io/commit/07d3e76be478d8c7f8c2e9d3b1f95635890239e0
 #See also <http://shex.io/shex-semantics>
   
 

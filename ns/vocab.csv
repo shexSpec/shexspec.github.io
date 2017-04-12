@@ -75,5 +75,4 @@ exclusions,term,,exclusion,,,@id,,,,,A synonym for the exclusion property.
 id,term,,@id,,,,,,,,A synonym for @id.
 language,term,,@language,,,,,,,,A synonym for @language.
 type,term,,@type,,,,,,,,A synonym for @type.
-uri,term,,@id,,,,,,,,A synonym for @id.
 value,term,,@value,,,,,,,,A synonym for @value.
