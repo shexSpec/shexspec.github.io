@@ -5,9 +5,9 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 #ShExc definition of ShExJ
 #Shape Expression Vocabulary
 #This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex-semantics]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes.
-#Date: 2017-03-26
+#Date: 2017-03-27
 #Imports 
-#Version https://github.com/shexSpec/shexspec.github.io/commit/b5e16586ba39f04f649960ee4a7f201916149a1b
+#Version https://github.com/shexSpec/shexspec.github.io/commit/7f08f605defcbfc7b23cdce5306a0cd9fb3f52e0
 #See also <http://shex.io/shex-semantics>
   
 
@@ -38,27 +38,28 @@ shex:LiteralStem {
 }
 shex:NodeConstraint {
   #// rdfs:subClassOf shex:ShapeExpression;
-  shex:datatype @rdfs:Datatype? ;
-  shex:fractiondigits xsd:integer? ;
+  shex:datatype @rdfs:Datatype ;
+  shex:flags xsd:string ;
+  shex:fractiondigits xsd:integer ;
     #// rdfs:subPropertyOf shex:numericFacet;
-  shex:length xsd:integer? ;
+  shex:length xsd:integer ;
     #// rdfs:subPropertyOf shex:stringFacet;
-  shex:maxexclusive (xsd:integer OR xsd:decimal OR xsd:double)? ;
+  shex:maxexclusive (xsd:integer OR xsd:decimal OR xsd:double) ;
     #// rdfs:subPropertyOf shex:numericFacet;
-  shex:maxinclusive (xsd:integer OR xsd:decimal OR xsd:double)? ;
+  shex:maxinclusive (xsd:integer OR xsd:decimal OR xsd:double) ;
     #// rdfs:subPropertyOf shex:numericFacet;
-  shex:maxlength xsd:integer? ;
+  shex:maxlength xsd:integer ;
     #// rdfs:subPropertyOf shex:stringFacet;
   shex:minexclusive (xsd:integer OR xsd:decimal OR xsd:double) ;
     #// rdfs:subPropertyOf shex:numericFacet;
   shex:mininclusive (xsd:integer OR xsd:decimal OR xsd:double) ;
     #// rdfs:subPropertyOf shex:numericFacet;
-  shex:minlength xsd:integer? ;
+  shex:minlength xsd:integer ;
     #// rdfs:subPropertyOf shex:stringFacet;
-  shex:nodeKind @shex:NodeKind? ;
-  shex:pattern xsd:string? ;
+  shex:nodeKind @shex:NodeKind ;
+  shex:pattern xsd:string ;
     #// rdfs:subPropertyOf shex:stringFacet;
-  shex:totaldigits xsd:integer? ;
+  shex:totaldigits xsd:integer ;
     #// rdfs:subPropertyOf shex:numericFacet;
   shex:values (IRI OR @shex:Stem OR @shex:StemRange)* ;
 }
@@ -74,8 +75,8 @@ shex:OneOf {
   shex:semActs @shex:SemAct* ;
 }
 shex:Schema {
-  shex:shapes @shex:ShapeExpression? ;
-  shex:start @shex:ShapeExpression? ;
+  shex:shapes @shex:ShapeExpression ;
+  shex:start @shex:ShapeExpression ;
   shex:startActs @shex:SemAct* ;
 }
 shex:SemAct {
@@ -84,7 +85,7 @@ shex:SemAct {
 }
 shex:Shape {
   #// rdfs:subClassOf shex:ShapeExpression;
-  shex:closed xsd:boolean? ;
+  shex:closed xsd:boolean ;
   shex:expression @shex:TripleExpression* ;
   shex:extra IRI* ;
 }
@@ -119,7 +120,7 @@ shex:StemRange {
 shex:TripleConstraint {
   #// rdfs:subClassOf shex:TripleExpression;
   shex:annotation @shex:Annotation* ;
-  shex:inverse xsd:boolean? ;
+  shex:inverse xsd:boolean ;
   shex:max xsd:integer ;
   shex:min xsd:integer ;
   shex:predicate IRI ;
