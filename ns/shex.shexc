@@ -5,9 +5,9 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 #ShExc definition of ShExJ
 #Shape Expression Vocabulary
 #This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex-semantics]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes.
-#Date: 2017-04-06
+#Date: 2017-04-14
 #Imports 
-#Version https://github.com/shexSpec/shexspec.github.io/commit/2ab24a861e073c56f1e6f92ed3b2e22aaeff4463
+#Version https://github.com/shexSpec/shexspec.github.io/commit/d05bb51c54faff657621e9b228f5e34e24c90f98
 #See also <http://shex.io/shex-semantics>
   
 
@@ -28,12 +28,21 @@ shex:EachOf {
   shex:semActs @shex:SemAct* ;
 }
 shex:IriStem {
+  #// rdfs:subClassOf shex:Stem;
+}
+shex:IriStemRange {
   #// rdfs:subClassOf shex:StemRange;
 }
 shex:LanguageStem {
+  #// rdfs:subClassOf shex:Stem;
+}
+shex:LanguageStemRange {
   #// rdfs:subClassOf shex:StemRange;
 }
 shex:LiteralStem {
+  #// rdfs:subClassOf shex:Stem;
+}
+shex:LiteralStemRange {
   #// rdfs:subClassOf shex:StemRange;
 }
 shex:NodeConstraint {
@@ -111,11 +120,12 @@ shex:ShapeOr {
 }
 shex:Stem {
   shex:stem (xsd:string OR @shex:Wildcard) ;
+  (&shex:IriStem | &shex:LanguageStem | &shex:LiteralStem)
 }
 shex:StemRange {
   shex:exclusion (IRI OR @shex:Stem)* ;
   shex:stem (xsd:string OR @shex:Wildcard) ;
-  (&shex:IriStem | &shex:LanguageStem | &shex:LiteralStem)
+  (&shex:IriStemRange | &shex:LanguageStemRange | &shex:LiteralStemRange)
 }
 shex:TripleConstraint {
   #// rdfs:subClassOf shex:TripleExpression;

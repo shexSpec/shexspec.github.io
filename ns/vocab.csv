@@ -64,9 +64,9 @@ IriStem,rdfs:Class,IRI Stem,Stem,,,,,,,,An IRI prefix used for matching IRIs.
 LiteralStem,rdfs:Class,Literal Stem,Stem,,,,,,,,An Literal prefix used for matching Literals.
 LanguageStem,rdfs:Class,Language Stem,Stem,,,,,,,,An Language prefix used for matching Literal Languages.
 StemRange,rdfs:Class,StemRange,,,,,,,,,Abstract Class for Stem Ranges
-IriStem,rdfs:Class,IRI StemRange,StemRange,,,,,,,,"An IRI prefix (or wildcard) along with a set of excluded values, used for node matching."
-LiteralStem,rdfs:Class,Literal StemRange,StemRange,,,,,,,,"An Literal prefix (or wildcard) along with a set of excluded values, used for node matching."
-LanguageStem,rdfs:Class,Language StemRange,StemRange,,,,,,,,"An Language prefix (or wildcard) along with a set of excluded values, used for node matching."
+IriStemRange,rdfs:Class,IRI StemRange,StemRange,,,,,,,,"An IRI prefix (or wildcard) along with a set of excluded values, used for node matching."
+LiteralStemRange,rdfs:Class,Literal StemRange,StemRange,,,,,,,,"An Literal prefix (or wildcard) along with a set of excluded values, used for node matching."
+LanguageStemRange,rdfs:Class,Language StemRange,StemRange,,,,,,,,"An Language prefix (or wildcard) along with a set of excluded values, used for node matching."
 TripleConstraint,rdfs:Class,Triple Constraint,TripleExpression,,,,,,,,A constraint on a triple having a specific predicate and optionally a shape expression used for matching values.
 TripleExpression,rdfs:Class,Triple Expression,,,,@null,,,,,The abstract class of Triple Expressions.
 Wildcard,rdfs:Class,Wildcard,,,,,,,,,"Indicates that a stem is a Wildcard, rather than a URI prefix."

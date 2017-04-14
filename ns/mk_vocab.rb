@@ -27,7 +27,8 @@ class Vocab
     @imports, @seeAlso = [], []
     git_info = %x{git log -1 #{path}}.split("\n")
     @commit = "https://github.com/shexSpec/shexspec.github.io/commit/" + (git_info[0] || 'uncommitted').split.last
-    @date = Date.parse((git_info[2] || Date.today.to_s).split(":",2).last).strftime("%Y-%m-%d")
+    date_line = git_info.detect {|l| l.start_with?("Date:")}
+    @date = Date.parse((date_line || Date.today.to_s).split(":",2).last).strftime("%Y-%m-%d")
 
     columns = []
     csv.shift.each_with_index {|c, i| columns[i] = c.to_sym if c}
