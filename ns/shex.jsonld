@@ -440,7 +440,7 @@
           "en": "Shape Not"
         },
         "rdfs:comment": {
-          "en": "A ShapeNot is satisfied when it‰Ûªs included ShapeExpression is not satisfied."
+          "en": "A ShapeNot is satisfied when it's included ShapeExpression is not satisfied."
         },
         "rdfs:subClassOf": "shex:ShapeExpression"
       },
@@ -677,7 +677,7 @@
           "en": "maximum cardinality"
         },
         "rdfs:comment": {
-          "en": "Maximum number of times this TripleExpression may match; -1 for ‰ÛÏ*‰Û�"
+          "en": "Maximum number of times this TripleExpression may match; -1 for "*""
         },
         "rdfs:domain": {
           "owl:unionOf": [
