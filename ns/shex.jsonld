@@ -279,7 +279,7 @@
       "en": "This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex-semantics]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes."
     },
     "dc:date": "2017-04-12",
-    "owl:versionInfo": "https://github.com/shexSpec/shexspec.github.io/commit/07d3e76be478d8c7f8c2e9d3b1f95635890239e0",
+    "owl:versionInfo": "https://github.com/shexSpec/shexspec.github.io/commit/843ccef5050a92ba6050fc7dddb4e93d78101a8f",
     "rdfs:seeAlso": [
       "http://shex.io/shex-semantics"
     ],
@@ -440,7 +440,7 @@
           "en": "Shape Not"
         },
         "rdfs:comment": {
-          "en": "A ShapeNot is satisfied when it's included ShapeExpression is not satisfied."
+          "en": "A ShapeNot is satisfied when it’s included ShapeExpression is not satisfied."
         },
         "rdfs:subClassOf": "shex:ShapeExpression"
       },
@@ -677,7 +677,7 @@
           "en": "maximum cardinality"
         },
         "rdfs:comment": {
-          "en": "Maximum number of times this TripleExpression may match; -1 for "*""
+          "en": "Maximum number of times this TripleExpression may match; -1 for “*”"
         },
         "rdfs:domain": {
           "owl:unionOf": [

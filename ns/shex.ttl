@@ -9,7 +9,7 @@ shex: a owl:Ontology;
   dc:description """This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex-semantics]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes."""@en;
   dc:date "2017-04-12"^^xsd:date;
   dc:imports ;
-  owl:versionInfo <https://github.com/shexSpec/shexspec.github.io/commit/07d3e76be478d8c7f8c2e9d3b1f95635890239e0>;
+  owl:versionInfo <https://github.com/shexSpec/shexspec.github.io/commit/843ccef5050a92ba6050fc7dddb4e93d78101a8f>;
   rdfs:seeAlso <http://shex.io/shex-semantics>;
   .
 
@@ -82,7 +82,7 @@ shex:ShapeExternal a rdfs:Class;
   rdfs:isDefinedBy shex: .
 shex:ShapeNot a rdfs:Class;
   rdfs:label "Shape Not"@en;
-  rdfs:comment """A ShapeNot is satisfied when it's included ShapeExpression is not satisfied."""@en;
+  rdfs:comment """A ShapeNot is satisfied when it’s included ShapeExpression is not satisfied."""@en;
   rdfs:subClassOf shex:ShapeExpression;
   rdfs:isDefinedBy shex: .
 shex:ShapeOr a rdfs:Class;
@@ -189,7 +189,7 @@ shex:length a rdf:Property;
   rdfs:isDefinedBy shex: .
 shex:max a rdf:Property;
   rdfs:label "maximum cardinality"@en;
-  rdfs:comment """Maximum number of times this TripleExpression may match; -1 for "*""""@en;
+  rdfs:comment """Maximum number of times this TripleExpression may match; -1 for “*”"""@en;
   rdfs:domain [ owl:unionOf (shex:EachOf shex:OneOf shex:TripleConstraint)];
   rdfs:range xsd:integer;
   rdfs:isDefinedBy shex: .
