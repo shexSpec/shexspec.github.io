@@ -100,7 +100,7 @@ var respecConfig = {
       <dl>
         <dt>Published:</dt><dd><time property="dc:date">2017-04-06</time></dd>
         <dt>Version Info:</dt>
-        <dd><a href="https://github.com/shexSpec/shexspec.github.io/commit/cf401362987b3ef3a394770f191c8b0e9f53f58a" property="owl:versionInfo">https://github.com/shexSpec/shexspec.github.io/commit/cf401362987b3ef3a394770f191c8b0e9f53f58a</a></dd>
+        <dd><a href="https://github.com/shexSpec/shexspec.github.io/commit/2ab24a861e073c56f1e6f92ed3b2e22aaeff4463" property="owl:versionInfo">https://github.com/shexSpec/shexspec.github.io/commit/2ab24a861e073c56f1e6f92ed3b2e22aaeff4463</a></dd>
         <dt>See Also:</dt>
           <dd><a href="http://shex.io/shex-semantics" property="rdfs:seeAlso">http://shex.io/shex-semantics</a></dd>
       </dl>
@@ -444,6 +444,19 @@ var respecConfig = {
                       <dd property="rdfs:range" resource="rdfs:Resource">rdfs:Resource</dd>
                   <dt>rdfs:domain</dt>
                       <dd property="rdfs:domain" resource="shex:Shape">shex:Shape</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">flags</td>
+          <td resource="shex:flags" typeof="rdf:Property">
+            <em property="rdfs:label">flags</em>
+            <p property="rdfs:comment">Regular expression flags</p>
+            <span property="rdfs:isDefinedBy" resource="shex:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:string">xsd:string</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="shex:NodeConstraint">shex:NodeConstraint</dd>
               </dl>
           </td>
         </tr>
@@ -816,7 +829,7 @@ var respecConfig = {
                   <dt>rdfs:range</dt>
                       <dd property="rdfs:range" resource="_:">
                         Union of
-                        <span property="owl:unionOf" inlist=true resource="xsd:anyUri">xsd:anyUri</span>
+                        <span property="owl:unionOf" inlist=true resource="xsd:string">xsd:string</span>
                         <span property="owl:unionOf" inlist=true resource="shex:Wildcard">shex:Wildcard</span>
                       </dd>
                   <dt>rdfs:domain</dt>
@@ -1057,6 +1070,10 @@ var respecConfig = {
             shex:extra
             with string values interpreted as @id
         </dd>
+        <dt>flags</dt>
+        <dd>
+            shex:flags
+        </dd>
         <dt>fractiondigits</dt>
         <dd>
             shex:fractiondigits
@@ -1204,7 +1221,7 @@ var respecConfig = {
         <dt>stem</dt>
         <dd>
             shex:stem
-            with string values interpreted as xsd:anyUri
+            with string values interpreted as xsd:string
         </dd>
         <dt>totaldigits</dt>
         <dd>
@@ -1214,10 +1231,6 @@ var respecConfig = {
         <dt>type</dt>
         <dd>
             @type
-        </dd>
-        <dt>uri</dt>
-        <dd>
-            @id
         </dd>
         <dt>value</dt>
         <dd>

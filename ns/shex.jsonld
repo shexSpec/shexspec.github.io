@@ -15,7 +15,6 @@
     "id": "@id",
     "language": "@language",
     "type": "@type",
-    "uri": "@id",
     "value": "@value",
     "Annotation": "shex:Annotation",
     "EachOf": "shex:EachOf",
@@ -59,6 +58,10 @@
     "extra": {
       "@id": "shex:extra",
       "@type": "@id"
+    },
+    "flags": {
+      "@id": "shex:flags",
+      "@language": null
     },
     "fractiondigits": {
       "@id": "shex:fractiondigits",
@@ -153,7 +156,7 @@
     },
     "stem": {
       "@id": "shex:stem",
-      "@type": "xsd:anyUri"
+      "@type": "xsd:string"
     },
     "totaldigits": {
       "@id": "shex:totaldigits",
@@ -256,7 +259,7 @@
       "en": "This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex-semantics]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes."
     },
     "dc:date": "2017-04-06",
-    "owl:versionInfo": "https://github.com/shexSpec/shexspec.github.io/commit/cf401362987b3ef3a394770f191c8b0e9f53f58a",
+    "owl:versionInfo": "https://github.com/shexSpec/shexspec.github.io/commit/2ab24a861e073c56f1e6f92ed3b2e22aaeff4463",
     "rdfs:seeAlso": [
       "http://shex.io/shex-semantics"
     ],
@@ -596,6 +599,18 @@
         },
         "rdfs:domain": "shex:Shape",
         "rdfs:range": "rdfs:Resource"
+      },
+      {
+        "@id": "shex:flags",
+        "@type": "rdf:Property",
+        "rdfs:label": {
+          "en": "flags"
+        },
+        "rdfs:comment": {
+          "en": "Regular expression flags"
+        },
+        "rdfs:domain": "shex:NodeConstraint",
+        "rdfs:range": "xsd:string"
       },
       {
         "@id": "shex:fractiondigits",
@@ -951,7 +966,7 @@
         },
         "rdfs:range": {
           "owl:unionOf": [
-            "xsd:anyUri",
+            "xsd:string",
             "shex:Wildcard"
           ]
         }

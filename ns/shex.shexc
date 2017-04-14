@@ -7,7 +7,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 #This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex-semantics]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes.
 #Date: 2017-04-06
 #Imports 
-#Version https://github.com/shexSpec/shexspec.github.io/commit/cf401362987b3ef3a394770f191c8b0e9f53f58a
+#Version https://github.com/shexSpec/shexspec.github.io/commit/2ab24a861e073c56f1e6f92ed3b2e22aaeff4463
 #See also <http://shex.io/shex-semantics>
   
 
@@ -39,6 +39,7 @@ shex:LiteralStem {
 shex:NodeConstraint {
   #// rdfs:subClassOf shex:ShapeExpression;
   shex:datatype @rdfs:Datatype? ;
+  shex:flags xsd:string? ;
   shex:fractiondigits xsd:integer? ;
     #// rdfs:subPropertyOf shex:numericFacet;
   shex:length xsd:integer? ;
@@ -109,11 +110,11 @@ shex:ShapeOr {
     #// rdfs:subPropertyOf shex:shapeExpr;
 }
 shex:Stem {
-  shex:stem (xsd:anyUri OR @shex:Wildcard) ;
+  shex:stem (xsd:string OR @shex:Wildcard) ;
 }
 shex:StemRange {
   shex:exclusion (IRI OR @shex:Stem)* ;
-  shex:stem (xsd:anyUri OR @shex:Wildcard) ;
+  shex:stem (xsd:string OR @shex:Wildcard) ;
   (&shex:IriStem | &shex:LanguageStem | &shex:LiteralStem)
 }
 shex:TripleConstraint {

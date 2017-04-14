@@ -9,7 +9,7 @@ shex: a owl:Ontology;
   dc:description """This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex-semantics]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes."""@en;
   dc:date "2017-04-06"^^xsd:date;
   dc:imports ;
-  owl:versionInfo <https://github.com/shexSpec/shexspec.github.io/commit/cf401362987b3ef3a394770f191c8b0e9f53f58a>;
+  owl:versionInfo <https://github.com/shexSpec/shexspec.github.io/commit/2ab24a861e073c56f1e6f92ed3b2e22aaeff4463>;
   rdfs:seeAlso <http://shex.io/shex-semantics>;
   .
 
@@ -160,6 +160,12 @@ shex:extra a rdf:Property;
   rdfs:comment """Properties which may have extra values beyond those matched through a constraint."""@en;
   rdfs:domain shex:Shape;
   rdfs:range rdfs:Resource;
+  rdfs:isDefinedBy shex: .
+shex:flags a rdf:Property;
+  rdfs:label "flags"@en;
+  rdfs:comment """Regular expression flags"""@en;
+  rdfs:domain shex:NodeConstraint;
+  rdfs:range xsd:string;
   rdfs:isDefinedBy shex: .
 shex:fractiondigits a rdf:Property;
   rdfs:label "fraction digits"@en;
@@ -312,7 +318,7 @@ shex:stem a rdf:Property;
   rdfs:label "stem"@en;
   rdfs:comment """A stem value used for matching or excluding values."""@en;
   rdfs:domain [ owl:unionOf (shex:Stem shex:StemRange)];
-  rdfs:range [ owl:unionOf (xsd:anyUri shex:Wildcard)];
+  rdfs:range [ owl:unionOf (xsd:string shex:Wildcard)];
   rdfs:isDefinedBy shex: .
 shex:stringFacet a rdf:Property;
   rdfs:label ""@en;
