@@ -22,7 +22,7 @@ var respecConfig = {
     },
     specStatus: "base",
     shortName: "shexns",
-    publishDate:  "2017-04-12",
+    publishDate:  "2017-04-14",
     thisVersion:    "http://www.w3.org/ns/shex",
     edDraftURI: "http://shexspec.github.io/ns/",
     // lcEnd: "3000-01-01",
@@ -98,9 +98,9 @@ var respecConfig = {
         <!--These versions may also be retrieved from <code>FIXME</code> using an appropiate HTTP <em>Accept</em> header.-->
       </p>
       <dl>
-        <dt>Published:</dt><dd><time property="dc:date">2017-04-12</time></dd>
+        <dt>Published:</dt><dd><time property="dc:date">2017-04-14</time></dd>
         <dt>Version Info:</dt>
-        <dd><a href="https://github.com/shexSpec/shexspec.github.io/commit/843ccef5050a92ba6050fc7dddb4e93d78101a8f" property="owl:versionInfo">https://github.com/shexSpec/shexspec.github.io/commit/843ccef5050a92ba6050fc7dddb4e93d78101a8f</a></dd>
+        <dd><a href="https://github.com/shexSpec/shexspec.github.io/commit/d05bb51c54faff657621e9b228f5e34e24c90f98" property="owl:versionInfo">https://github.com/shexSpec/shexspec.github.io/commit/d05bb51c54faff657621e9b228f5e34e24c90f98</a></dd>
         <dt>See Also:</dt>
           <dd><a href="http://shex.io/shex-semantics" property="rdfs:seeAlso">http://shex.io/shex-semantics</a></dd>
       </dl>
@@ -149,6 +149,17 @@ var respecConfig = {
         </tr>
         <tr><td class="bold">IriStem</td>
           <td resource="shex:IriStem" typeof="rdfs:Class">
+            <em property="rdfs:label">IRI Stem</em>
+            <p property="rdfs:comment">An IRI prefix used for matching IRIs.</p>
+            <span property="rdfs:isDefinedBy" resource="shex:"></span>
+              <dl class="terms">
+                  <dt>rdfs:subClassOf</dt>
+                      <dd property="rdfs:subClassOf" resource="shex:Stem">shex:Stem</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">IriStemRange</td>
+          <td resource="shex:IriStemRange" typeof="rdfs:Class">
             <em property="rdfs:label">IRI StemRange</em>
             <p property="rdfs:comment">An IRI prefix (or wildcard) along with a set of excluded values, used for node matching.</p>
             <span property="rdfs:isDefinedBy" resource="shex:"></span>
@@ -160,6 +171,17 @@ var respecConfig = {
         </tr>
         <tr><td class="bold">LanguageStem</td>
           <td resource="shex:LanguageStem" typeof="rdfs:Class">
+            <em property="rdfs:label">Language Stem</em>
+            <p property="rdfs:comment">An Language prefix used for matching Literal Languages.</p>
+            <span property="rdfs:isDefinedBy" resource="shex:"></span>
+              <dl class="terms">
+                  <dt>rdfs:subClassOf</dt>
+                      <dd property="rdfs:subClassOf" resource="shex:Stem">shex:Stem</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">LanguageStemRange</td>
+          <td resource="shex:LanguageStemRange" typeof="rdfs:Class">
             <em property="rdfs:label">Language StemRange</em>
             <p property="rdfs:comment">An Language prefix (or wildcard) along with a set of excluded values, used for node matching.</p>
             <span property="rdfs:isDefinedBy" resource="shex:"></span>
@@ -171,6 +193,17 @@ var respecConfig = {
         </tr>
         <tr><td class="bold">LiteralStem</td>
           <td resource="shex:LiteralStem" typeof="rdfs:Class">
+            <em property="rdfs:label">Literal Stem</em>
+            <p property="rdfs:comment">An Literal prefix used for matching Literals.</p>
+            <span property="rdfs:isDefinedBy" resource="shex:"></span>
+              <dl class="terms">
+                  <dt>rdfs:subClassOf</dt>
+                      <dd property="rdfs:subClassOf" resource="shex:Stem">shex:Stem</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">LiteralStemRange</td>
+          <td resource="shex:LiteralStemRange" typeof="rdfs:Class">
             <em property="rdfs:label">Literal StemRange</em>
             <p property="rdfs:comment">An Literal prefix (or wildcard) along with a set of excluded values, used for node matching.</p>
             <span property="rdfs:isDefinedBy" resource="shex:"></span>
@@ -829,7 +862,7 @@ var respecConfig = {
                   <dt>rdfs:range</dt>
                       <dd property="rdfs:range" resource="_:">
                         Union of
-                        <span property="owl:unionOf" inlist=true resource="xsd:anyUri">xsd:anyUri</span>
+                        <span property="owl:unionOf" inlist=true resource="xsd:string">xsd:string</span>
                         <span property="owl:unionOf" inlist=true resource="shex:Wildcard">shex:Wildcard</span>
                       </dd>
                   <dt>rdfs:domain</dt>
@@ -966,21 +999,29 @@ var respecConfig = {
         <dd>
             shex:IriStem
         </dd>
+        <dt>IriStemRange</dt>
+        <dd>
+            shex:IriStemRange
+        </dd>
         <dt>LanguageStem</dt>
         <dd>
             shex:LanguageStem
+        </dd>
+        <dt>LanguageStemRange</dt>
+        <dd>
+            shex:LanguageStemRange
         </dd>
         <dt>LiteralStem</dt>
         <dd>
             shex:LiteralStem
         </dd>
+        <dt>LiteralStemRange</dt>
+        <dd>
+            shex:LiteralStemRange
+        </dd>
         <dt>NodeConstraint</dt>
         <dd>
             shex:NodeConstraint
-        </dd>
-        <dt>NodeKind</dt>
-        <dd>
-            shex:NodeKind
         </dd>
         <dt>OneOf</dt>
         <dd>
@@ -1001,10 +1042,6 @@ var respecConfig = {
         <dt>ShapeAnd</dt>
         <dd>
             shex:ShapeAnd
-        </dd>
-        <dt>ShapeExpression</dt>
-        <dd>
-            shex:ShapeExpression
         </dd>
         <dt>ShapeExternal</dt>
         <dd>
@@ -1030,18 +1067,9 @@ var respecConfig = {
         <dd>
             shex:TripleConstraint
         </dd>
-        <dt>TripleExpression</dt>
-        <dd>
-            shex:TripleExpression
-        </dd>
         <dt>Wildcard</dt>
         <dd>
             shex:Wildcard
-        </dd>
-        <dt>annotation</dt>
-        <dd>
-            shex:annotation
-            with string values interpreted as @id
         </dd>
         <dt>annotations</dt>
         <dd>
@@ -1064,11 +1092,6 @@ var respecConfig = {
         <dt>datatype</dt>
         <dd>
             shex:datatype
-            with string values interpreted as @id
-        </dd>
-        <dt>exclusion</dt>
-        <dd>
-            shex:exclusion
             with string values interpreted as @id
         </dd>
         <dt>exclusions</dt>
@@ -1181,10 +1204,6 @@ var respecConfig = {
         <dd>
             shex:nonliteral
         </dd>
-        <dt>numericFacet</dt>
-        <dd>
-            shex:numericFacet
-        </dd>
         <dt>object</dt>
         <dd>
             shex:object
@@ -1247,11 +1266,7 @@ var respecConfig = {
         <dt>stem</dt>
         <dd>
             shex:stem
-            with string values interpreted as xsd:anyUri
-        </dd>
-        <dt>stringFacet</dt>
-        <dd>
-            shex:stringFacet
+            with string values interpreted as xsd:string
         </dd>
         <dt>totaldigits</dt>
         <dd>
@@ -1276,10 +1291,6 @@ var respecConfig = {
             shex:values
             with string values interpreted as @id
               with array values interpreted as @list
-        </dd>
-        <dt>xsFacet</dt>
-        <dd>
-            shex:xsFacet
         </dd>
         <dt>xsd</dt>
         <dd>

@@ -19,28 +19,24 @@
     "Annotation": "shex:Annotation",
     "EachOf": "shex:EachOf",
     "IriStem": "shex:IriStem",
+    "IriStemRange": "shex:IriStemRange",
     "LanguageStem": "shex:LanguageStem",
+    "LanguageStemRange": "shex:LanguageStemRange",
     "LiteralStem": "shex:LiteralStem",
+    "LiteralStemRange": "shex:LiteralStemRange",
     "NodeConstraint": "shex:NodeConstraint",
-    "NodeKind": "shex:NodeKind",
     "OneOf": "shex:OneOf",
     "Schema": "shex:Schema",
     "SemAct": "shex:SemAct",
     "Shape": "shex:Shape",
     "ShapeAnd": "shex:ShapeAnd",
-    "ShapeExpression": "shex:ShapeExpression",
     "ShapeExternal": "shex:ShapeExternal",
     "ShapeNot": "shex:ShapeNot",
     "ShapeOr": "shex:ShapeOr",
     "Stem": "shex:Stem",
     "StemRange": "shex:StemRange",
     "TripleConstraint": "shex:TripleConstraint",
-    "TripleExpression": "shex:TripleExpression",
     "Wildcard": "shex:Wildcard",
-    "annotation": {
-      "@id": "shex:annotation",
-      "@type": "@id"
-    },
     "closed": {
       "@id": "shex:closed",
       "@type": "xsd:boolean"
@@ -51,10 +47,6 @@
     },
     "datatype": {
       "@id": "shex:datatype",
-      "@type": "@id"
-    },
-    "exclusion": {
-      "@id": "shex:exclusion",
       "@type": "@id"
     },
     "expression": {
@@ -126,9 +118,6 @@
       "@id": "shex:nodeKind",
       "@type": "@vocab"
     },
-    "numericFacet": {
-      "@id": "shex:numericFacet"
-    },
     "object": {
       "@id": "shex:object",
       "@type": "@id"
@@ -170,10 +159,7 @@
     },
     "stem": {
       "@id": "shex:stem",
-      "@type": "xsd:anyUri"
-    },
-    "stringFacet": {
-      "@id": "shex:stringFacet"
+      "@type": "xsd:string"
     },
     "totaldigits": {
       "@id": "shex:totaldigits",
@@ -187,9 +173,6 @@
       "@id": "shex:values",
       "@type": "@id",
       "@container": "@list"
-    },
-    "xsFacet": {
-      "@id": "shex:xsFacet"
     },
     "bnode": "shex:bnode",
     "iri": "shex:iri",
@@ -278,8 +261,8 @@
     "dc:description": {
       "en": "This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex-semantics]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes."
     },
-    "dc:date": "2017-04-12",
-    "owl:versionInfo": "https://github.com/shexSpec/shexspec.github.io/commit/843ccef5050a92ba6050fc7dddb4e93d78101a8f",
+    "dc:date": "2017-04-14",
+    "owl:versionInfo": "https://github.com/shexSpec/shexspec.github.io/commit/d05bb51c54faff657621e9b228f5e34e24c90f98",
     "rdfs:seeAlso": [
       "http://shex.io/shex-semantics"
     ],
@@ -309,6 +292,17 @@
         "@id": "shex:IriStem",
         "@type": "rdfs:Class",
         "rdfs:label": {
+          "en": "IRI Stem"
+        },
+        "rdfs:comment": {
+          "en": "An IRI prefix used for matching IRIs."
+        },
+        "rdfs:subClassOf": "shex:Stem"
+      },
+      {
+        "@id": "shex:IriStemRange",
+        "@type": "rdfs:Class",
+        "rdfs:label": {
           "en": "IRI StemRange"
         },
         "rdfs:comment": {
@@ -320,6 +314,17 @@
         "@id": "shex:LanguageStem",
         "@type": "rdfs:Class",
         "rdfs:label": {
+          "en": "Language Stem"
+        },
+        "rdfs:comment": {
+          "en": "An Language prefix used for matching Literal Languages."
+        },
+        "rdfs:subClassOf": "shex:Stem"
+      },
+      {
+        "@id": "shex:LanguageStemRange",
+        "@type": "rdfs:Class",
+        "rdfs:label": {
           "en": "Language StemRange"
         },
         "rdfs:comment": {
@@ -329,6 +334,17 @@
       },
       {
         "@id": "shex:LiteralStem",
+        "@type": "rdfs:Class",
+        "rdfs:label": {
+          "en": "Literal Stem"
+        },
+        "rdfs:comment": {
+          "en": "An Literal prefix used for matching Literals."
+        },
+        "rdfs:subClassOf": "shex:Stem"
+      },
+      {
+        "@id": "shex:LiteralStemRange",
         "@type": "rdfs:Class",
         "rdfs:label": {
           "en": "Literal StemRange"
@@ -986,7 +1002,7 @@
         },
         "rdfs:range": {
           "owl:unionOf": [
-            "xsd:anyUri",
+            "xsd:string",
             "shex:Wildcard"
           ]
         }

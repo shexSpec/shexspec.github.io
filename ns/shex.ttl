@@ -7,9 +7,9 @@
 shex: a owl:Ontology;
   dc:title "Shape Expression Vocabulary"@en;
   dc:description """This document describes the RDFS vocabulary description used in the Shape Expression Language (ShEx) [[shex-semantics]] along with the default JSON-LD Context and shape expression to validate RDF versions of shapes."""@en;
-  dc:date "2017-04-12"^^xsd:date;
+  dc:date "2017-04-14"^^xsd:date;
   dc:imports ;
-  owl:versionInfo <https://github.com/shexSpec/shexspec.github.io/commit/843ccef5050a92ba6050fc7dddb4e93d78101a8f>;
+  owl:versionInfo <https://github.com/shexSpec/shexspec.github.io/commit/d05bb51c54faff657621e9b228f5e34e24c90f98>;
   rdfs:seeAlso <http://shex.io/shex-semantics>;
   .
 
@@ -25,16 +25,31 @@ shex:EachOf a rdfs:Class;
   rdfs:subClassOf shex:TripleExpression;
   rdfs:isDefinedBy shex: .
 shex:IriStem a rdfs:Class;
+  rdfs:label "IRI Stem"@en;
+  rdfs:comment """An IRI prefix used for matching IRIs."""@en;
+  rdfs:subClassOf shex:Stem;
+  rdfs:isDefinedBy shex: .
+shex:IriStemRange a rdfs:Class;
   rdfs:label "IRI StemRange"@en;
   rdfs:comment """An IRI prefix (or wildcard) along with a set of excluded values, used for node matching."""@en;
   rdfs:subClassOf shex:StemRange;
   rdfs:isDefinedBy shex: .
 shex:LanguageStem a rdfs:Class;
+  rdfs:label "Language Stem"@en;
+  rdfs:comment """An Language prefix used for matching Literal Languages."""@en;
+  rdfs:subClassOf shex:Stem;
+  rdfs:isDefinedBy shex: .
+shex:LanguageStemRange a rdfs:Class;
   rdfs:label "Language StemRange"@en;
   rdfs:comment """An Language prefix (or wildcard) along with a set of excluded values, used for node matching."""@en;
   rdfs:subClassOf shex:StemRange;
   rdfs:isDefinedBy shex: .
 shex:LiteralStem a rdfs:Class;
+  rdfs:label "Literal Stem"@en;
+  rdfs:comment """An Literal prefix used for matching Literals."""@en;
+  rdfs:subClassOf shex:Stem;
+  rdfs:isDefinedBy shex: .
+shex:LiteralStemRange a rdfs:Class;
   rdfs:label "Literal StemRange"@en;
   rdfs:comment """An Literal prefix (or wildcard) along with a set of excluded values, used for node matching."""@en;
   rdfs:subClassOf shex:StemRange;
@@ -318,7 +333,7 @@ shex:stem a rdf:Property;
   rdfs:label "stem"@en;
   rdfs:comment """A stem value used for matching or excluding values."""@en;
   rdfs:domain [ owl:unionOf (shex:Stem shex:StemRange)];
-  rdfs:range [ owl:unionOf (xsd:anyUri shex:Wildcard)];
+  rdfs:range [ owl:unionOf (xsd:string shex:Wildcard)];
   rdfs:isDefinedBy shex: .
 shex:stringFacet a rdf:Property;
   rdfs:label ""@en;

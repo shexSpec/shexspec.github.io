@@ -27,7 +27,8 @@ class Vocab
     @imports, @seeAlso = [], []
     git_info = %x{git log -1 #{path}}.split("\n")
     @commit = "https://github.com/shexSpec/shexspec.github.io/commit/" + (git_info[0] || 'uncommitted').split.last
-    @date = Date.parse((git_info[2] || Date.today.to_s).split(":",2).last).strftime("%Y-%m-%d")
+    date_line = git_info.detect {|l| l.start_with?("Date:")}
+    @date = Date.parse((date_line || Date.today.to_s).split(":",2).last).strftime("%Y-%m-%d")
 
     columns = []
     csv.shift.each_with_index {|c, i| columns[i] = c.to_sym if c}
@@ -89,6 +90,7 @@ class Vocab
     end
 
     terms.each do |id, entry|
+      next if entry[:@type] == '@null'
       context[id] = if [:@container, :@type].any? {|k| entry[k]}
         {'@id' => entry[:subClassOf]}.
         merge(entry[:@container] ? {'@container' => entry[:@container]} : {}).
@@ -98,9 +100,9 @@ class Vocab
       end
     end
 
-    classes.each  do |id, entry|
+    classes.each do |id, entry|
       term = entry[:term] || id
-      context[term] = namespaced(id)
+      context[term] = namespaced(id) unless entry[:@type] == '@null'
 
       # Class definition
       node = {
@@ -127,7 +129,7 @@ class Vocab
       defn['@type'] = entry[:@type] if entry[:@type]
 
       term = entry[:term] || id
-      context[term] = defn
+      context[term] = defn unless entry[:@type] == '@null'
 
       # Property definition
       node = {
@@ -156,7 +158,7 @@ class Vocab
     end
 
     datatypes.each  do |id, entry|
-      context[id] = namespaced(id)
+      context[id] = namespaced(id) unless entry[:@type] == '@null'
 
       # Datatype definition
       node = {
@@ -170,7 +172,7 @@ class Vocab
     end
 
     instances.each do |id, entry|
-      context[id] = namespaced(id)
+      context[id] = namespaced(id) unless entry[:@type] == '@null'
       # Instance definition
       rdfs_instances << {
         '@id' => namespaced(id),

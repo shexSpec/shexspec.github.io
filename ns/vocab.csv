@@ -8,11 +8,11 @@ rdf,prefix,,http://www.w3.org/1999/02/22-rdf-syntax-ns#,,,,,,,,
 rdfs,prefix,,http://www.w3.org/2000/01/rdf-schema#,,,,,,,,
 shex,prefix,,http://www.w3.org/ns/shex#,,,,,,,,
 xsd,prefix,,http://www.w3.org/2001/XMLSchema#,,,,,,,,
-annotation,rdf:Property,annotation,,"EachOf,OneOf,TripleConstraint",Annotation,,,0:N,1:N,,Annotations on a TripleExpression.
+annotation,rdf:Property,annotation,,"EachOf,OneOf,TripleConstraint",Annotation,@null,,0:N,1:N,,Annotations on a TripleExpression.
 closed,rdf:Property,closed,,Shape,xsd:boolean,,,0:1,,,"Indicates that a Shape is closed, meaning that it may contain no property values other than those used within TripleConstraints."
 code,rdf:Property,code,,SemAct,xsd:string,,,1:1,,,Code executed by Semantic Action.
 datatype,rdf:Property,datatype,,NodeConstraint,rdfs:Datatype,,,0:1,0:N,,A datatype constraint.
-exclusion,rdf:Property,exclusion,,StemRange,"rdfs:Resource,Stem",,,0:N,0:N,,Values that are excluded from value matching.
+exclusion,rdf:Property,exclusion,,StemRange,"rdfs:Resource,Stem",@null,,0:N,0:N,,Values that are excluded from value matching.
 expression,rdf:Property,expression,,Shape,TripleExpression,,,0:N,0:N,,Expression associated with the TripleExpression.
 expressions,rdf:Property,expressions,,"EachOf,OneOf",TripleExpression,,@list,1:N,0:N,,List of 2 or more expressions associated with the TripleExpression.
 extra,rdf:Property,extra,,Shape,rdfs:Resource,,,0:N,0:N,,Properties which may have extra values beyond those matched through a constraint.
@@ -30,7 +30,7 @@ mininclusive,rdf:Property,min inclusive,numericFacet,NodeConstraint,"xsd:integer
 minlength,rdf:Property,min length,stringFacet,NodeConstraint,xsd:integer,,,0:1,,,An atomic property that contains a single integer that is the minimum length of the value.
 name,rdf:Property,name,,SemAct,rdfs:Resource,,,1:1,0:N,,Identifier of SemAct extension.
 nodeKind,rdf:Property,node kind,,NodeConstraint,NodeKind,@vocab,,0:1,,,"Restiction on the kind of node matched; restricted to the defined instances of NodeKind. One of shex:iri, shex:bnode, shex:literal, or shex:nonliteral."
-numericFacet,rdf:Property,,xsFacet,,,,,,,,Abstract property of numeric facets on a NodeConstraint.
+numericFacet,rdf:Property,,xsFacet,,,@null,,,,,Abstract property of numeric facets on a NodeConstraint.
 object,rdf:Property,object,,Annotation,rdfs:Resource,,,1:1,0:N,,The object of an Annotation.
 pattern,rdf:Property,pattern,stringFacet,NodeConstraint,xsd:string,,,0:1,,,A regular expression used for matching a value.
 predicate,rdf:Property,predicate,,"Annotation,TripleConstraint",rdfs:Resource,,,1:1,0:N,,The predicate of a TripleConstraint or Annotation.
@@ -40,22 +40,22 @@ shapeExpr,rdf:Property,shape expression,,ShapeNot,ShapeExpression,,,1:1,0:N,,Sha
 shapeExprs,rdf:Property,shape expressions,shapeExpr,"ShapeAnd,ShapeOr",ShapeExpression,,@list,1:N,0:N,,A list of 2 or more Shape Expressions referenced by this shape.
 start,rdf:Property,start,,Schema,ShapeExpression,,,0:1,0:1,,A ShapeExpression matched against the focus node prior to any other mapped expressions.
 startActs,rdf:Property,start actions,,Schema,SemAct,,@list,0:N,,,Semantic Actions run on the Schema.
-stem,rdf:Property,stem,,"Stem,StemRange","xsd:anyUri,Wildcard",,,1:1,0:N,,A stem value used for matching or excluding values.
-stringFacet,rdf:Property,,xsFacet,,,,,,,,An abstract property of string facets on a NodeConstraint.
+stem,rdf:Property,stem,,"Stem,StemRange","xsd:string,Wildcard",xsd:string,,1:1,0:N,,A stem value used for matching or excluding values.
+stringFacet,rdf:Property,,xsFacet,,,@null,,,,,An abstract property of string facets on a NodeConstraint.
 totaldigits,rdf:Property,total digits,numericFacet,NodeConstraint,xsd:integer,,,0:1,,,"for ""totaldigits"" constraints, v equals the number of digits in the XML Schema canonical form[xmlschema-2] of the value of n"
 values,rdf:Property,values,,NodeConstraint,"rdfs:Resource,Stem,StemRange",,@list,0:N,0:N,,A value restriction on a NodeConstraint.
 valueExpr,rdf:Property,value expression,,TripleConstraint,ShapeExpression,,,1:1,0:N,,A ShapeExpression used for matching the object (or subject if inverted) of a TripleConstraint.
-xsFacet,rdf:Property,,,NodeConstraint,,,,,,,An abstract property of string and numeric facets on a NodeConstraint.
+xsFacet,rdf:Property,,,NodeConstraint,,@null,,,,,An abstract property of string and numeric facets on a NodeConstraint.
 Annotation,rdfs:Class,Annotation,,,,,,,,,Annotations provide a format-independent way to provide additional information about elements in a schema. 
 EachOf,rdfs:Class,Each Of,TripleExpression,,,,,,,,"A TripleExpression composed of one or more sub-expressions, all of which must match."
 NodeConstraint,rdfs:Class,Node Constraint,ShapeExpression,,,,,,,,A constraint on the type or value of an RDF Node.
-NodeKind,rdfs:Class,Node Kind,,,,,,,,,The set of kinds of RDF Nodes.
+NodeKind,rdfs:Class,Node Kind,,,,@null,,,,,The set of kinds of RDF Nodes.
 OneOf,rdfs:Class,One Of,TripleExpression,,,,,,,,"A TripleExpression composed of one or more sub-expressions, one of which must match."
 Schema,rdfs:Class,Schema,,,,,,,,,"A Schema contains the set of shapes, used for matching a focus node."
 SemAct,rdfs:Class,Semantic Actions,,,,,,,,,"A list of Semantic Actions that serve as an extension point for Shape Expressions. They appear in lists in Schema's startActs and Shape, OneOf, EachOf and TripleConstraint's semActs."
 Shape,rdfs:Class,Shape Or,ShapeExpression,,,,,,,,A shapes schema is captured in a Schema object where shapes is a mapping from shape label to shape expression.
 ShapeAnd,rdfs:Class,Shape And,ShapeExpression,,,,,,,,"A ShapeExpression composed of one or more sub-expressions, all of which must match."
-ShapeExpression,rdfs:Class,Shape Expression,,,,,,,,,The abstract class of Shape Expressions.
+ShapeExpression,rdfs:Class,Shape Expression,,,,@null,,,,,The abstract class of Shape Expressions.
 ShapeExternal,rdfs:Class,Shape External,ShapeExpression,,,,,,,,A reference to a shape defined in some external Schema.
 ShapeNot,rdfs:Class,Shape Not,ShapeExpression,,,,,,,,A ShapeNot is satisfied when it’s included ShapeExpression is not satisfied.
 ShapeOr,rdfs:Class,Shape Or,ShapeExpression,,,,,,,,"A ShapeExpression composed of one or more sub-expressions, one of which must match."
@@ -64,11 +64,11 @@ IriStem,rdfs:Class,IRI Stem,Stem,,,,,,,,An IRI prefix used for matching IRIs.
 LiteralStem,rdfs:Class,Literal Stem,Stem,,,,,,,,An Literal prefix used for matching Literals.
 LanguageStem,rdfs:Class,Language Stem,Stem,,,,,,,,An Language prefix used for matching Literal Languages.
 StemRange,rdfs:Class,StemRange,,,,,,,,,Abstract Class for Stem Ranges
-IriStem,rdfs:Class,IRI StemRange,StemRange,,,,,,,,"An IRI prefix (or wildcard) along with a set of excluded values, used for node matching."
-LiteralStem,rdfs:Class,Literal StemRange,StemRange,,,,,,,,"An Literal prefix (or wildcard) along with a set of excluded values, used for node matching."
-LanguageStem,rdfs:Class,Language StemRange,StemRange,,,,,,,,"An Language prefix (or wildcard) along with a set of excluded values, used for node matching."
+IriStemRange,rdfs:Class,IRI StemRange,StemRange,,,,,,,,"An IRI prefix (or wildcard) along with a set of excluded values, used for node matching."
+LiteralStemRange,rdfs:Class,Literal StemRange,StemRange,,,,,,,,"An Literal prefix (or wildcard) along with a set of excluded values, used for node matching."
+LanguageStemRange,rdfs:Class,Language StemRange,StemRange,,,,,,,,"An Language prefix (or wildcard) along with a set of excluded values, used for node matching."
 TripleConstraint,rdfs:Class,Triple Constraint,TripleExpression,,,,,,,,A constraint on a triple having a specific predicate and optionally a shape expression used for matching values.
-TripleExpression,rdfs:Class,Triple Expression,,,,,,,,,The abstract class of Triple Expressions.
+TripleExpression,rdfs:Class,Triple Expression,,,,@null,,,,,The abstract class of Triple Expressions.
 Wildcard,rdfs:Class,Wildcard,,,,,,,,,"Indicates that a stem is a Wildcard, rather than a URI prefix."
 annotations,term,,annotation,,,@id,,,,,A synonym for the annotation property.
 exclusions,term,,exclusion,,,@id,,,,,A synonym for the exclusion property.
