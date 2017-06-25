@@ -70,8 +70,8 @@ LanguageStemRange,rdfs:Class,Language StemRange,StemRange,,,,,,,,"An Language pr
 TripleConstraint,rdfs:Class,Triple Constraint,TripleExpression,,,,,,,,A constraint on a triple having a specific predicate and optionally a shape expression used for matching values.
 TripleExpression,rdfs:Class,Triple Expression,,,,@null,,,,,The abstract class of Triple Expressions.
 Wildcard,rdfs:Class,Wildcard,,,,,,,,,"Indicates that a stem is a Wildcard, rather than a URI prefix."
-annotations,term,,annotation,,,@id,,,,,A synonym for the annotation property.
-exclusions,term,,exclusion,,,@id,,,,,A synonym for the exclusion property.
+annotations,term,,annotation,,,@id,@list,,,,A synonym for the annotation property.
+exclusions,term,,exclusion,,,@id,@list,,,,A synonym for the exclusion property.
 id,term,,@id,,,,,,,,A synonym for @id.
 language,term,,@language,,,,,,,,A synonym for @language.
 type,term,,@type,,,,,,,,A synonym for @type.
