@@ -19,6 +19,7 @@ extra,rdf:Property,extra,,Shape,rdfs:Resource,,,0:N,0:N,,Properties which may ha
 flags,rdf:Property,flags,,NodeConstraint,xsd:string,,,0:1,,,Regular expression flags
 fractiondigits,rdf:Property,fraction digits,numericFacet,NodeConstraint,xsd:integer,,,0:1,,,"for ""fractiondigits"" constraints, v is less than or equals the number of digits to the right of the decimal place in the XML Schema canonical form[xmlschema-2] of the value of n, ignoring trailing zeros."
 inverse,rdf:Property,inverse,,TripleConstraint,xsd:boolean,,,0:1,,,"Constrains the subject of a triple, rather than the object."
+languageTag,rdf:Property,language tag,,Language,xsd:string,,,1:1,1:1,,The value used to match the language tag of a language-tagged string.
 length,rdf:Property,length,stringFacet,NodeConstraint,xsd:integer,,,0:1,,,The exact length of the value of the cell.
 max,rdf:Property,maximum cardinality,,"EachOf,OneOf,TripleConstraint",xsd:integer,,,1:1,,,Maximum number of times this TripleExpression may match; -1 for “*”
 maxexclusive,rdf:Property,max exclusive,numericFacet,NodeConstraint,"xsd:integer,xsd:decimal,xsd:double",,,0:1,,,An atomic property that contains a single number that is the maximum valid value (exclusive).
@@ -43,7 +44,7 @@ startActs,rdf:Property,start actions,,Schema,SemAct,,@list,0:N,,,Semantic Action
 stem,rdf:Property,stem,,"Stem,StemRange","xsd:string,Wildcard",xsd:string,,1:1,0:N,,A stem value used for matching or excluding values.
 stringFacet,rdf:Property,,xsFacet,,,@null,,,,,An abstract property of string facets on a NodeConstraint.
 totaldigits,rdf:Property,total digits,numericFacet,NodeConstraint,xsd:integer,,,0:1,,,"for ""totaldigits"" constraints, v equals the number of digits in the XML Schema canonical form[xmlschema-2] of the value of n"
-values,rdf:Property,values,,NodeConstraint,"rdfs:Resource,Stem,StemRange",,@list,0:N,0:N,,A value restriction on a NodeConstraint.
+values,rdf:Property,values,,NodeConstraint,"rdfs:Resource,Language,Stem,StemRange",,@list,0:N,0:N,,A value restriction on a NodeConstraint.
 valueExpr,rdf:Property,value expression,,TripleConstraint,ShapeExpression,,,1:1,0:N,,A ShapeExpression used for matching the object (or subject if inverted) of a TripleConstraint.
 xsFacet,rdf:Property,,,NodeConstraint,,@null,,,,,An abstract property of string and numeric facets on a NodeConstraint.
 Annotation,rdfs:Class,Annotation,,,,,,,,,Annotations provide a format-independent way to provide additional information about elements in a schema. 
@@ -62,6 +63,7 @@ ShapeOr,rdfs:Class,Shape Or,ShapeExpression,,,,,,,,"A ShapeExpression composed o
 Stem,rdfs:Class,Stem,,,,,,,,,Abstract class for Stems
 IriStem,rdfs:Class,IRI Stem,Stem,,,,,,,,An IRI prefix used for matching IRIs.
 LiteralStem,rdfs:Class,Literal Stem,Stem,,,,,,,,An Literal prefix used for matching Literals.
+Language,rdfs:Class,Language,,,,,,,,,An Language tag used for matching Literal Languages.
 LanguageStem,rdfs:Class,Language Stem,Stem,,,,,,,,An Language prefix used for matching Literal Languages.
 StemRange,rdfs:Class,StemRange,,,,,,,,,Abstract Class for Stem Ranges
 IriStemRange,rdfs:Class,IRI StemRange,StemRange,,,,,,,,"An IRI prefix (or wildcard) along with a set of excluded values, used for node matching."
