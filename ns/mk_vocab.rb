@@ -413,7 +413,7 @@ when :ttl     then options[:output].puts(vocab.to_ttl)
 when :html    then options[:output].puts(vocab.to_html)
 when :shexc   then options[:output].puts(vocab.to_shexc)
 else
-  [:jsonld, :ttl, :html, :shexc].each do |format|
+  [:jsonld, :ttl, :html].each do |format|
     fn = {jsonld: "shex.jsonld", ttl: "shex.ttl", html: "shex.html"}[format]
     File.open(fn, "w") do |output|
       output.puts(vocab.send("to_#{format}".to_sym))
