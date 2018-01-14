@@ -187,6 +187,10 @@ class Vocab
       "@context" => rdfs_context,
       "@id" => prefixes["shex"][:subClassOf],
       "@type" => "owl:Ontology",
+      "dc": "http://purl.org/dc/terms/",
+      "owl": "http://www.w3.org/2002/07/owl#",
+      "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
       "dc:title" => {"en" => TITLE},
       "dc:description" => {"en" => DESCRIPTION},
       "dc:date" => date,
@@ -214,7 +218,13 @@ class Vocab
   def to_ttl
     output = []
 
-    @prefixes.each {|id, entry| output << "@prefix #{id}: <#{entry[:subClassOf]}> ."}
+    prefixes = {
+      "dc"   => {subClassOf: "http;//purl.org/dc/terms/"},
+      "owl"  => {subClassOf: "http://www.w3.org/2002/07/owl#"},
+      "rdf"  => {subClassOf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#"},
+      "rdfs" => {subClassOf: "http://www.w3.org/2000/01/rdf-schema#"},
+    }.merge(@prefixes).dup
+    prefixes.each {|id, entry| output << "@prefix #{id}: <#{entry[:subClassOf]}> ."}
 
     output << "\n# CSVM Ontology definition"
     output << "shex: a owl:Ontology;"
