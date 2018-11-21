@@ -36,6 +36,10 @@ shex:IriStemRange a rdfs:Class;
   rdfs:comment """An IRI prefix (or wildcard) along with a set of excluded values, used for node matching."""@en;
   rdfs:subClassOf shex:StemRange;
   rdfs:isDefinedBy shex: .
+shex:Language a rdfs:Class;
+  rdfs:label "Language"@en;
+  rdfs:comment """An Language tag used for matching Literal Languages."""@en;
+  rdfs:isDefinedBy shex: .
 shex:LanguageStem a rdfs:Class;
   rdfs:label "Language Stem"@en;
   rdfs:comment """An Language prefix used for matching Literal Languages."""@en;
@@ -196,6 +200,12 @@ shex:inverse a rdf:Property;
   rdfs:comment """Constrains the subject of a triple, rather than the object."""@en;
   rdfs:domain shex:TripleConstraint;
   rdfs:range xsd:boolean;
+  rdfs:isDefinedBy shex: .
+shex:languageTag a rdf:Property;
+  rdfs:label "language tag"@en;
+  rdfs:comment """The value used to match the language tag of a language-tagged string."""@en;
+  rdfs:domain shex:Language;
+  rdfs:range xsd:string;
   rdfs:isDefinedBy shex: .
 shex:length a rdf:Property;
   rdfs:label "length"@en;
@@ -359,7 +369,7 @@ shex:values a rdf:Property;
   rdfs:label "values"@en;
   rdfs:comment """A value restriction on a NodeConstraint."""@en;
   rdfs:domain shex:NodeConstraint;
-  rdfs:range [ owl:unionOf (rdfs:Resource shex:Stem shex:StemRange)];
+  rdfs:range [ owl:unionOf (rdfs:Resource shex:Language shex:Stem shex:StemRange)];
   rdfs:isDefinedBy shex: .
 shex:xsFacet a rdf:Property;
   rdfs:label ""@en;
